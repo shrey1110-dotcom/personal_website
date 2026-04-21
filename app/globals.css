@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --page-bg: #f6f5f1;
+  --card-light: #ffffff;
+  --card-dark: #0b0b09;
+  --card-warm: #fef7ee;
+  --card-navy: #0a1422;
+  --border: #e2e0d8;
+  --accent-purple: #3c3489;
+  --accent-purple-soft: #eeedfe;
+  --accent-green: #22c55e;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--page-bg);
+}
+
+body {
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 24%),
+    var(--page-bg);
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: rgba(60, 52, 137, 0.18);
+  color: #1a1a18;
+}
