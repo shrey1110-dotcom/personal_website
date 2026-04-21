@@ -1,0 +1,72 @@
+<svg width="1568" height="657" viewBox="0 0 1568 657" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1568" height="657" fill="#F5F6F7"/>
+  <rect width="1568" height="52" fill="#FFFFFF"/>
+  <line x1="0" y1="51.5" x2="1568" y2="51.5" stroke="#E6E6E6"/>
+  <text x="311" y="31" fill="#D2752A" font-size="18" font-family="Arial, Helvetica, sans-serif" font-weight="700">RETAIN AI</text>
+  <text x="1002" y="31" fill="#D2752A" font-size="15" font-family="Arial, Helvetica, sans-serif" font-weight="700">Dashboard</text>
+  <text x="1110" y="31" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Conversations</text>
+  <text x="1227" y="31" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Settings</text>
+  <text x="1307" y="31" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Log out</text>
+
+  <text x="280" y="99" fill="#30353B" font-size="17" font-family="Arial, Helvetica, sans-serif" font-weight="700">Business</text>
+  <rect x="280.5" y="110.5" width="307" height="21" rx="4.5" fill="#FFFFFF" stroke="#CFCFD1"/>
+  <text x="289" y="126" fill="#30353B" font-size="13" font-family="Arial, Helvetica, sans-serif">Shrey_1110_shop (+15551234567)</text>
+  <path d="M569 118L575 124L581 118" stroke="#6B7280" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g filter="url(#cardShadow)">
+    <rect x="280" y="155" width="256" height="118" rx="14" fill="#FFFFFF"/>
+    <rect x="281" y="156" width="254" height="116" rx="13" stroke="#E7E5E4"/>
+    <line x1="280" y1="213.5" x2="536" y2="213.5" stroke="#EEECEA"/>
+    <text x="305" y="189" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Missed calls</text>
+    <text x="305" y="249" fill="#222222" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">0</text>
+  </g>
+  <g filter="url(#cardShadow)">
+    <rect x="552" y="155" width="257" height="118" rx="14" fill="#FFFFFF"/>
+    <rect x="553" y="156" width="255" height="116" rx="13" stroke="#E7E5E4"/>
+    <line x1="552" y1="213.5" x2="809" y2="213.5" stroke="#EEECEA"/>
+    <text x="577" y="189" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Inbound leads</text>
+    <text x="577" y="249" fill="#222222" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">2</text>
+  </g>
+  <g filter="url(#cardShadow)">
+    <rect x="824" y="155" width="257" height="118" rx="14" fill="#FFFFFF"/>
+    <rect x="825" y="156" width="255" height="116" rx="13" stroke="#E7E5E4"/>
+    <line x1="824" y1="213.5" x2="1081" y2="213.5" stroke="#EEECEA"/>
+    <text x="849" y="189" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Owner alerts</text>
+    <text x="849" y="249" fill="#222222" font-size="24" font-family="Arial, Helvetica, sans-serif" font-weight="700">0</text>
+  </g>
+  <g filter="url(#cardShadow)">
+    <rect x="1096" y="155" width="257" height="118" rx="14" fill="#FFFFFF"/>
+    <rect x="1097" y="156" width="255" height="116" rx="13" stroke="#E7E5E4"/>
+    <line x1="1096" y1="213.5" x2="1353" y2="213.5" stroke="#EEECEA"/>
+    <text x="1121" y="189" fill="#4B5563" font-size="15" font-family="Arial, Helvetica, sans-serif">Lead statuses</text>
+    <text x="1121" y="239" fill="#30353B" font-size="14" font-family="Arial, Helvetica, sans-serif">escalated: 2</text>
+  </g>
+
+  <g filter="url(#cardShadow)">
+    <rect x="280" y="305" width="1073" height="218" rx="14" fill="#FFFFFF"/>
+    <rect x="281" y="306" width="1071" height="216" rx="13" stroke="#E7E5E4"/>
+    <line x1="280" y1="358.5" x2="1353" y2="358.5" stroke="#EEECEA"/>
+    <line x1="280" y1="442.5" x2="1353" y2="442.5" stroke="#F0EFEE"/>
+    <text x="305" y="336" fill="#222222" font-size="16" font-family="Arial, Helvetica, sans-serif" font-weight="700">Recent conversations</text>
+    <text x="1290" y="336" fill="#7C8188" font-size="13" font-family="Arial, Helvetica, sans-serif">2 total</text>
+    <text x="305" y="402" fill="#30353B" font-size="15" font-family="Arial, Helvetica, sans-serif">+17605034442</text>
+    <text x="305" y="426" fill="#9AA0A6" font-size="12" font-family="Arial, Helvetica, sans-serif">Updated 4/18/2026, 1:49:18 AM</text>
+    <text x="1275" y="402" fill="#7C8188" font-size="13" font-family="Arial, Helvetica, sans-serif">escalated</text>
+    <text x="305" y="470" fill="#30353B" font-size="15" font-family="Arial, Helvetica, sans-serif">+15622257841</text>
+    <text x="305" y="494" fill="#9AA0A6" font-size="12" font-family="Arial, Helvetica, sans-serif">Updated 4/17/2026, 1:02:40 AM</text>
+    <text x="1275" y="470" fill="#7C8188" font-size="13" font-family="Arial, Helvetica, sans-serif">escalated</text>
+  </g>
+
+  <defs>
+    <filter id="cardShadow" x="268" y="149" width="1097" height="386" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="1"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.113725 0 0 0 0 0.113725 0 0 0 0 0.113725 0 0 0 0.06 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+</svg>
