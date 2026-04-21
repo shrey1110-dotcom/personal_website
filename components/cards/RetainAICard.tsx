@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { KeyboardEvent } from "react";
+import { withBasePath } from "@/lib/site";
 
 const openSite = () => {
   window.open("https://retain-ai-eight.vercel.app/", "_blank", "noopener,noreferrer");
@@ -31,7 +32,7 @@ export default function RetainAICard() {
     >
       <div className="relative min-h-[176px] flex-1 overflow-hidden rounded-lg border border-[#1c1c18]">
         <Image
-          src="/retain-screenshot.png"
+          src={withBasePath("/retain-screenshot.png")}
           alt="RETAIN AI dashboard preview"
           fill
           sizes="(min-width: 768px) 60vw, 100vw"

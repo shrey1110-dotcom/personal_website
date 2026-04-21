@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import { pagesSiteUrl } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,12 +13,12 @@ export const metadata: Metadata = {
   title: "Shreyansh Sharma — Full Stack Developer",
   description:
     "CS junior at CSULB building full-stack SaaS, ML pipelines, and Web3 tools.",
-  metadataBase: new URL("https://shreyanshsharma.vercel.app"),
+  metadataBase: new URL(pagesSiteUrl),
   openGraph: {
     title: "Shreyansh Sharma",
     description: "Full-stack developer · CSULB · Long Beach CA",
-    url: "https://shreyanshsharma.vercel.app",
-    images: [{ url: "/og.png", width: 1200, height: 630 }],
+    url: pagesSiteUrl,
+    images: [{ url: `${pagesSiteUrl}/og.png`, width: 1200, height: 630 }],
   },
 };
 

@@ -1,6 +1,7 @@
 import BentoGrid from "@/components/BentoGrid";
 import Hero from "@/components/Hero";
 import Nav from "@/components/Nav";
+import { withBasePath } from "@/lib/site";
 
 const footerLinks = [
   {
@@ -12,7 +13,7 @@ const footerLinks = [
     label: "linkedin",
   },
   {
-    href: "/resume.pdf",
+    href: withBasePath("/resume.pdf"),
     label: "resume",
   },
 ];
