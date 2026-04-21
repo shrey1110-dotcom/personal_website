@@ -3,33 +3,174 @@
 @tailwind utilities;
 
 :root {
-  --page-bg: #f6f5f1;
-  --card-light: #ffffff;
-  --card-dark: #0b0b09;
-  --card-warm: #fef7ee;
-  --card-navy: #0a1422;
-  --border: #e2e0d8;
-  --accent-purple: #3c3489;
-  --accent-purple-soft: #eeedfe;
-  --accent-green: #22c55e;
+  --bg: #040814;
+  --bg-deep: #02040c;
+  --panel: rgba(11, 17, 34, 0.58);
+  --panel-strong: rgba(8, 13, 28, 0.84);
+  --line: rgba(155, 174, 255, 0.16);
+  --line-strong: rgba(155, 174, 255, 0.28);
+  --text: #eef2ff;
+  --muted: #8e9bc0;
+  --violet: #b26bff;
+  --teal: #35e6d3;
+  --blue: #5ba2ff;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--page-bg);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(59, 130, 246, 0.18), transparent 22%),
+    radial-gradient(circle at 80% 12%, rgba(168, 85, 247, 0.12), transparent 18%),
+    radial-gradient(circle at 50% 45%, rgba(45, 212, 191, 0.08), transparent 22%),
+    linear-gradient(180deg, #050916 0%, #040814 45%, #02040c 100%);
 }
 
 body {
-  background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 24%),
-    var(--page-bg);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: transparent;
+  color: var(--text);
 }
 
 * {
-  border-color: var(--border);
+  border-color: var(--line);
 }
 
 ::selection {
-  background: rgba(60, 52, 137, 0.18);
-  color: #1a1a18;
+  background: rgba(96, 165, 250, 0.35);
+  color: #ffffff;
+}
+
+@media (pointer: fine) {
+  body,
+  a,
+  button,
+  [role="button"],
+  [role="link"] {
+    cursor: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(6, 10, 22, 0.82);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(91, 162, 255, 0.8), rgba(178, 107, 255, 0.78));
+  border: 3px solid rgba(6, 10, 22, 0.82);
+  border-radius: 999px;
+}
+
+.cosmic-grid {
+  background-image:
+    linear-gradient(rgba(120, 138, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 138, 255, 0.06) 1px, transparent 1px);
+  background-size: 112px 112px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.85) 18%, black 100%);
+}
+
+.panel-sheen::before {
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 26%, transparent 72%, rgba(255, 255, 255, 0.05)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%);
+  content: "";
+  pointer-events: none;
+}
+
+.noise-overlay::after {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.08) 0, transparent 35%),
+    radial-gradient(circle at 75% 30%, rgba(255, 255, 255, 0.05) 0, transparent 28%),
+    radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.05) 0, transparent 30%);
+  mix-blend-mode: screen;
+  content: "";
+  pointer-events: none;
+}
+
+.text-gradient {
+  background:
+    linear-gradient(135deg, #eef2ff 0%, #89a7ff 40%, #35e6d3 75%, #b26bff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-violet {
+  background:
+    linear-gradient(135deg, #5ba2ff 0%, #8d8bff 36%, #b26bff 72%, #35e6d3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glow-pill {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba(154, 173, 255, 0.12),
+    0 12px 40px rgba(30, 52, 110, 0.24);
+}
+
+.deep-shadow {
+  box-shadow:
+    0 32px 70px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.24;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.92;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.03);
+  }
+}
+
+@keyframes pulse-beam {
+  0%,
+  100% {
+    opacity: 0.44;
+  }
+
+  50% {
+    opacity: 0.92;
+  }
+}
+
+.star {
+  animation-name: twinkle;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.aurora-float {
+  animation: float-slow 14s ease-in-out infinite;
+}
+
+.beam-pulse {
+  animation: pulse-beam 5.6s ease-in-out infinite;
 }
