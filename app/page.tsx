@@ -1,5 +1,5 @@
-import SpacePortfolio from "@/components/SpacePortfolio";
+import HomePage from "@/components/home/HomePage";
 
 export default function Home() {
-  return <SpacePortfolio />;
+  return <HomePage />;
 }
