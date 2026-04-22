@@ -15,31 +15,34 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
   return (
     <motion.article
       className="border-t border-white/8 py-12 first:border-t-0 md:py-16"
-      initial={{ opacity: 0.9, y: 12 }}
+      initial={{ opacity: 0.95, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.34, ease: "easeOut" }}
     >
       <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-        <div
-          className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}
-        >
+        <div className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}>
           <ProjectVisual project={project} />
         </div>
 
         <div className={`lg:col-span-6 ${reversed ? "lg:order-1" : ""}`}>
-          <div className="space-y-5">
+          <div className="space-y-6">
             <p className="section-label">{project.type}</p>
             <h3 className="project-title">{project.name}</h3>
             <p className="project-copy">{project.blurb}</p>
             <p className="project-trust">{project.trustNote}</p>
 
+            <div className="grid gap-3 sm:grid-cols-3">
+              {project.proofPoints.map((item) => (
+                <div key={item} className="proof-card">
+                  <p className="text-sm leading-6 text-slate-200">{item}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="flex flex-wrap gap-2.5">
               {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="skill-chip"
-                >
+                <span key={tag} className="skill-chip">
                   {tag}
                 </span>
               ))}

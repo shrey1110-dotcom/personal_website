@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import HeroProfilePanel from "@/components/home/HeroProfilePanel";
 import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
 import SectionHeading from "@/components/home/SectionHeading";
+import SkillMatrix from "@/components/home/SkillMatrix";
 import {
   aboutBlocks,
   contactLinks,
-  currentFocusCards,
   heroChips,
   navItems,
   projects,
@@ -16,23 +17,58 @@ import {
 } from "@/lib/portfolio-content";
 import { withBasePath } from "@/lib/site";
 
+const aboutSignals = [
+  {
+    label: "End-to-end ownership",
+    value: "Interface, back end, integrations, and the product details that make the system hold together.",
+  },
+  {
+    label: "Real operating logic",
+    value: "The work gets stronger when product behavior depends on APIs, workflows, and data moving cleanly.",
+  },
+  {
+    label: "Proof over polish",
+    value: "Strong UI matters, but it only counts when the underlying workflow feels usable and technically sound.",
+  },
+] as const;
+
+const featuredHighlights = [
+  {
+    label: "Workflow logic",
+    value: "Lead intake, routing, and AI-assisted follow-up structured around real operator use.",
+  },
+  {
+    label: "Operator surface",
+    value: "A dashboard that behaves like a product workspace instead of a one-off demo shell.",
+  },
+  {
+    label: "System behavior",
+    value: "Messaging, transcript context, and QA support working together as one product loop.",
+  },
+] as const;
+
 export default function HomePage() {
   const featuredProject = projects[0];
+  const secondaryContactLinks = contactLinks.filter((link) => link.label !== "Email");
 
   return (
     <div className="relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(92,123,255,0.16),transparent_26%),radial-gradient(circle_at_78%_14%,rgba(72,211,190,0.1),transparent_22%),linear-gradient(180deg,#070b14_0%,#0b1020_56%,#070b14_100%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.03)_50%,transparent_100%)] opacity-30" />
+        <div className="page-glow-layer" />
+        <div className="page-grid-layer" />
+        <div className="page-vignette-layer" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-white/8 bg-[rgba(7,11,20,0.76)] backdrop-blur-xl">
+      <header className="sticky top-0 z-40 border-b border-white/8 bg-[rgba(7,11,20,0.72)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-4 py-4 md:px-8">
-          <a
-            href="#home"
-            className="text-base font-semibold tracking-[-0.03em] text-white"
-          >
-            Shreyansh Sharma
+          <a href="#home" className="flex items-center gap-3 text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm font-semibold">
+              SS
+            </span>
+            <span>
+              <span className="block text-sm font-semibold tracking-[-0.03em]">Shreyansh Sharma</span>
+              <span className="block text-xs text-slate-400">Software engineer</span>
+            </span>
           </a>
 
           <nav className="hidden items-center gap-7 lg:flex">
@@ -51,7 +87,7 @@ export default function HomePage() {
             href={withBasePath("/resume.pdf")}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
+            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.07]"
           >
             Resume
           </a>
@@ -59,73 +95,98 @@ export default function HomePage() {
       </header>
 
       <main className="relative z-10">
-        <section id="home" className="mx-auto max-w-[1320px] px-4 pb-16 pt-20 md:px-8 md:pb-20 md:pt-28">
-          <motion.div
-            initial={{ opacity: 0.94, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.28, ease: "easeOut" }}
-            className="max-w-[860px]"
-          >
-            <p className="section-label">
-              Software engineer building full-stack products and ML systems
-            </p>
-            <h1 className="hero-title mt-5">Shreyansh Sharma</h1>
-            <p className="hero-support mt-6">
-              I build production-minded software across product, infrastructure, and applied
-              machine learning.
-            </p>
-            <p className="hero-body mt-6">
-              I design and ship software with real moving parts: front-end systems, back-end
-              workflows, data models, and third-party integrations that have to work together
-              cleanly. My focus is building products that feel polished on the surface and
-              technically sound underneath.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-2.5">
-              {heroChips.map((chip) => (
-                <span key={chip} className="hero-chip">
-                  {chip}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <a href="#projects" className="primary-button">
-                View Projects
-              </a>
-              <a href="#contact" className="secondary-button">
-                Contact
-              </a>
-              <a
-                href={withBasePath("/resume.pdf")}
-                target="_blank"
-                rel="noreferrer"
-                className="tertiary-button"
+        <section id="home" className="section-shell pb-16 pt-16 md:pb-20 md:pt-24">
+          <div className="section-frame">
+            <div className="hero-grid">
+              <motion.div
+                initial={{ opacity: 0.96, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.28, ease: "easeOut" }}
+                className="max-w-[760px]"
               >
-                Resume
-              </a>
+                <p className="section-label">
+                  Software engineer building full-stack products and ML systems
+                </p>
+                <h1 className="hero-title mt-5">Shreyansh Sharma</h1>
+                <p className="hero-support mt-6">
+                  I build production-minded software across product, infrastructure, and applied
+                  machine learning.
+                </p>
+                <p className="hero-body mt-6">
+                  I design and ship software with real moving parts: front-end systems, back-end
+                  workflows, data models, and third-party integrations that have to work together
+                  cleanly. My focus is building products that feel polished on the surface and
+                  technically sound underneath.
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-2.5">
+                  {heroChips.map((chip) => (
+                    <span key={chip} className="hero-chip">
+                      {chip}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-10 flex flex-wrap items-center gap-4">
+                  <a href="#projects" className="primary-button">
+                    View Projects
+                  </a>
+                  <a href="#contact" className="secondary-button">
+                    Contact
+                  </a>
+                  <a
+                    href={withBasePath("/resume.pdf")}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="tertiary-button"
+                  >
+                    Resume
+                  </a>
+                </div>
+              </motion.div>
+
+              <HeroProfilePanel />
             </div>
-          </motion.div>
+
+            <InfoRails className="mt-10 md:mt-12" />
+          </div>
         </section>
 
-        <InfoRails />
-
-        <section id="about" className="section-shell">
+        <section id="about" className="section-shell pt-8 md:pt-10">
           <div className="section-frame">
-            <SectionHeading
-              label="About"
-              title="I like building software where product quality and system quality both matter."
-              body="The work that interests me most sits between interface and infrastructure: products people actually use, systems that support them reliably, and workflows that make the software useful in practice. I’m especially drawn to projects that require both technical depth and product judgment."
-            />
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <SectionHeading
+                label="About"
+                title="I like building software where product quality and system quality both matter."
+                body="The work that interests me most sits between interface and infrastructure: products people actually use, systems that support them reliably, and workflows that make the software useful in practice. I’m especially drawn to projects that require both technical depth and product judgment."
+              />
+
+              <motion.div
+                initial={{ opacity: 0.96, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.32, ease: "easeOut" }}
+                className="about-signal-panel"
+              >
+                <div className="grid gap-4">
+                  {aboutSignals.map((item) => (
+                    <div key={item.label} className="proof-card">
+                      <p className="mono-label">{item.label}</p>
+                      <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
 
             <div className="mt-12 grid gap-4 md:grid-cols-3">
               {aboutBlocks.map((block, index) => (
                 <motion.div
                   key={block.title}
-                  initial={{ opacity: 0.9, y: 10 }}
+                  initial={{ opacity: 0.96, y: 8 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.22 }}
-                  transition={{ duration: 0.34, delay: index * 0.04, ease: "easeOut" }}
+                  transition={{ duration: 0.32, delay: index * 0.04, ease: "easeOut" }}
                   className="content-panel"
                 >
                   <p className="section-label">{block.title}</p>
@@ -152,7 +213,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="featured-project" className="section-shell">
+        <section id="featured-project" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
             <SectionHeading
               label="Featured Project"
@@ -160,16 +221,17 @@ export default function HomePage() {
               body="It brings together the parts of software work I care most about: product design, workflow logic, third-party integrations, and back-end behavior that supports real usage. The goal was not just to make it look polished, but to make it operate like a real product."
             />
 
-            <div className="mt-12 grid items-start gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+            <div className="mt-12 grid items-start gap-6 lg:grid-cols-[1.04fr_0.96fr]">
               <motion.div
-                initial={{ opacity: 0.92, y: 10 }}
+                initial={{ opacity: 0.96, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.34, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{ duration: 0.32, ease: "easeOut" }}
                 className="content-panel overflow-hidden p-0"
               >
-                <div className="border-b border-white/8 px-5 py-4 text-[11px] uppercase tracking-[0.24em] text-slate-400">
-                  Retain AI dashboard
+                <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
+                  <span className="mono-label">Retain AI dashboard</span>
+                  <span className="mono-label">operator workflow</span>
                 </div>
                 <div className="relative aspect-[16/10]">
                   <Image
@@ -183,10 +245,10 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0.92, y: 10 }}
+                initial={{ opacity: 0.96, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.34, ease: "easeOut", delay: 0.04 }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{ duration: 0.32, delay: 0.04, ease: "easeOut" }}
                 className="space-y-4"
               >
                 <div className="content-panel">
@@ -201,6 +263,15 @@ export default function HomePage() {
                       Focused on product behavior, not just surface-level UI polish.
                     </li>
                   </ul>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                  {featuredHighlights.map((item) => (
+                    <div key={item.label} className="proof-card h-full">
+                      <p className="mono-label">{item.label}</p>
+                      <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="content-panel">
@@ -226,146 +297,63 @@ export default function HomePage() {
               body="Most of my work lives around web products, APIs, databases, ML tooling, and deployment. These are the technologies I reach for most often when building end-to-end systems."
             />
 
-            <div className="mt-12 grid gap-4 md:grid-cols-2">
-              {skillGroups.map((group, index) => (
-                <motion.div
-                  key={group.label}
-                  initial={{ opacity: 0.9, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.18 }}
-                  transition={{ duration: 0.32, delay: index * 0.04, ease: "easeOut" }}
-                  className="content-panel"
-                >
-                  <p className="section-label">{group.label}</p>
-                  <div className="mt-4 flex flex-wrap gap-2.5">
-                    {group.items.map((item) => (
-                      <span key={item} className="skill-chip">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="mt-12">
+              <SkillMatrix groups={skillGroups} />
             </div>
           </div>
         </section>
 
-        <section id="current-focus" className="section-shell">
+        <section id="contact" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
-            <SectionHeading
-              label="Current Focus"
-              title="What I’m sharpening right now"
-              body="Right now I’m focused on building stronger project depth: clearer architecture, better technical storytelling, and sharper proof of what I can build across the stack."
-            />
+            <div className="contact-panel lg:grid-cols-[1.14fr_0.86fr]">
+              <div>
+                <SectionHeading
+                  label="Contact"
+                  title="Let’s talk"
+                  body="I’m interested in software engineering opportunities, collaborations, and conversations around product, full-stack systems, and ML-adjacent work. Reach out if any of the work here is relevant to what you’re building."
+                />
 
-            <div className="mt-12 grid gap-4 md:grid-cols-3">
-              {currentFocusCards.map((card, index) => (
-                <motion.div
-                  key={card.title}
-                  initial={{ opacity: 0.9, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.32, delay: index * 0.04, ease: "easeOut" }}
-                  className="content-panel"
-                >
-                  <p className="section-label">{card.title}</p>
-                  <p className="mt-4 text-base leading-8 text-slate-300">{card.copy}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" className="section-shell pb-16 md:pb-20">
-          <div className="section-frame">
-            <SectionHeading
-              label="Contact"
-              title="Let’s talk"
-              body="I’m interested in software engineering opportunities, collaborations, and conversations around product, full-stack systems, and ML-adjacent work. Reach out if any of the work here is relevant to what you’re building."
-            />
-
-            <div className="mt-12 grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-              <motion.div
-                initial={{ opacity: 0.92, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.18 }}
-                transition={{ duration: 0.32, ease: "easeOut" }}
-                className="content-panel"
-              >
-                <p className="section-label">Primary contact</p>
                 <a
                   href="mailto:shreyansh.sharma01@student.csulb.edu"
-                  className="mt-4 block max-w-[16ch] text-[clamp(1.45rem,7vw,2.1rem)] font-semibold leading-[0.98] tracking-[-0.055em] text-white transition-colors duration-200 [overflow-wrap:anywhere] hover:text-sky-100 md:max-w-[20ch] md:text-[clamp(1.85rem,3.25vw,3.35rem)] md:leading-[0.96] md:tracking-[-0.06em]"
+                  className="mt-10 inline-flex flex-col text-left"
                 >
-                  <span className="block">shreyansh.sharma01</span>
-                  <span className="block">@student.csulb.edu</span>
+                  <span className="mono-label">Email</span>
+                  <span className="mt-3 text-[clamp(1.55rem,2.7vw,2.9rem)] font-semibold tracking-[-0.05em] text-white">
+                    <span className="block">shreyansh.sharma01</span>
+                    <span className="block">@student.csulb.edu</span>
+                  </span>
                 </a>
+              </div>
 
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <a href="mailto:shreyansh.sharma01@student.csulb.edu" className="primary-button">
-                    Email
-                  </a>
-                  <a
-                    href={withBasePath("/resume.pdf")}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="secondary-button"
-                  >
-                    Resume
-                  </a>
-                </div>
-              </motion.div>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {secondaryContactLinks.map((link) => {
+                  const href = link.href.startsWith("/") ? withBasePath(link.href) : link.href;
 
-              <div className="grid gap-4">
-                {contactLinks.map((link, index) => (
-                  <motion.a
-                    key={link.label}
-                    href={link.href}
-                    target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                    rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
-                    initial={{ opacity: 0.9, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.2 }}
-                    transition={{ duration: 0.3, delay: index * 0.03, ease: "easeOut" }}
-                    className="content-panel transition-all duration-200 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05]"
-                  >
-                    <p className="section-label">{link.label}</p>
-                    <div className="mt-3 flex items-center justify-between gap-6">
-                      <p className="text-[0.98rem] leading-7 text-white [overflow-wrap:anywhere]">
-                        {link.value}
-                      </p>
-                      <span className="text-slate-500" aria-hidden="true">
-                        ↗
+                  return (
+                    <a
+                      key={link.label}
+                      href={href}
+                      target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                      rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                      className="contact-link-card"
+                    >
+                      <span className="mono-label">{link.label}</span>
+                      <span className="contact-link-value">{link.value}</span>
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm text-slate-300">
+                        Open
+                        <span aria-hidden="true">↗</span>
                       </span>
-                    </div>
-                  </motion.a>
-                ))}
-                <motion.a
-                  href={withBasePath("/resume.pdf")}
-                  target="_blank"
-                  rel="noreferrer"
-                  initial={{ opacity: 0.9, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.3, delay: 0.12, ease: "easeOut" }}
-                  className="content-panel transition-all duration-200 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05]"
-                >
-                  <p className="section-label">Resume</p>
-                  <div className="mt-3 flex items-center justify-between gap-6">
-                    <p className="text-base text-white">Open PDF</p>
-                    <span className="text-slate-500" aria-hidden="true">
-                      ↗
-                    </span>
-                  </div>
-                </motion.a>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="relative z-10 border-t border-white/8">
-        <div className="mx-auto flex max-w-[1320px] flex-col gap-2 px-4 py-6 md:px-8">
+      <footer className="relative z-10 border-t border-white/8 px-4 py-8 md:px-8">
+        <div className="mx-auto max-w-[1320px] space-y-2">
           <p className="text-sm text-slate-300">
             Shreyansh Sharma · Long Beach, CA · CSULB · Open to internships
           </p>

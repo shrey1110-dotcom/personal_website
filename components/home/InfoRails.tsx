@@ -29,12 +29,13 @@ function RailTrack({
   );
 }
 
-export default function InfoRails() {
+type InfoRailsProps = {
+  className?: string;
+};
+
+export default function InfoRails({ className = "" }: InfoRailsProps) {
   return (
-    <section
-      aria-hidden="true"
-      className="mx-auto mt-2 w-full max-w-[1320px] px-4 pb-10 md:px-8 md:pb-14"
-    >
+    <div aria-hidden="true" className={className}>
       <div className="space-y-3">
         <RailTrack items={ambientRails[0]} />
         <div className="hidden md:block">
@@ -44,6 +45,6 @@ export default function InfoRails() {
           <RailTrack items={ambientRails[2]} />
         </div>
       </div>
-    </section>
+    </div>
   );
 }

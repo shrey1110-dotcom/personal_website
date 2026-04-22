@@ -2,10 +2,18 @@ export type ProjectEntry = {
   blurb: string;
   href: string;
   name: string;
+  proofPoints: string[];
   tags: string[];
   trustNote: string;
   type: string;
   visual: "retain" | "motion" | "cervical" | "flashloan" | "aura";
+};
+
+export type SkillGroupEntry = {
+  description: string;
+  icon: "languages" | "frontend" | "backend" | "ml" | "tools";
+  items: string[];
+  label: string;
 };
 
 export const navItems = [
@@ -13,7 +21,6 @@ export const navItems = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#skills", label: "Skills" },
-  { href: "#current-focus", label: "Current Focus" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
@@ -29,23 +36,23 @@ export const ambientRails = [
   [
     "Full-stack engineering",
     "Applied machine learning",
-    "Operator-facing software",
-    "Next.js • TypeScript • Python",
+    "Multi-tenant SaaS",
     "APIs • Databases • Integrations",
+    "Operator-facing software",
   ],
   [
-    "Production-minded systems",
     "Product + infrastructure",
     "Built beyond the demo",
     "Long Beach, California",
     "CSULB Computer Science",
+    "Workflow orchestration",
   ],
   [
-    "Multi-tenant SaaS",
-    "Workflow orchestration",
+    "Production-minded systems",
     "User-facing systems",
-    "Real integrations",
+    "Next.js • TypeScript • Python",
     "System design",
+    "Real integrations",
   ],
 ] as const;
 
@@ -76,6 +83,11 @@ export const projects: ProjectEntry[] = [
       "Built an SMS operations platform for lead intake, message routing, and AI-assisted follow-up. Integrated Twilio and Gemini into an operator workflow and designed the system to feel usable beyond a demo environment.",
     trustNote:
       "Why it matters: this is serious solo systems work across multi-tenant product behavior, workflow design, integrations, and applied AI in context.",
+    proofPoints: [
+      "Twilio lead intake and messaging workflow",
+      "Gemini-assisted follow-up inside an operator dashboard",
+      "Business switching, transcript context, and QA support",
+    ],
     tags: [
       "Next.js",
       "TypeScript",
@@ -95,6 +107,11 @@ export const projects: ProjectEntry[] = [
       "Built a pose-analysis pipeline that uses keypoint data to evaluate movement quality and generate biomechanical feedback. Focused on turning model output into something structured, interpretable, and useful.",
     trustNote:
       "Why it matters: it turns raw model output into structured feedback instead of stopping at inference alone.",
+    proofPoints: [
+      "17-point keypoint sequences from uploaded or live movement",
+      "Joint-angle and technique scoring logic for two movement types",
+      "Structured coaching feedback instead of raw model output",
+    ],
     tags: ["Python", "Pose estimation", "Computer vision", "Movement scoring"],
     visual: "motion",
   },
@@ -106,6 +123,11 @@ export const projects: ProjectEntry[] = [
       "Built a transfer-learning image classification pipeline for Pap smear analysis across five classes, with emphasis on preprocessing, training flow, and model evaluation on a medical dataset.",
     trustNote:
       "Why it matters: it shows comfort with preprocessing, training flow, and evaluation on a constrained medical image dataset.",
+    proofPoints: [
+      "Transfer-learning pipeline on roughly 4,000 SIPaKMeD images",
+      "Five-class classification workflow with reproducible preprocessing",
+      "Evaluation using accuracy, F1-score, and confusion matrices",
+    ],
     tags: ["Python", "TensorFlow", "Transfer learning", "5-class classification"],
     visual: "cervical",
   },
@@ -117,6 +139,11 @@ export const projects: ProjectEntry[] = [
       "Built a route-scanning arbitrage bot for EVM-based DeFi that evaluates token-pair opportunities and coordinates execution logic under strict timing constraints.",
     trustNote:
       "Why it matters: the work is about route evaluation, execution logic, and system timing under real constraints.",
+    proofPoints: [
+      "Python scanners evaluating thousands of token-pair routes",
+      "Execution logic built around EVM timing constraints",
+      "Route discovery, opportunity checks, and automation guards",
+    ],
     tags: ["Solidity / EVM", "DeFi", "Route scanning", "Automation"],
     visual: "flashloan",
   },
@@ -128,47 +155,48 @@ export const projects: ProjectEntry[] = [
       "Built and launched a public-facing brand site focused on clean presentation, storytelling, and conversion flow for a real business presence.",
     trustNote:
       "Why it matters: it proves range. I can move from systems-heavy work to a polished public launch without losing execution quality.",
+    proofPoints: [
+      "Live public-facing launch for a real business presence",
+      "Clean storytelling, product presentation, and conversion flow",
+      "Maintained shipping workflows across storefront content and UI",
+    ],
     tags: ["Next.js", "Frontend", "Brand design", "Launch"],
     visual: "aura",
   },
 ];
 
-export const skillGroups = [
+export const skillGroups: readonly SkillGroupEntry[] = [
   {
-    items: ["TypeScript", "React", "Next.js", "Tailwind", "Framer Motion"],
+    label: "Languages",
+    description: "The languages I write most when building products, automation, and ML workflows.",
+    icon: "languages",
+    items: ["TypeScript", "Python", "SQL", "Go", "C/C++"],
+  },
+  {
     label: "Frontend",
+    description: "Interface tools for product surfaces that need to feel polished and reliable.",
+    icon: "frontend",
+    items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
   },
   {
-    items: ["Python", "Node.js", "FastAPI", "Express", "Supabase", "PostgreSQL"],
-    label: "Backend",
+    label: "Backend / Data",
+    description: "API, database, and auth layers for systems with real application behavior.",
+    icon: "backend",
+    items: ["Node.js", "FastAPI", "Express", "PostgreSQL", "Supabase", "MongoDB"],
   },
   {
-    items: ["TensorFlow", "Transfer learning", "Pose estimation", "Model evaluation"],
-    label: "ML tooling",
+    label: "ML / Infra",
+    description: "The tooling I use when projects need model pipelines, deployment, or systems glue.",
+    icon: "ml",
+    items: ["TensorFlow", "scikit-learn", "Docker", "AWS", "Gemini", "Twilio"],
   },
   {
-    items: ["Twilio", "Gemini", "APIs", "Databases", "Deployment", "GitHub Pages"],
-    label: "Infrastructure and integrations",
+    label: "Tools / Platforms",
+    description: "Practical tooling for shipping, deployment, payments, and collaborative workflows.",
+    icon: "tools",
+    items: ["Vercel", "GitHub", "Stripe", "Clerk", "REST APIs", "Cloudflare Workers"],
   },
-] as const;
-
-export const currentFocusCards = [
-  {
-    copy:
-      "Making my strongest work communicate architecture, ownership, and engineering decisions more clearly.",
-    title: "Project depth",
-  },
-  {
-    copy:
-      "Getting better at the parts of software that sit behind the interface: APIs, integrations, data flow, and reliability.",
-    title: "Systems thinking",
-  },
-  {
-    copy:
-      "Making the site itself feel simpler, sharper, and more reflective of real engineering maturity.",
-    title: "Presentation quality",
-  },
-] as const;
+];
 
 export const contactLinks = [
   {
@@ -185,5 +213,10 @@ export const contactLinks = [
     href: "https://linkedin.com/in/sharmasshrey",
     label: "LinkedIn",
     value: "linkedin.com/in/sharmasshrey",
+  },
+  {
+    href: "/resume.pdf",
+    label: "Resume",
+    value: "Open PDF",
   },
 ] as const;

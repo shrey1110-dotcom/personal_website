@@ -15,11 +15,11 @@ export default function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <motion.div
-      initial={{ opacity: 0.88, y: 10 }}
+      initial={{ opacity: 0.96, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.36, ease: "easeOut" }}
-      className="max-w-[54rem]"
+      transition={{ duration: 0.32, ease: "easeOut" }}
+      className="max-w-[56rem]"
     >
       <p className="section-label">{label}</p>
       <h2 className="section-title mt-4">{title}</h2>

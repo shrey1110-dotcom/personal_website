@@ -10,33 +10,59 @@ type ProjectVisualProps = {
   project: ProjectEntry;
 };
 
-function Shell({
+function VisualShell({
   accentClassName,
+  chromeLabel,
   children,
+  rightLabel,
 }: {
   accentClassName: string;
+  chromeLabel: string;
   children: ReactNode;
+  rightLabel: string;
 }) {
   return (
     <motion.div
       whileHover={{ y: -4 }}
-      transition={{ duration: 0.24, ease: "easeOut" }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
       className={`project-visual ${accentClassName}`}
     >
+      <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
+        <div className="flex items-center gap-2.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-rose-300/85" />
+          <span className="h-2.5 w-2.5 rounded-full bg-amber-200/85" />
+          <span className="h-2.5 w-2.5 rounded-full bg-teal-300/85" />
+          <span className="mono-label ml-2">{chromeLabel}</span>
+        </div>
+        <span className="mono-label">{rightLabel}</span>
+      </div>
       {children}
     </motion.div>
   );
 }
 
+function MetricBar({
+  label,
+  value,
+}: {
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3">
+      <p className="mono-label">{label}</p>
+      <p className="mt-2 text-sm text-slate-200">{value}</p>
+    </div>
+  );
+}
+
 function RetainVisual() {
   return (
-    <Shell accentClassName="project-visual-retain">
-      <div className="flex items-center gap-2 border-b border-white/8 px-4 py-3 text-[11px] uppercase tracking-[0.24em] text-slate-400">
-        <span className="h-2.5 w-2.5 rounded-full bg-rose-400/85" />
-        <span className="h-2.5 w-2.5 rounded-full bg-amber-300/85" />
-        <span className="h-2.5 w-2.5 rounded-full bg-teal-300/85" />
-        <span className="ml-2">Retain AI operator workflow</span>
-      </div>
+    <VisualShell
+      accentClassName="project-visual-retain"
+      chromeLabel="Retain AI operator workflow"
+      rightLabel="Twilio + Gemini"
+    >
       <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={withBasePath("/retain-screenshot.png")}
@@ -46,131 +72,257 @@ function RetainVisual() {
           className="object-cover object-top"
         />
       </div>
-    </Shell>
+      <div className="grid gap-3 border-t border-white/8 px-5 py-4 sm:grid-cols-3">
+        <MetricBar label="Lead intake" value="SMS-based workflow intake and routing" />
+        <MetricBar label="Operators" value="Usable dashboard, status views, and follow-up" />
+        <MetricBar label="Transcript QA" value="Conversation context feeding the loop" />
+      </div>
+    </VisualShell>
   );
 }
 
 function MotionVisual() {
   return (
-    <Shell accentClassName="project-visual-motion">
-      <div className="flex items-center justify-between px-6 py-5 text-xs text-slate-400">
-        <span className="mono-label">Keypoints</span>
-        <span className="mono-label">Scoring</span>
-        <span className="mono-label">Feedback</span>
-      </div>
-      <div className="relative flex min-h-[22rem] items-center justify-center px-8 pb-8 pt-2">
-        <div className="absolute inset-x-10 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-sky-300/45 to-transparent" />
-        <div className="absolute left-[18%] top-[28%] h-3 w-3 rounded-full bg-sky-300/90 shadow-[0_0_16px_rgba(125,211,252,0.45)]" />
-        <div className="absolute left-[29%] top-[42%] h-2.5 w-2.5 rounded-full bg-indigo-300/85" />
-        <div className="absolute left-[42%] top-[34%] h-3 w-3 rounded-full bg-violet-300/90" />
-        <div className="absolute left-[55%] top-[54%] h-2.5 w-2.5 rounded-full bg-cyan-300/85" />
-        <div className="absolute left-[68%] top-[31%] h-3 w-3 rounded-full bg-sky-200/90" />
-        <div className="absolute left-[21%] top-[44%] h-16 w-px rotate-[34deg] bg-indigo-200/35" />
-        <div className="absolute left-[37%] top-[40%] h-20 w-px -rotate-[42deg] bg-violet-200/30" />
-        <div className="absolute left-[58%] top-[36%] h-24 w-px rotate-[28deg] bg-cyan-200/30" />
-        <div className="relative grid w-full gap-4 md:grid-cols-3">
-          {["Pose extraction", "Movement scoring", "Readable output"].map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/8 bg-black/20 px-4 py-4 text-sm text-slate-200"
-            >
-              {item}
+    <VisualShell
+      accentClassName="project-visual-motion"
+      chromeLabel="Movement analysis pipeline"
+      rightLabel="Pose → score → feedback"
+    >
+      <div className="grid min-h-[26rem] gap-4 px-5 py-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="relative overflow-hidden rounded-[1.6rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-6">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_28%_22%,rgba(112,138,255,0.18),transparent_28%),radial-gradient(circle_at_76%_18%,rgba(114,216,210,0.14),transparent_24%)]" />
+          <div className="absolute inset-x-8 top-8 flex items-center justify-between">
+            <span className="mono-label">17 keypoints</span>
+            <span className="mono-label">session frames</span>
+          </div>
+          <svg viewBox="0 0 300 320" className="relative z-10 mx-auto mt-12 h-[18rem] w-full max-w-[16rem]" fill="none">
+            <circle cx="150" cy="42" r="22" fill="#c7d2fe" fillOpacity="0.72" />
+            <path d="M150 66v82" stroke="#90a6ff" strokeLinecap="round" strokeWidth="6" />
+            <path d="M150 92 92 126" stroke="#7bd6d0" strokeLinecap="round" strokeWidth="5" />
+            <path d="M92 126 76 176" stroke="#d2daff" strokeLinecap="round" strokeWidth="4" />
+            <path d="M150 92 208 126" stroke="#7bd6d0" strokeLinecap="round" strokeWidth="5" />
+            <path d="M208 126 224 176" stroke="#d2daff" strokeLinecap="round" strokeWidth="4" />
+            <path d="M150 148 116 218" stroke="#90a6ff" strokeLinecap="round" strokeWidth="5" />
+            <path d="M116 218 102 276" stroke="#d2daff" strokeLinecap="round" strokeWidth="4" />
+            <path d="M150 148 184 218" stroke="#90a6ff" strokeLinecap="round" strokeWidth="5" />
+            <path d="M184 218 198 276" stroke="#d2daff" strokeLinecap="round" strokeWidth="4" />
+            <circle cx="92" cy="126" r="10" fill="#a5b4fc" />
+            <circle cx="208" cy="126" r="10" fill="#67e8f9" />
+            <circle cx="116" cy="218" r="9" fill="#a5b4fc" />
+            <circle cx="184" cy="218" r="9" fill="#67e8f9" />
+          </svg>
+          <div className="relative z-10 mt-6 grid gap-3 sm:grid-cols-3">
+            {["Pose extraction", "Angle logic", "Coaching output"].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/8 bg-black/18 px-3 py-3 text-sm text-slate-200">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <div className="rounded-[1.6rem] border border-white/8 bg-black/18 p-5">
+            <div className="flex items-center justify-between">
+              <p className="mono-label">Readable output</p>
+              <span className="text-xs uppercase tracking-[0.16em] text-emerald-300/90">structured</span>
             </div>
-          ))}
+            <div className="mt-4 space-y-4">
+              {[
+                ["Squat depth", "82"],
+                ["Hip alignment", "77"],
+                ["Tempo control", "88"],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <div className="flex items-center justify-between text-sm text-slate-200">
+                    <span>{label}</span>
+                    <span>{value}</span>
+                  </div>
+                  <div className="mt-2 h-2 rounded-full bg-white/8">
+                    <div
+                      className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(144,166,255,0.94),rgba(114,216,210,0.88))]"
+                      style={{ width: `${value}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[1.6rem] border border-white/8 bg-white/[0.04] p-5">
+            <p className="mono-label">Coaching note</p>
+            <p className="mt-4 text-sm leading-7 text-slate-200">
+              Good stability through descent. Hip drive is consistent. Knee travel is slightly
+              early, but still within the target band for controlled reps.
+            </p>
+          </div>
         </div>
       </div>
-    </Shell>
+    </VisualShell>
   );
 }
 
 function CervicalVisual() {
   return (
-    <Shell accentClassName="project-visual-cervical">
-      <div className="flex items-center justify-between px-6 py-5 text-xs text-slate-400">
-        <span className="mono-label">Medical image workflow</span>
-        <span className="mono-label">5 classes</span>
-      </div>
-      <div className="grid min-h-[22rem] grid-cols-2 gap-4 px-6 pb-6">
-        {[0, 1, 2, 3].map((index) => (
-          <div
-            key={index}
-            className="rounded-[1.4rem] border border-white/8 bg-white/[0.035] p-4"
-          >
-            <div className="h-full rounded-[1.05rem] border border-white/6 bg-[radial-gradient(circle_at_35%_30%,rgba(248,113,113,0.22),transparent_35%),radial-gradient(circle_at_60%_65%,rgba(96,165,250,0.16),transparent_40%),radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_55%)]" />
+    <VisualShell
+      accentClassName="project-visual-cervical"
+      chromeLabel="Medical image classification"
+      rightLabel="5-class pipeline"
+    >
+      <div className="grid min-h-[26rem] gap-4 px-5 py-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            "project-visual-cell-a",
+            "project-visual-cell-b",
+            "project-visual-cell-c",
+            "project-visual-cell-d",
+          ].map((className, index) => (
+            <div key={className} className="rounded-[1.5rem] border border-white/8 bg-white/[0.035] p-4">
+              <div className={`h-full min-h-[9.8rem] rounded-[1.15rem] border border-white/8 ${className}`} />
+              <div className="mt-3 flex items-center justify-between text-xs text-slate-300">
+                <span className="mono-label">Sample {index + 1}</span>
+                <span>Augmented</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-4">
+          <div className="rounded-[1.6rem] border border-white/8 bg-black/18 p-5">
+            <div className="flex items-center justify-between">
+              <p className="mono-label">Class confidence</p>
+              <span className="text-xs uppercase tracking-[0.16em] text-slate-300">eval run</span>
+            </div>
+            <div className="mt-4 space-y-3">
+              {[
+                ["Superficial-intermediate", "91%"],
+                ["Parabasal", "82%"],
+                ["Koilocytotic", "76%"],
+                ["Metaplastic", "88%"],
+                ["Dyskeratotic", "79%"],
+              ].map(([label, value]) => (
+                <div key={label}>
+                  <div className="flex items-center justify-between text-sm text-slate-200">
+                    <span>{label}</span>
+                    <span>{value}</span>
+                  </div>
+                  <div className="mt-2 h-2 rounded-full bg-white/8">
+                    <div
+                      className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(250,204,21,0.84),rgba(147,197,253,0.88))]"
+                      style={{ width: value }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
+          <div className="grid gap-3 sm:grid-cols-3">
+            {["Preprocess", "Transfer train", "Evaluate"].map((item) => (
+              <div key={item} className="rounded-2xl border border-white/8 bg-white/[0.04] px-4 py-3 text-sm text-slate-200">
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </Shell>
+    </VisualShell>
   );
 }
 
 function FlashloanVisual() {
   return (
-    <Shell accentClassName="project-visual-flashloan">
-      <div className="flex items-center justify-between px-6 py-5 text-xs text-slate-400">
-        <span className="mono-label">Route scanning</span>
-        <span className="mono-label">Execution timing</span>
-      </div>
-      <div className="grid min-h-[22rem] gap-4 px-6 pb-6 md:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[1.4rem] border border-white/8 bg-black/20 p-5">
-          <div className="relative h-full overflow-hidden rounded-[1rem] border border-white/6 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))]">
-            <div className="absolute left-[18%] top-[22%] h-3 w-3 rounded-full bg-amber-300 shadow-[0_0_14px_rgba(252,211,77,0.38)]" />
-            <div className="absolute left-[46%] top-[46%] h-3 w-3 rounded-full bg-violet-300 shadow-[0_0_14px_rgba(196,181,253,0.36)]" />
-            <div className="absolute left-[74%] top-[28%] h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.36)]" />
-            <div className="absolute left-[30%] top-[34%] h-px w-[18%] rotate-[18deg] bg-white/25" />
-            <div className="absolute left-[53%] top-[38%] h-px w-[17%] -rotate-[24deg] bg-white/25" />
-            <div className="absolute left-[32%] top-[58%] h-px w-[20%] rotate-[12deg] bg-white/15" />
+    <VisualShell
+      accentClassName="project-visual-flashloan"
+      chromeLabel="Route-scanning system"
+      rightLabel="EVM opportunity monitor"
+    >
+      <div className="grid min-h-[26rem] gap-4 px-5 py-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="rounded-[1.6rem] border border-white/8 bg-black/22 p-6">
+          <div className="flex items-center justify-between">
+            <p className="mono-label">Execution path</p>
+            <span className="mono-label">scan window 240ms</span>
+          </div>
+          <div className="relative mt-6 h-[16.5rem] overflow-hidden rounded-[1.2rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
+            <div className="absolute left-[12%] top-[18%] token-node bg-amber-200 text-black">WETH</div>
+            <div className="absolute left-[41%] top-[42%] token-node bg-violet-200 text-black">USDC</div>
+            <div className="absolute right-[12%] top-[20%] token-node bg-cyan-200 text-black">ARB</div>
+            <div className="absolute left-[24%] bottom-[16%] token-node bg-slate-200 text-black">WBTC</div>
+            <div className="absolute right-[18%] bottom-[14%] token-node bg-emerald-200 text-black">DAI</div>
+            <div className="route-line left-[19%] top-[30%] w-[24%] rotate-[18deg]" />
+            <div className="route-line left-[50%] top-[34%] w-[20%] -rotate-[16deg]" />
+            <div className="route-line left-[31%] top-[58%] w-[18%] -rotate-[22deg]" />
+            <div className="route-line left-[48%] top-[60%] w-[22%] rotate-[18deg]" />
           </div>
         </div>
-        <div className="space-y-3">
-          {["Pair discovery", "Route evaluation", "Execution guards"].map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/8 bg-white/[0.035] px-4 py-4 text-sm text-slate-200"
-            >
-              {item}
+
+        <div className="space-y-4">
+          <div className="rounded-[1.6rem] border border-white/8 bg-white/[0.04] p-5">
+            <div className="flex items-center justify-between">
+              <p className="mono-label">Route decisions</p>
+              <span className="text-xs uppercase tracking-[0.16em] text-emerald-300/90">guarded</span>
             </div>
-          ))}
+            <div className="mt-4 space-y-3">
+              {[
+                ["Pair discovery", "13,240 checked"],
+                ["Spread threshold", "pass"],
+                ["Gas + slippage", "guarded"],
+                ["Execution route", "DEX A → B → C"],
+              ].map(([label, value]) => (
+                <div key={label} className="flex items-center justify-between rounded-2xl border border-white/8 bg-black/18 px-4 py-3 text-sm text-slate-200">
+                  <span>{label}</span>
+                  <span className="text-slate-300">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="rounded-[1.6rem] border border-white/8 bg-black/20 p-5">
+            <p className="mono-label">Automation logic</p>
+            <p className="mt-4 text-sm leading-7 text-slate-200">
+              Route discovery, validation, and execution checks are separated so the system can
+              scan aggressively without turning the execution path into guesswork.
+            </p>
+          </div>
         </div>
       </div>
-    </Shell>
+    </VisualShell>
   );
 }
 
 function AuraVisual() {
   return (
-    <Shell accentClassName="project-visual-aura">
-      <div className="flex items-center justify-between px-6 py-5 text-xs text-slate-400">
-        <span className="mono-label">Brand site launch</span>
-        <span className="mono-label">Story + conversion</span>
-      </div>
-      <div className="grid min-h-[22rem] gap-4 px-6 pb-6 md:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-[1.4rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-5">
-          <div className="flex h-full flex-col justify-between rounded-[1rem] border border-white/6 bg-black/10 p-5">
-            <div className="space-y-3">
-              <div className="h-3 w-24 rounded-full bg-white/30" />
-              <div className="h-12 w-[78%] rounded-2xl bg-white/10" />
-              <div className="h-3 w-[58%] rounded-full bg-white/20" />
+    <VisualShell
+      accentClassName="project-visual-aura"
+      chromeLabel="Launch-ready brand site"
+      rightLabel="Presentation + conversion"
+    >
+      <div className="grid min-h-[26rem] gap-4 px-5 py-5 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="rounded-[1.6rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-5">
+          <div className="flex h-full flex-col justify-between rounded-[1.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(12,16,28,0.64),rgba(8,12,20,0.82))] p-5">
+            <div>
+              <p className="mono-label">Landing view</p>
+              <div className="mt-4 h-3 w-24 rounded-full bg-white/25" />
+              <div className="mt-4 h-16 w-[78%] rounded-[1.3rem] bg-white/10" />
+              <div className="mt-4 h-3 w-[58%] rounded-full bg-white/20" />
             </div>
-            <div className="grid grid-cols-3 gap-3">
-              <div className="h-14 rounded-2xl bg-white/8" />
-              <div className="h-14 rounded-2xl bg-white/8" />
-              <div className="h-14 rounded-2xl bg-white/8" />
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="h-28 rounded-[1.2rem] bg-white/[0.08]" />
+              <div className="h-28 rounded-[1.2rem] bg-white/[0.08]" />
+              <div className="h-20 rounded-[1.2rem] bg-white/[0.08] sm:col-span-2" />
             </div>
           </div>
         </div>
+
         <div className="space-y-3">
-          {["Brand clarity", "Conversion flow", "Launch-ready UI"].map((item) => (
-            <div
-              key={item}
-              className="rounded-2xl border border-white/8 bg-white/[0.035] px-4 py-4 text-sm text-slate-200"
-            >
+          {[
+            "Clear story and brand framing",
+            "Launch-focused conversion flow",
+            "Polished front-end surface for a live public site",
+          ].map((item) => (
+            <div key={item} className="rounded-[1.45rem] border border-white/8 bg-white/[0.04] px-5 py-5 text-sm leading-7 text-slate-200">
               {item}
             </div>
           ))}
         </div>
       </div>
-    </Shell>
+    </VisualShell>
   );
 }
 
