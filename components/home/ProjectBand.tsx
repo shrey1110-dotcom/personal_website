@@ -13,19 +13,25 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
   const reversed = index % 2 === 1;
 
   return (
-    <motion.article
-      className="border-t border-white/8 py-12 first:border-t-0 md:py-16"
-      initial={{ opacity: 0.95, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.18 }}
-      transition={{ duration: 0.34, ease: "easeOut" }}
-    >
+    <article className="border-t border-white/8 py-12 first:border-t-0 md:py-16">
       <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
-        <div className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}>
+        <motion.div
+          className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}
+          initial={{ opacity: 0.6, x: reversed ? 28 : -28, y: 18 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+        >
           <ProjectVisual project={project} />
-        </div>
+        </motion.div>
 
-        <div className={`lg:col-span-6 ${reversed ? "lg:order-1" : ""}`}>
+        <motion.div
+          className={`lg:col-span-6 ${reversed ? "lg:order-1" : ""}`}
+          initial={{ opacity: 0.64, x: reversed ? -28 : 28, y: 18 }}
+          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          viewport={{ once: true, amount: 0.18 }}
+          transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.06 }}
+        >
           <div className="space-y-6">
             <p className="section-label">{project.type}</p>
             <h3 className="project-title">{project.name}</h3>
@@ -58,8 +64,8 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
               <span aria-hidden="true">↗</span>
             </a>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.article>
+    </article>
   );
 }

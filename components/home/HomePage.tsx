@@ -52,14 +52,14 @@ export default function HomePage() {
   const secondaryContactLinks = contactLinks.filter((link) => link.label !== "Email");
 
   return (
-    <div className="relative min-h-screen bg-[#070b14] text-[#eef2ff]">
+    <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="page-glow-layer" />
         <div className="page-grid-layer" />
         <div className="page-vignette-layer" />
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-white/8 bg-[rgba(7,11,20,0.72)] backdrop-blur-xl">
+      <header className="header-shell sticky top-0 z-40 border-b border-white/8 bg-[rgba(7,11,20,0.72)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-4 py-4 md:px-8">
           <a href="#home" className="flex items-center gap-3 text-white">
             <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm font-semibold">
@@ -97,58 +97,147 @@ export default function HomePage() {
       <main className="relative z-10">
         <section id="home" className="section-shell pb-16 pt-16 md:pb-20 md:pt-24">
           <div className="section-frame">
-            <div className="hero-grid">
-              <motion.div
-                initial={{ opacity: 0.96, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.28, ease: "easeOut" }}
-                className="max-w-[760px]"
-              >
-                <p className="section-label">
-                  Software engineer building full-stack products and ML systems
-                </p>
-                <h1 className="hero-title mt-5">Shreyansh Sharma</h1>
-                <p className="hero-support mt-6">
-                  I build production-minded software across product, infrastructure, and applied
-                  machine learning.
-                </p>
-                <p className="hero-body mt-6">
-                  I design and ship software with real moving parts: front-end systems, back-end
-                  workflows, data models, and third-party integrations that have to work together
-                  cleanly. My focus is building products that feel polished on the surface and
-                  technically sound underneath.
-                </p>
-
-                <div className="mt-8 flex flex-wrap gap-2.5">
-                  {heroChips.map((chip) => (
-                    <span key={chip} className="hero-chip">
-                      {chip}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-10 flex flex-wrap items-center gap-4">
-                  <a href="#projects" className="primary-button">
-                    View Projects
-                  </a>
-                  <a href="#contact" className="secondary-button">
-                    Contact
-                  </a>
-                  <a
-                    href={withBasePath("/resume.pdf")}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="tertiary-button"
+            <div className="hero-stage-panel">
+              <div className="hero-grid">
+                <motion.div
+                  initial="hidden"
+                  animate="show"
+                  variants={{
+                    hidden: {},
+                    show: {
+                      transition: {
+                        staggerChildren: 0.08,
+                      },
+                    },
+                  }}
+                  className="max-w-[760px]"
+                >
+                  <motion.p
+                    className="section-label"
+                    variants={{
+                      hidden: { opacity: 0, y: 16 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
                   >
-                    Resume
-                  </a>
-                </div>
+                    Software engineer building full-stack products and ML systems
+                  </motion.p>
+                  <motion.h1
+                    className="hero-title mt-5"
+                    variants={{
+                      hidden: { opacity: 0, y: 24 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.78, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  >
+                    Shreyansh Sharma
+                  </motion.h1>
+                  <motion.p
+                    className="hero-support mt-6"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  >
+                    I build production-minded software across product, infrastructure, and applied
+                    machine learning.
+                  </motion.p>
+                  <motion.p
+                    className="hero-body mt-6"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  >
+                    I design and ship software with real moving parts: front-end systems, back-end
+                    workflows, data models, and third-party integrations that have to work together
+                    cleanly. My focus is building products that feel polished on the surface and
+                    technically sound underneath.
+                  </motion.p>
+
+                  <motion.div
+                    className="mt-8 flex flex-wrap gap-2.5"
+                    variants={{
+                      hidden: {},
+                      show: {
+                        transition: {
+                          delayChildren: 0.12,
+                          staggerChildren: 0.04,
+                        },
+                      },
+                    }}
+                  >
+                    {heroChips.map((chip) => (
+                      <motion.span
+                        key={chip}
+                        className="hero-chip"
+                        variants={{
+                          hidden: { opacity: 0, y: 12 },
+                          show: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.46, ease: [0.22, 1, 0.36, 1] },
+                          },
+                        }}
+                      >
+                        {chip}
+                      </motion.span>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    className="mt-10 flex flex-wrap items-center gap-4"
+                    variants={{
+                      hidden: { opacity: 0, y: 16 },
+                      show: {
+                        opacity: 1,
+                        y: 0,
+                        transition: { duration: 0.58, ease: [0.22, 1, 0.36, 1] },
+                      },
+                    }}
+                  >
+                    <a href="#projects" className="primary-button">
+                      View Projects
+                    </a>
+                    <a href="#contact" className="secondary-button">
+                      Contact
+                    </a>
+                    <a
+                      href={withBasePath("/resume.pdf")}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="tertiary-button"
+                    >
+                      Resume
+                    </a>
+                  </motion.div>
+                </motion.div>
+
+                <HeroProfilePanel />
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
+              >
+                <InfoRails className="mt-10 md:mt-12" />
               </motion.div>
-
-              <HeroProfilePanel />
             </div>
-
-            <InfoRails className="mt-10 md:mt-12" />
           </div>
         </section>
 
@@ -162,10 +251,10 @@ export default function HomePage() {
               />
 
               <motion.div
-                initial={{ opacity: 0.96, y: 8 }}
+                initial={{ opacity: 0.68, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.32, ease: "easeOut" }}
+                transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
                 className="about-signal-panel"
               >
                 <div className="grid gap-4">
@@ -183,10 +272,14 @@ export default function HomePage() {
               {aboutBlocks.map((block, index) => (
                 <motion.div
                   key={block.title}
-                  initial={{ opacity: 0.96, y: 8 }}
+                  initial={{ opacity: 0.72, y: 22 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.22 }}
-                  transition={{ duration: 0.32, delay: index * 0.04, ease: "easeOut" }}
+                  transition={{
+                    duration: 0.62,
+                    delay: index * 0.06,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   className="content-panel"
                 >
                   <p className="section-label">{block.title}</p>
@@ -223,10 +316,10 @@ export default function HomePage() {
 
             <div className="mt-12 grid items-start gap-6 lg:grid-cols-[1.04fr_0.96fr]">
               <motion.div
-                initial={{ opacity: 0.96, y: 8 }}
+                initial={{ opacity: 0.68, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.18 }}
-                transition={{ duration: 0.32, ease: "easeOut" }}
+                transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
                 className="content-panel overflow-hidden p-0"
               >
                 <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
@@ -245,10 +338,14 @@ export default function HomePage() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0.96, y: 8 }}
+                initial={{ opacity: 0.72, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.18 }}
-                transition={{ duration: 0.32, delay: 0.04, ease: "easeOut" }}
+                transition={{
+                  duration: 0.68,
+                  delay: 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="space-y-4"
               >
                 <div className="content-panel">
@@ -305,7 +402,13 @@ export default function HomePage() {
 
         <section id="contact" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
-            <div className="contact-panel lg:grid-cols-[1.14fr_0.86fr]">
+            <motion.div
+              initial={{ opacity: 0.68, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              className="contact-panel lg:grid-cols-[1.14fr_0.86fr]"
+            >
               <div>
                 <SectionHeading
                   label="Contact"
@@ -336,6 +439,7 @@ export default function HomePage() {
                       target={link.href.startsWith("mailto:") ? undefined : "_blank"}
                       rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
                       className="contact-link-card"
+                      data-cursor="interactive"
                     >
                       <span className="mono-label">{link.label}</span>
                       <span className="contact-link-value">{link.value}</span>
@@ -347,7 +451,7 @@ export default function HomePage() {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
