@@ -1,12 +1,22 @@
+export type RetainProductEntry = {
+  blurb: string;
+  href: string;
+  name: string;
+  pillars: { copy: string; title: string }[];
+  stats: { label: string; value: string }[];
+  subtitle: string;
+  tags: string[];
+};
+
 export type ProjectEntry = {
   blurb: string;
+  context: string;
   href: string;
   name: string;
   proofPoints: string[];
   tags: string[];
-  trustNote: string;
   type: string;
-  visual: "retain" | "motion" | "cervical" | "flashloan" | "aura";
+  visual: "motion" | "cervical" | "flashloan" | "aura";
 };
 
 export type SkillGroupEntry = {
@@ -18,99 +28,115 @@ export type SkillGroupEntry = {
 
 export const navItems = [
   { href: "#home", label: "Home" },
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
+  { href: "#retain", label: "Retain AI" },
+  { href: "#work", label: "Work" },
+  { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
 export const heroChips = [
-  "CS @ CSULB",
-  "May 2027",
-  "Full-stack systems",
-  "ML workflows",
+  "Retain AI live",
+  "Operator software",
+  "Applied ML",
+  "CSULB Computer Science",
   "Long Beach, CA",
 ] as const;
 
 export const ambientRails = [
   [
-    "Full-stack engineering",
-    "Applied machine learning",
-    "Multi-tenant SaaS",
-    "APIs • Databases • Integrations",
+    "Retain AI • live product",
     "Operator-facing software",
-  ],
-  [
-    "Product + infrastructure",
-    "Built beyond the demo",
-    "Long Beach, California",
-    "CSULB Computer Science",
+    "Full-stack engineering",
+    "Twilio • Gemini • Supabase",
     "Workflow orchestration",
   ],
   [
-    "Production-minded systems",
-    "User-facing systems",
+    "Applied machine learning",
+    "Messaging systems",
+    "APIs • Databases • Integrations",
+    "Long Beach, California",
+    "Product + infrastructure",
+  ],
+  [
+    "Real businesses, not demo traffic",
+    "Multi-tenant SaaS",
     "Next.js • TypeScript • Python",
-    "System design",
-    "Real integrations",
+    "Readable system design",
+    "Built to ship",
   ],
 ] as const;
 
 export const aboutBlocks = [
   {
     copy:
-      "Web products, ML workflows, and systems that combine clean interfaces with real operating logic underneath.",
-    title: "What I build",
+      "Interfaces that stay sharp once real usage, operational edge cases, and product constraints start showing up.",
+    title: "Product surfaces",
   },
   {
     copy:
-      "I like owning things end to end: interface, back end, integrations, and the details that make software reliable once people start using it.",
-    title: "How I work",
+      "APIs, auth, data flow, messaging, and the integration work that makes the surface trustworthy.",
+    title: "System layers",
   },
   {
     copy:
-      "Strong product behavior, clear system design, and execution quality that holds up outside a portfolio environment.",
-    title: "What I care about",
+      "Clear ownership, fast iteration, and a bias toward shipping work that still reads well after launch.",
+    title: "Execution",
   },
 ] as const;
 
+export const retainProduct: RetainProductEntry = {
+  name: "Retain AI",
+  href: "https://retain-ai-eight.vercel.app",
+  subtitle: "Live operator software for tenant-aware lead intake, routing, and follow-up.",
+  blurb:
+    "Retain AI is a deployed business product. It runs SMS intake and follow-up workflows for real operators, with messaging, tenant context, Gemini-assisted replies, transcripts, and review all working inside one product surface.",
+  pillars: [
+    {
+      title: "Operator desk",
+      copy:
+        "Lead state, recent conversations, routing, and follow-up live in one screen built for the person actually doing the work.",
+    },
+    {
+      title: "Integration stack",
+      copy:
+        "Tenant context, messaging state, transcript history, and AI reply generation behave like one system instead of separate features.",
+    },
+    {
+      title: "Live surface",
+      copy:
+        "The product is already deployed, so clarity matters as much as functionality. It has to stay usable while the integrations do real work underneath.",
+    },
+  ],
+  stats: [
+    { label: "Tenancy", value: "Workspace-aware auth, context, and routing" },
+    { label: "Messaging", value: "Twilio intake, send, and status handling" },
+    { label: "AI layer", value: "Gemini-generated replies inside the operator flow" },
+    { label: "Review", value: "Transcript context and QA around every conversation" },
+  ],
+  tags: [
+    "Next.js",
+    "TypeScript",
+    "Twilio",
+    "Supabase",
+    "Gemini",
+    "Multi-tenant SaaS",
+    "Transcript / QA",
+  ],
+};
+
 export const projects: ProjectEntry[] = [
-  {
-    name: "Retain AI",
-    href: "https://retain-ai-eight.vercel.app",
-    type: "Multi-tenant SaaS",
-    blurb:
-      "Built an SMS operations platform for lead intake, message routing, and AI-assisted follow-up. Integrated Twilio and Gemini into an operator workflow and designed the system to feel usable beyond a demo environment.",
-    trustNote:
-      "Why it matters: this is serious solo systems work across multi-tenant product behavior, workflow design, integrations, and applied AI in context.",
-    proofPoints: [
-      "Twilio lead intake and messaging workflow",
-      "Gemini-assisted follow-up inside an operator dashboard",
-      "Business switching, transcript context, and QA support",
-    ],
-    tags: [
-      "Next.js",
-      "TypeScript",
-      "Twilio",
-      "Supabase",
-      "Gemini",
-      "Multi-tenant workflows",
-      "Transcript / QA loop",
-    ],
-    visual: "retain",
-  },
   {
     name: "AI Motion Analysis",
     href: "https://github.com/shrey1110-dotcom",
     type: "Computer Vision",
     blurb:
-      "Built a pose-analysis pipeline that uses keypoint data to evaluate movement quality and generate biomechanical feedback. Focused on turning model output into something structured, interpretable, and useful.",
-    trustNote:
-      "Why it matters: it turns raw model output into structured feedback instead of stopping at inference alone.",
+      "Pose-analysis pipeline that turns keypoint streams into movement scoring and readable biomechanical feedback.",
+    context:
+      "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
     proofPoints: [
-      "17-point keypoint sequences from uploaded or live movement",
-      "Joint-angle and technique scoring logic for two movement types",
-      "Structured coaching feedback instead of raw model output",
+      "17-point pose extraction",
+      "Movement scoring logic",
+      "Readable coaching output",
     ],
     tags: ["Python", "Pose estimation", "Computer vision", "Movement scoring"],
     visual: "motion",
@@ -120,15 +146,15 @@ export const projects: ProjectEntry[] = [
     href: "https://github.com/shrey1110-dotcom/cervical-cancer-detection",
     type: "Medical ML",
     blurb:
-      "Built a transfer-learning image classification pipeline for Pap smear analysis across five classes, with emphasis on preprocessing, training flow, and model evaluation on a medical dataset.",
-    trustNote:
-      "Why it matters: it shows comfort with preprocessing, training flow, and evaluation on a constrained medical image dataset.",
+      "Transfer-learning pipeline for five-class Pap smear classification with disciplined preprocessing, training flow, and evaluation.",
+    context:
+      "Built around repeatable preprocessing, transfer learning, and evaluation against a medical dataset instead of a one-off notebook run.",
     proofPoints: [
-      "Transfer-learning pipeline on roughly 4,000 SIPaKMeD images",
-      "Five-class classification workflow with reproducible preprocessing",
-      "Evaluation using accuracy, F1-score, and confusion matrices",
+      "Five-class medical image workflow",
+      "Reproducible preprocessing pipeline",
+      "F1 and confusion-matrix evaluation",
     ],
-    tags: ["Python", "TensorFlow", "Transfer learning", "5-class classification"],
+    tags: ["Python", "TensorFlow", "Transfer learning", "Medical imaging"],
     visual: "cervical",
   },
   {
@@ -136,13 +162,13 @@ export const projects: ProjectEntry[] = [
     href: "https://gist.github.com/shrey1110-dotcom/ef53904ed184311d8a8dd5587ef11716",
     type: "Web3 Systems",
     blurb:
-      "Built a route-scanning arbitrage bot for EVM-based DeFi that evaluates token-pair opportunities and coordinates execution logic under strict timing constraints.",
-    trustNote:
-      "Why it matters: the work is about route evaluation, execution logic, and system timing under real constraints.",
+      "Route-scanning bot for EVM markets that evaluates token-pair opportunities and coordinates guarded execution under tight timing constraints.",
+    context:
+      "Discovery, validation, and execution are separated so the system can move fast without turning execution into guesswork.",
     proofPoints: [
-      "Python scanners evaluating thousands of token-pair routes",
-      "Execution logic built around EVM timing constraints",
-      "Route discovery, opportunity checks, and automation guards",
+      "High-volume route scanning",
+      "Execution guards for timing and slippage",
+      "Separated discovery and execution paths",
     ],
     tags: ["Solidity / EVM", "DeFi", "Route scanning", "Automation"],
     visual: "flashloan",
@@ -152,13 +178,13 @@ export const projects: ProjectEntry[] = [
     href: "https://theauralifestyle.org",
     type: "Brand Website",
     blurb:
-      "Built and launched a public-facing brand site focused on clean presentation, storytelling, and conversion flow for a real business presence.",
-    trustNote:
-      "Why it matters: it proves range. I can move from systems-heavy work to a polished public launch without losing execution quality.",
+      "Public-facing site shipped for a real company, with clean storytelling, conversion flow, and launch-ready front-end polish.",
+    context:
+      "This is the front-end range piece: tighter visual execution, cleaner narrative flow, and a live launch for a real business.",
     proofPoints: [
-      "Live public-facing launch for a real business presence",
-      "Clean storytelling, product presentation, and conversion flow",
-      "Maintained shipping workflows across storefront content and UI",
+      "Live business-facing launch",
+      "Clear brand and conversion structure",
+      "Front-end polish at shipping quality",
     ],
     tags: ["Next.js", "Frontend", "Brand design", "Launch"],
     visual: "aura",
@@ -168,31 +194,31 @@ export const projects: ProjectEntry[] = [
 export const skillGroups: readonly SkillGroupEntry[] = [
   {
     label: "Languages",
-    description: "The languages I write most when building products, automation, and ML workflows.",
+    description: "Core languages for product logic, automation, services, and data handling.",
     icon: "languages",
     items: ["TypeScript", "Python", "SQL", "Go", "C/C++"],
   },
   {
     label: "Frontend",
-    description: "Interface tools for product surfaces that need to feel polished and reliable.",
+    description: "UI tooling for product surfaces that need to feel fast, legible, and deliberate.",
     icon: "frontend",
     items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
   },
   {
     label: "Backend / Data",
-    description: "API, database, and auth layers for systems with real application behavior.",
+    description: "Service behavior, data storage, auth, and the layers behind the interface.",
     icon: "backend",
     items: ["Node.js", "FastAPI", "Express", "PostgreSQL", "Supabase", "MongoDB"],
   },
   {
     label: "ML / Infra",
-    description: "The tooling I use when projects need model pipelines, deployment, or systems glue.",
+    description: "Model workflows, deployment, and system glue when the product needs more than CRUD.",
     icon: "ml",
     items: ["TensorFlow", "scikit-learn", "Docker", "AWS", "Gemini", "Twilio"],
   },
   {
     label: "Tools / Platforms",
-    description: "Practical tooling for shipping, deployment, payments, and collaborative workflows.",
+    description: "Deployment, collaboration, auth, payments, and practical platform work around shipping.",
     icon: "tools",
     items: ["Vercel", "GitHub", "Stripe", "Clerk", "REST APIs", "Cloudflare Workers"],
   },
