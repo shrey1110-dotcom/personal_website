@@ -1,9 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import type { ReactNode } from "react";
 import TiltPanel from "@/components/home/TiltPanel";
-import { withBasePath } from "@/lib/site";
 import type { ProjectEntry } from "@/lib/portfolio-content";
 
 type ProjectVisualProps = {
@@ -34,46 +32,6 @@ function VisualShell({
       </div>
       {children}
     </TiltPanel>
-  );
-}
-
-function MetricBar({
-  label,
-  value,
-}: {
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-white/8 bg-black/20 px-4 py-3">
-      <p className="mono-label">{label}</p>
-      <p className="mt-2 text-sm text-slate-200">{value}</p>
-    </div>
-  );
-}
-
-function RetainVisual() {
-  return (
-    <VisualShell
-      accentClassName="project-visual-retain"
-      chromeLabel="Retain AI operator workflow"
-      rightLabel="Twilio + Gemini"
-    >
-      <div className="relative aspect-[16/10] overflow-hidden">
-        <Image
-          src={withBasePath("/retain-screenshot.png")}
-          alt="Retain AI dashboard screenshot"
-          fill
-          sizes="(min-width: 1024px) 42vw, 100vw"
-          className="object-cover object-top"
-        />
-      </div>
-      <div className="grid gap-3 border-t border-white/8 px-5 py-4 sm:grid-cols-3">
-        <MetricBar label="Lead intake" value="SMS-based workflow intake and routing" />
-        <MetricBar label="Operators" value="Usable dashboard, status views, and follow-up" />
-        <MetricBar label="Transcript QA" value="Conversation context feeding the loop" />
-      </div>
-    </VisualShell>
   );
 }
 
@@ -324,8 +282,6 @@ function AuraVisual() {
 
 export default function ProjectVisual({ project }: ProjectVisualProps) {
   switch (project.visual) {
-    case "retain":
-      return <RetainVisual />;
     case "motion":
       return <MotionVisual />;
     case "cervical":

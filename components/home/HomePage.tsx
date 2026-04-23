@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import HeroProfilePanel from "@/components/home/HeroProfilePanel";
 import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
+import RetainProductSection from "@/components/home/RetainProductSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import SkillMatrix from "@/components/home/SkillMatrix";
 import {
@@ -19,55 +19,46 @@ import { withBasePath } from "@/lib/site";
 
 const aboutSignals = [
   {
-    label: "End-to-end ownership",
-    value: "Interface, back end, integrations, and the product details that make the system hold together.",
+    label: "System ownership",
+    value: "Interface, service behavior, integrations, and the operational details that make the product hold together.",
   },
   {
-    label: "Real operating logic",
-    value: "The work gets stronger when product behavior depends on APIs, workflows, and data moving cleanly.",
+    label: "Product judgment",
+    value: "Clear workflows, clean data models, and UI that reflects how the system actually behaves.",
   },
   {
-    label: "Proof over polish",
-    value: "Strong UI matters, but it only counts when the underlying workflow feels usable and technically sound.",
-  },
-] as const;
-
-const featuredHighlights = [
-  {
-    label: "Workflow logic",
-    value: "Lead intake, routing, and AI-assisted follow-up structured around real operator use.",
-  },
-  {
-    label: "Operator surface",
-    value: "A dashboard that behaves like a product workspace instead of a one-off demo shell.",
-  },
-  {
-    label: "System behavior",
-    value: "Messaging, transcript context, and QA support working together as one product loop.",
+    label: "Shipping bias",
+    value: "Build the thing, tighten the edges, and make the surface feel as considered as the system underneath it.",
   },
 ] as const;
 
 export default function HomePage() {
-  const featuredProject = projects[0];
   const secondaryContactLinks = contactLinks.filter((link) => link.label !== "Email");
 
   return (
     <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div className="page-aurora page-aurora-a" />
+        <div className="page-aurora page-aurora-b" />
+        <div className="page-aurora page-aurora-c" />
+        <div className="page-light-beam page-light-beam-a" />
+        <div className="page-light-beam page-light-beam-b" />
         <div className="page-glow-layer" />
         <div className="page-grid-layer" />
         <div className="page-vignette-layer" />
       </div>
 
-      <header className="header-shell sticky top-0 z-40 border-b border-white/8 bg-[rgba(7,11,20,0.72)] backdrop-blur-xl">
+      <header className="header-shell sticky top-0 z-40 border-b border-white/8 bg-[rgba(5,8,16,0.62)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-6 px-4 py-4 md:px-8">
           <a href="#home" className="flex items-center gap-3 text-white">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm font-semibold">
-              SS
-            </span>
-            <span>
-              <span className="block text-sm font-semibold tracking-[-0.03em]">Shreyansh Sharma</span>
-              <span className="block text-xs text-slate-400">Software engineer</span>
+            <span className="header-mark" />
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold tracking-[-0.03em] text-white">
+                Shreyansh Sharma
+              </span>
+              <span className="block text-xs text-slate-400">
+                Software engineer · full-stack products
+              </span>
             </span>
           </a>
 
@@ -76,7 +67,8 @@ export default function HomePage() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm text-slate-300 transition-colors duration-200 hover:text-white"
+                className="nav-link text-sm text-slate-300 transition-colors duration-200 hover:text-white"
+                data-cursor="interactive"
               >
                 {item.label}
               </a>
@@ -87,7 +79,7 @@ export default function HomePage() {
             href={withBasePath("/resume.pdf")}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-white/20 hover:bg-white/[0.07]"
+            className="header-resume rounded-full border border-[rgba(146,169,255,0.24)] bg-[rgba(146,169,255,0.08)] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-[rgba(112,224,215,0.42)] hover:bg-[rgba(112,224,215,0.12)]"
           >
             Resume
           </a>
@@ -95,7 +87,7 @@ export default function HomePage() {
       </header>
 
       <main className="relative z-10">
-        <section id="home" className="section-shell pb-16 pt-16 md:pb-20 md:pt-24">
+        <section id="home" className="section-shell pb-14 pt-16 md:pb-18 md:pt-24">
           <div className="section-frame">
             <div className="hero-stage-panel">
               <div className="hero-grid">
@@ -110,12 +102,12 @@ export default function HomePage() {
                       },
                     },
                   }}
-                  className="max-w-[760px]"
+                  className="max-w-[780px]"
                 >
                   <motion.p
                     className="section-label"
                     variants={{
-                      hidden: { opacity: 0, y: 16 },
+                      hidden: { opacity: 0, y: 18 },
                       show: {
                         opacity: 1,
                         y: 0,
@@ -123,50 +115,51 @@ export default function HomePage() {
                       },
                     }}
                   >
-                    Software engineer building full-stack products and ML systems
+                    Software engineer · product systems · applied ML
                   </motion.p>
+
                   <motion.h1
                     className="hero-title mt-5"
                     variants={{
-                      hidden: { opacity: 0, y: 24 },
+                      hidden: { opacity: 0, y: 28 },
                       show: {
                         opacity: 1,
                         y: 0,
-                        transition: { duration: 0.78, ease: [0.22, 1, 0.36, 1] },
+                        transition: { duration: 0.82, ease: [0.22, 1, 0.36, 1] },
                       },
                     }}
                   >
                     Shreyansh Sharma
                   </motion.h1>
+
                   <motion.p
                     className="hero-support mt-6"
                     variants={{
-                      hidden: { opacity: 0, y: 20 },
+                      hidden: { opacity: 0, y: 22 },
                       show: {
                         opacity: 1,
                         y: 0,
-                        transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+                        transition: { duration: 0.66, ease: [0.22, 1, 0.36, 1] },
                       },
                     }}
                   >
-                    I build production-minded software across product, infrastructure, and applied
-                    machine learning.
+                    Production-minded products, operator software, and applied machine learning.
                   </motion.p>
+
                   <motion.p
                     className="hero-body mt-6"
                     variants={{
-                      hidden: { opacity: 0, y: 20 },
+                      hidden: { opacity: 0, y: 22 },
                       show: {
                         opacity: 1,
                         y: 0,
-                        transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+                        transition: { duration: 0.68, ease: [0.22, 1, 0.36, 1] },
                       },
                     }}
                   >
-                    I design and ship software with real moving parts: front-end systems, back-end
-                    workflows, data models, and third-party integrations that have to work together
-                    cleanly. My focus is building products that feel polished on the surface and
-                    technically sound underneath.
+                    I build software with real moving parts: interfaces, APIs, messaging flows,
+                    data models, and third-party integrations that need to work together cleanly.
+                    The goal is simple: polished product behavior backed by sound system design.
                   </motion.p>
 
                   <motion.div
@@ -176,7 +169,7 @@ export default function HomePage() {
                       show: {
                         transition: {
                           delayChildren: 0.12,
-                          staggerChildren: 0.04,
+                          staggerChildren: 0.05,
                         },
                       },
                     }}
@@ -202,7 +195,7 @@ export default function HomePage() {
                   <motion.div
                     className="mt-10 flex flex-wrap items-center gap-4"
                     variants={{
-                      hidden: { opacity: 0, y: 16 },
+                      hidden: { opacity: 0, y: 18 },
                       show: {
                         opacity: 1,
                         y: 0,
@@ -210,17 +203,18 @@ export default function HomePage() {
                       },
                     }}
                   >
-                    <a href="#projects" className="primary-button">
-                      View Projects
+                    <a href="#retain" className="primary-button" data-cursor="interactive">
+                      Retain AI
                     </a>
-                    <a href="#contact" className="secondary-button">
-                      Contact
+                    <a href="#work" className="secondary-button" data-cursor="interactive">
+                      Selected work
                     </a>
                     <a
                       href={withBasePath("/resume.pdf")}
                       target="_blank"
                       rel="noreferrer"
                       className="tertiary-button"
+                      data-cursor="interactive"
                     >
                       Resume
                     </a>
@@ -233,7 +227,7 @@ export default function HomePage() {
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
+                transition={{ duration: 0.78, ease: [0.22, 1, 0.36, 1], delay: 0.24 }}
               >
                 <InfoRails className="mt-10 md:mt-12" />
               </motion.div>
@@ -241,28 +235,41 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="about" className="section-shell pt-8 md:pt-10">
+        <RetainProductSection />
+
+        <section id="about" className="section-shell pt-8 md:pt-12">
           <div className="section-frame">
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+            <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
               <SectionHeading
                 label="About"
-                title="I like building software where product quality and system quality both matter."
-                body="The work that interests me most sits between interface and infrastructure: products people actually use, systems that support them reliably, and workflows that make the software useful in practice. I’m especially drawn to projects that require both technical depth and product judgment."
+                title="I care about the surface and the system underneath it."
+                body="Good products need both. The interface has to read clearly, and the system behind it has to behave cleanly once auth, messaging, integrations, data flow, and real usage start showing up."
               />
 
               <motion.div
-                initial={{ opacity: 0.68, y: 24 }}
+                initial={{ opacity: 0.74, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
                 className="about-signal-panel"
               >
                 <div className="grid gap-4">
-                  {aboutSignals.map((item) => (
-                    <div key={item.label} className="proof-card">
+                  {aboutSignals.map((item, index) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{ opacity: 0.68, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{
+                        duration: 0.56,
+                        delay: index * 0.06,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="proof-card"
+                    >
                       <p className="mono-label">{item.label}</p>
                       <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -272,11 +279,11 @@ export default function HomePage() {
               {aboutBlocks.map((block, index) => (
                 <motion.div
                   key={block.title}
-                  initial={{ opacity: 0.72, y: 22 }}
+                  initial={{ opacity: 0.74, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.22 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{
-                    duration: 0.62,
+                    duration: 0.64,
                     delay: index * 0.06,
                     ease: [0.22, 1, 0.36, 1],
                   }}
@@ -290,12 +297,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="projects" className="section-shell">
+        <section id="work" className="section-shell">
           <div className="section-frame">
             <SectionHeading
-              label="Projects"
+              label="Work"
               title="Selected work"
-              body="These are the projects that best represent how I build: user-facing software, real integrations, and systems with enough complexity to require thoughtful execution."
+              body="Beyond Retain AI, these are the builds that show range across computer vision, medical ML, web3 systems, and front-end launch work."
             />
 
             <div className="mt-12">
@@ -306,92 +313,12 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="featured-project" className="section-shell pt-10 md:pt-12">
+        <section id="stack" className="section-shell">
           <div className="section-frame">
             <SectionHeading
-              label="Featured Project"
-              title="Retain AI is the clearest example of how I like to build."
-              body="It brings together the parts of software work I care most about: product design, workflow logic, third-party integrations, and back-end behavior that supports real usage. The goal was not just to make it look polished, but to make it operate like a real product."
-            />
-
-            <div className="mt-12 grid items-start gap-6 lg:grid-cols-[1.04fr_0.96fr]">
-              <motion.div
-                initial={{ opacity: 0.68, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.18 }}
-                transition={{ duration: 0.68, ease: [0.22, 1, 0.36, 1] }}
-                className="content-panel overflow-hidden p-0"
-              >
-                <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
-                  <span className="mono-label">Retain AI dashboard</span>
-                  <span className="mono-label">operator workflow</span>
-                </div>
-                <div className="relative aspect-[16/10]">
-                  <Image
-                    src={withBasePath("/retain-screenshot.png")}
-                    alt="Retain AI dashboard"
-                    fill
-                    sizes="(min-width: 1024px) 52vw, 100vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0.72, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.18 }}
-                transition={{
-                  duration: 0.68,
-                  delay: 0.08,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="space-y-4"
-              >
-                <div className="content-panel">
-                  <ul className="space-y-4">
-                    <li className="feature-bullet">
-                      Integrated Gemini and Twilio into a usable messaging workflow.
-                    </li>
-                    <li className="feature-bullet">
-                      Built an operator-facing dashboard instead of a demo-only admin shell.
-                    </li>
-                    <li className="feature-bullet">
-                      Focused on product behavior, not just surface-level UI polish.
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-3">
-                  {featuredHighlights.map((item) => (
-                    <div key={item.label} className="proof-card h-full">
-                      <p className="mono-label">{item.label}</p>
-                      <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="content-panel">
-                  <p className="section-label">Core signals</p>
-                  <div className="mt-4 flex flex-wrap gap-2.5">
-                    {featuredProject.tags.map((tag) => (
-                      <span key={tag} className="skill-chip">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        <section id="skills" className="section-shell">
-          <div className="section-frame">
-            <SectionHeading
-              label="Skills"
-              title="Tools I use to build and ship"
-              body="Most of my work lives around web products, APIs, databases, ML tooling, and deployment. These are the technologies I reach for most often when building end-to-end systems."
+              label="Stack"
+              title="Tools I reach for when the work needs to ship"
+              body="Languages, frameworks, infra, and platform tools that show up repeatedly in the products and systems I build."
             />
 
             <div className="mt-12">
@@ -403,22 +330,23 @@ export default function HomePage() {
         <section id="contact" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
             <motion.div
-              initial={{ opacity: 0.68, y: 24 }}
+              initial={{ opacity: 0.74, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.18 }}
-              transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.76, ease: [0.22, 1, 0.36, 1] }}
               className="contact-panel lg:grid-cols-[1.14fr_0.86fr]"
             >
               <div>
                 <SectionHeading
                   label="Contact"
                   title="Let’s talk"
-                  body="I’m interested in software engineering opportunities, collaborations, and conversations around product, full-stack systems, and ML-adjacent work. Reach out if any of the work here is relevant to what you’re building."
+                  body="I’m interested in software engineering roles and conversations around product systems, operator software, and applied ML. If the work here maps to what your team is building, reach out."
                 />
 
                 <a
                   href="mailto:shreyansh.sharma01@student.csulb.edu"
                   className="mt-10 inline-flex flex-col text-left"
+                  data-cursor="interactive"
                 >
                   <span className="mono-label">Email</span>
                   <span className="mt-3 text-[clamp(1.55rem,2.7vw,2.9rem)] font-semibold tracking-[-0.05em] text-white">
@@ -462,7 +390,7 @@ export default function HomePage() {
             Shreyansh Sharma · Long Beach, CA · CSULB · Open to internships
           </p>
           <p className="text-sm text-slate-500">
-            Built with Next.js, TypeScript, Tailwind, and Framer Motion.
+            Built with Next.js, TypeScript, Tailwind, Framer Motion, and Lenis.
           </p>
         </div>
       </footer>
