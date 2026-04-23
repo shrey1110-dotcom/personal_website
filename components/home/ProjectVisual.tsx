@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import TiltPanel from "@/components/home/TiltPanel";
 import { withBasePath } from "@/lib/site";
 import type { ProjectEntry } from "@/lib/portfolio-content";
 
@@ -22,11 +22,7 @@ function VisualShell({
   rightLabel: string;
 }) {
   return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.22, ease: "easeOut" }}
-      className={`project-visual ${accentClassName}`}
-    >
+    <TiltPanel className={`project-visual ${accentClassName}`} intensity={5.8} lift={5}>
       <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
         <div className="flex items-center gap-2.5">
           <span className="h-2.5 w-2.5 rounded-full bg-rose-300/85" />
@@ -37,7 +33,7 @@ function VisualShell({
         <span className="mono-label">{rightLabel}</span>
       </div>
       {children}
-    </motion.div>
+    </TiltPanel>
   );
 }
 

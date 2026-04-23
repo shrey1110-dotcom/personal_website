@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TiltPanel from "@/components/home/TiltPanel";
 
 function PortraitIllustration() {
   return (
@@ -87,41 +88,52 @@ const profileMeta = [
 export default function HeroProfilePanel() {
   return (
     <motion.aside
-      initial={{ opacity: 0.96, y: 8 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, ease: "easeOut", delay: 0.04 }}
-      className="hero-profile-panel"
+      transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
     >
-      <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
-        <div>
-          <p className="mono-label">Profile</p>
-          <p className="mt-1 text-sm text-slate-300">Engineering-first, product-aware</p>
-        </div>
-        <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-300">
-          SS
-        </div>
-      </div>
-
-      <div className="px-5 pt-5">
-        <div className="hero-portrait-surface">
-          <PortraitIllustration />
-          <div className="hero-portrait-overlay">
-            <span className="mono-label">Software engineer</span>
-            <p className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
-              Shreyansh Sharma
-            </p>
+      <TiltPanel className="hero-profile-panel" intensity={6.5} lift={5}>
+        <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
+          <div>
+            <p className="mono-label">Profile</p>
+            <p className="mt-1 text-sm text-slate-300">Engineering-first, product-aware</p>
+          </div>
+          <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-slate-300">
+            SS
           </div>
         </div>
-      </div>
 
-      <div className="grid gap-3 px-5 py-5 sm:grid-cols-2">
-        {profileMeta.map((item) => (
-          <div key={item.label} className="hero-meta-card">
-            <p className="mono-label">{item.label}</p>
-            <p className="mt-2 text-sm leading-6 text-slate-200">{item.value}</p>
+        <div className="px-5 pt-5">
+          <div className="hero-portrait-surface">
+            <PortraitIllustration />
+            <div className="hero-portrait-overlay">
+              <span className="mono-label">Software engineer</span>
+              <p className="mt-2 text-lg font-semibold tracking-[-0.03em] text-white">
+                Shreyansh Sharma
+              </p>
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
+
+        <div className="grid gap-3 px-5 py-5 sm:grid-cols-2">
+          {profileMeta.map((item, index) => (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.16 + index * 0.05,
+                duration: 0.5,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="hero-meta-card"
+            >
+              <p className="mono-label">{item.label}</p>
+              <p className="mt-2 text-sm leading-6 text-slate-200">{item.value}</p>
+            </motion.div>
+          ))}
+        </div>
+      </TiltPanel>
     </motion.aside>
   );
 }

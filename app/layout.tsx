@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
+import CustomCursor from "@/components/CustomCursor";
+import LenisProvider from "@/components/LenisProvider";
 import { pagesSiteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -32,6 +34,8 @@ export default function RootLayout({
       <body
         className={`${inter.className} min-h-screen bg-transparent text-[#edf2ff] antialiased`}
       >
+        <LenisProvider />
+        <CustomCursor />
         {children}
       </body>
     </html>
