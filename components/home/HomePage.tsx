@@ -9,6 +9,7 @@ import SectionHeading from "@/components/home/SectionHeading";
 import SkillMatrix from "@/components/home/SkillMatrix";
 import {
   aboutBlocks,
+  aboutBuildLines,
   contactLinks,
   heroChips,
   navItems,
@@ -17,24 +18,7 @@ import {
 } from "@/lib/portfolio-content";
 import { withBasePath } from "@/lib/site";
 
-const aboutSignals = [
-  {
-    label: "System ownership",
-    value: "Interface, service behavior, integrations, and the operational details that make the product hold together.",
-  },
-  {
-    label: "Product judgment",
-    value: "Clear workflows, clean data models, and UI that reflects how the system actually behaves.",
-  },
-  {
-    label: "Shipping bias",
-    value: "Build the thing, tighten the edges, and make the surface feel as considered as the system underneath it.",
-  },
-] as const;
-
 export default function HomePage() {
-  const secondaryContactLinks = contactLinks.filter((link) => link.label !== "Email");
-
   return (
     <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
@@ -253,10 +237,18 @@ export default function HomePage() {
                 transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
                 className="about-signal-panel"
               >
-                <div className="grid gap-4">
-                  {aboutSignals.map((item, index) => (
+                <div className="space-y-4">
+                  <div>
+                    <p className="mono-label">What I build</p>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Recent shipped work across communications infrastructure, marketplaces,
+                      on-chain systems, and applied machine learning.
+                    </p>
+                  </div>
+
+                  {aboutBuildLines.map((item, index) => (
                     <motion.div
-                      key={item.label}
+                      key={item.index}
                       initial={{ opacity: 0.68, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true, amount: 0.2 }}
@@ -265,10 +257,10 @@ export default function HomePage() {
                         delay: index * 0.06,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      className="proof-card"
+                      className="about-build-row"
                     >
-                      <p className="mono-label">{item.label}</p>
-                      <p className="mt-3 text-sm leading-7 text-slate-200">{item.value}</p>
+                      <span className="about-build-index">{item.index}</span>
+                      <p className="text-sm leading-7 text-slate-200">{item.copy}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -300,9 +292,9 @@ export default function HomePage() {
         <section id="work" className="section-shell">
           <div className="section-frame">
             <SectionHeading
-              label="Work"
+              label="Projects"
               title="Selected work"
-              body="Beyond Retain AI, these are the builds that show range across computer vision, medical ML, web3 systems, and front-end launch work."
+              body="Deployed products, on-chain protocols, applied ML systems, and workflow-heavy software built to do real work once people start using them."
             />
 
             <div className="mt-12">
@@ -345,6 +337,8 @@ export default function HomePage() {
 
                 <a
                   href="mailto:shreyansh.sharma01@student.csulb.edu"
+                  target="_blank"
+                  rel="noreferrer"
                   className="mt-10 inline-flex flex-col text-left"
                   data-cursor="interactive"
                 >
@@ -357,15 +351,15 @@ export default function HomePage() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {secondaryContactLinks.map((link) => {
+                {contactLinks.map((link) => {
                   const href = link.href.startsWith("/") ? withBasePath(link.href) : link.href;
 
                   return (
                     <a
                       key={link.label}
                       href={href}
-                      target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                      rel={link.href.startsWith("mailto:") ? undefined : "noreferrer"}
+                      target="_blank"
+                      rel="noreferrer"
                       className="contact-link-card"
                       data-cursor="interactive"
                     >
@@ -392,6 +386,23 @@ export default function HomePage() {
           <p className="text-sm text-slate-500">
             Built with Next.js, TypeScript, Tailwind, Framer Motion, and Lenis.
           </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-2">
+            {contactLinks.map((link) => {
+              const href = link.href.startsWith("/") ? withBasePath(link.href) : link.href;
+
+              return (
+                <a
+                  key={link.label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-slate-400 transition-colors duration-200 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
         </div>
       </footer>
     </div>
