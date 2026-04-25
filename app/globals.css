@@ -458,6 +458,31 @@ section[id] {
     @apply grid gap-3 px-5 pb-5 sm:grid-cols-2;
   }
 
+  .hero-stat-card {
+    @apply rounded-[22px] px-4 py-4;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+      rgba(255, 255, 255, 0.018);
+  }
+
+  .hero-stat-value {
+    color: #f8faff;
+    font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+    font-weight: 600;
+    letter-spacing: -0.06em;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    margin-top: 0.7rem;
+    color: rgba(193, 205, 230, 0.78);
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
   .retain-shell {
     @apply rounded-[34px] p-6 md:p-8;
     position: relative;
@@ -653,16 +678,58 @@ section[id] {
   }
 
   .retain-stat-grid {
-    @apply grid gap-3 px-5 pb-5 pt-4 md:grid-cols-2 xl:grid-cols-4;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    @apply grid gap-3 md:grid-cols-2 xl:grid-cols-3;
   }
 
   .retain-stat-card {
-    @apply rounded-[22px] px-4 py-4;
+    @apply rounded-[24px] px-5 py-5;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(142, 135, 255, 0.08), rgba(98, 231, 223, 0.04)),
+      rgba(255, 255, 255, 0.02);
+  }
+
+  .retain-stat-value {
+    color: #f8faff;
+    display: block;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 600;
+    letter-spacing: -0.07em;
+    line-height: 0.98;
+  }
+
+  .retain-stat-label {
+    margin-top: 0.9rem;
+    color: rgba(203, 214, 236, 0.82);
+    font-size: 0.86rem;
+    line-height: 1.6;
+  }
+
+  .retain-feature-grid {
+    @apply grid gap-3 md:grid-cols-3;
+  }
+
+  .retain-feature-card {
+    @apply rounded-[24px] px-5 py-5;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
-      rgba(255, 255, 255, 0.02);
+      rgba(8, 12, 20, 0.78);
+  }
+
+  .retain-integrations-row {
+    @apply rounded-[24px] px-5 py-5;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+      rgba(255, 255, 255, 0.016);
+  }
+
+  .retain-integration-chip {
+    @apply rounded-full px-3.5 py-2 text-sm;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(239, 244, 255, 0.88);
   }
 
   .about-signal-panel {
@@ -683,6 +750,24 @@ section[id] {
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  .about-build-row {
+    @apply grid gap-4 rounded-[22px] px-4 py-4 md:grid-cols-[auto_minmax(0,1fr)];
+    align-items: start;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.018)),
+      rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .about-build-index {
+    color: rgba(143, 166, 255, 0.9);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    line-height: 1.8;
+    text-transform: uppercase;
+  }
+
   .project-title {
     color: #f6f8ff;
     font-size: clamp(2rem, 3vw, 2.9rem);
@@ -695,6 +780,15 @@ section[id] {
     color: #e3e9f8;
     font-size: 1.06rem;
     line-height: 1.85;
+    max-width: 40rem;
+  }
+
+  .project-tagline {
+    color: var(--purple-strong);
+    font-size: 1.02rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.65;
     max-width: 40rem;
   }
 
@@ -721,6 +815,27 @@ section[id] {
       linear-gradient(180deg, rgba(7, 11, 20, 1), rgba(5, 8, 16, 1));
   }
 
+  .project-visual-resilient {
+    background:
+      radial-gradient(circle at 18% 20%, rgba(168, 85, 247, 0.18), transparent 28%),
+      radial-gradient(circle at 82% 18%, rgba(52, 211, 153, 0.14), transparent 22%),
+      linear-gradient(180deg, rgba(7, 11, 20, 1), rgba(5, 8, 16, 1));
+  }
+
+  .project-visual-kala {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(245, 158, 11, 0.18), transparent 24%),
+      radial-gradient(circle at 82% 22%, rgba(168, 85, 247, 0.14), transparent 22%),
+      linear-gradient(180deg, rgba(8, 12, 20, 1), rgba(6, 10, 18, 1));
+  }
+
+  .project-visual-veridegree {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(74, 222, 128, 0.16), transparent 22%),
+      radial-gradient(circle at 82% 18%, rgba(96, 165, 250, 0.14), transparent 24%),
+      linear-gradient(180deg, rgba(8, 12, 20, 1), rgba(6, 10, 18, 1));
+  }
+
   .project-visual-cervical {
     background:
       radial-gradient(circle at 20% 18%, rgba(250, 204, 21, 0.1), transparent 20%),
@@ -732,13 +847,6 @@ section[id] {
     background:
       radial-gradient(circle at 18% 18%, rgba(252, 211, 77, 0.12), transparent 20%),
       radial-gradient(circle at 80% 22%, rgba(196, 181, 253, 0.16), transparent 22%),
-      linear-gradient(180deg, rgba(8, 12, 20, 1), rgba(6, 10, 18, 1));
-  }
-
-  .project-visual-aura {
-    background:
-      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 20%),
-      radial-gradient(circle at 82% 78%, rgba(114, 224, 215, 0.08), transparent 22%),
       linear-gradient(180deg, rgba(8, 12, 20, 1), rgba(6, 10, 18, 1));
   }
 
@@ -877,6 +985,47 @@ section[id] {
 
   .skill-accent-tools {
     border: 1px solid rgba(196, 181, 253, 0.16);
+  }
+
+  .metric-card {
+    @apply rounded-[22px] px-4 py-4;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(142, 135, 255, 0.08), rgba(98, 231, 223, 0.04)),
+      rgba(255, 255, 255, 0.02);
+  }
+
+  .metric-value {
+    color: #f8faff;
+    font-size: clamp(1.25rem, 2.1vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .metric-label {
+    margin-top: 0.65rem;
+    color: rgba(193, 205, 230, 0.8);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .interface-card {
+    @apply rounded-[22px] px-4 py-4 transition-all duration-200;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+      rgba(255, 255, 255, 0.02);
+  }
+
+  .interface-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(143, 166, 255, 0.24);
+    background:
+      linear-gradient(180deg, rgba(143, 166, 255, 0.08), rgba(255, 255, 255, 0.022)),
+      rgba(255, 255, 255, 0.028);
   }
 
   .contact-panel {
