@@ -6,9 +6,12 @@ Most of the site copy is driven from `lib/portfolio-content.ts`.
 
 - navigation items
 - hero chips
+- hero stats
 - ambient rails
+- retain product copy, metrics, integrations, and callouts
+- about build lines
 - about blocks
-- project entries
+- project entries, metrics, interfaces, and links
 - skill groups
 - contact links
 
