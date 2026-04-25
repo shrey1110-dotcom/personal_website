@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { heroStats } from "@/lib/portfolio-content";
 
 const lanes = [
   {
@@ -17,25 +18,6 @@ const lanes = [
     title: "Applied ML",
     copy: "Model output turned into readable product behavior instead of isolated notebook output.",
     marker: "Applied",
-  },
-] as const;
-
-const meta = [
-  {
-    label: "Current flagship",
-    value: "Retain AI",
-  },
-  {
-    label: "Core stack",
-    value: "Next.js, TypeScript, Python",
-  },
-  {
-    label: "Location",
-    value: "Long Beach, CA",
-  },
-  {
-    label: "Education",
-    value: "CSULB · May 2027",
   },
 ] as const;
 
@@ -101,7 +83,7 @@ export default function HeroProfilePanel() {
         </div>
 
         <div className="hero-meta-grid">
-          {meta.map((item, index) => (
+          {heroStats.map((item, index) => (
             <motion.div
               key={item.label}
               initial={{ opacity: 0.74, y: 18 }}
@@ -111,10 +93,10 @@ export default function HeroProfilePanel() {
                 duration: 0.5,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="hero-meta-card"
+              className="hero-stat-card"
             >
-              <p className="mono-label">{item.label}</p>
-              <p className="mt-2 text-sm leading-6 text-slate-200">{item.value}</p>
+              <p className="hero-stat-value">{item.value}</p>
+              <p className="hero-stat-label">{item.label}</p>
             </motion.div>
           ))}
         </div>
