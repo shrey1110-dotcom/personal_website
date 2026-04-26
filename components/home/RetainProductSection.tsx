@@ -1,7 +1,8 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import MetricCounter from "@/components/home/MetricCounter";
 import { retainProduct } from "@/lib/portfolio-content";
 import { withBasePath } from "@/lib/site";
@@ -9,8 +10,15 @@ import { withBasePath } from "@/lib/site";
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function RetainProductSection() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const statsActive = useInView(sectionRef, {
+    amount: 0.12,
+    margin: "0px 0px -16% 0px",
+    once: true,
+  });
+
   return (
-    <section id="retain" className="section-shell pt-8 md:pt-10">
+    <section id="retain" ref={sectionRef} className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
         <div className="retain-shell">
           <div className="grid gap-8 lg:grid-cols-[0.98fr_1.02fr] lg:items-end">
@@ -41,7 +49,7 @@ export default function RetainProductSection() {
                   rel="noreferrer"
                   className="primary-button"
                 >
-                  Open →
+                  {retainProduct.ctaLabel}
                 </a>
               </div>
             </motion.div>
@@ -104,10 +112,10 @@ export default function RetainProductSection() {
             className="mt-12"
           >
             <div className="space-y-6">
-              <div className="retain-stat-grid">
+              <div id="retain-metrics" className="retain-stat-grid">
                 {retainProduct.stats.map((item) => (
                   <div key={item.label} className="retain-stat-card">
-                    <MetricCounter metric={item} />
+                    <MetricCounter active={statsActive} metric={item} />
                     <p className="retain-stat-label">{item.label}</p>
                   </div>
                 ))}

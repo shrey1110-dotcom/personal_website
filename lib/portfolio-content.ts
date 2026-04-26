@@ -150,7 +150,7 @@ export const aboutBlocks = [
 export const retainProduct: RetainProductEntry = {
   name: "RETAIN AI",
   href: "https://retain-ai-eight.vercel.app",
-  ctaLabel: "Open →",
+  ctaLabel: "Open platform →",
   subtitle: "AI communications infrastructure for customer-facing businesses.",
   blurb:
     "Built and deployed a multi-tenant AI communications platform that handles inbound customer messaging for local service businesses. Hybrid orchestration pipeline combines deterministic routing, Gemini LLM, and conversation memory to respond like a trained front-desk operator — not a chatbot. Voice assistant in progress.",

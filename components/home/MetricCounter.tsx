@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { animate, useReducedMotion } from "framer-motion";
 import type { RetainProductEntry } from "@/lib/portfolio-content";
 
 type MetricCounterProps = {
+  active: boolean;
   metric: RetainProductEntry["stats"][number];
 };
 
@@ -15,51 +16,65 @@ type RangeState = {
 
 const numberFormatter = new Intl.NumberFormat("en-US");
 
-export default function MetricCounter({ metric }: MetricCounterProps) {
+export default function MetricCounter({ active, metric }: MetricCounterProps) {
   const ref = useRef<HTMLSpanElement | null>(null);
-  const isInView = useInView(ref, { amount: 0.55, once: true });
+  const prefersReducedMotion = useReducedMotion();
   const [numericValue, setNumericValue] = useState(0);
   const [rangeValue, setRangeValue] = useState<RangeState>({ start: 0, end: 0 });
 
   useEffect(() => {
-    if (!isInView || metric.animation.kind === "text") {
+    if (!active || metric.animation.kind === "text") {
       return;
     }
 
-    let frame = 0;
-    const duration = 1200;
-    const startedAt = performance.now();
-
-    const tick = (now: number) => {
-      const elapsed = Math.min((now - startedAt) / duration, 1);
-      const eased = 1 - Math.pow(1 - elapsed, 3);
-
+    if (prefersReducedMotion) {
       switch (metric.animation.kind) {
         case "int":
-          setNumericValue(metric.animation.end * eased);
-          break;
         case "decimal":
-          setNumericValue(metric.animation.end * eased);
-          break;
+          setNumericValue(metric.animation.end);
+          return;
         case "range":
           setRangeValue({
-            start: metric.animation.start * eased,
-            end: metric.animation.end * eased,
+            start: metric.animation.start,
+            end: metric.animation.end,
           });
-          break;
+          return;
       }
+    }
 
-      if (elapsed < 1) {
-        frame = window.requestAnimationFrame(tick);
-      }
-    };
+    const duration = 1.2;
 
-    frame = window.requestAnimationFrame(tick);
+    if (metric.animation.kind === "range") {
+      const rangeAnimation = metric.animation;
+      const progress = { value: 0 };
+      const controls = animate(progress.value, 1, {
+        duration,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (latest) => {
+          setRangeValue({
+            start: rangeAnimation.start * latest,
+            end: rangeAnimation.end * latest,
+          });
+        },
+      });
+
+      return () => {
+        controls.stop();
+      };
+    }
+
+    const controls = animate(0, metric.animation.end, {
+      duration,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => {
+        setNumericValue(latest);
+      },
+    });
 
     return () => {
-      window.cancelAnimationFrame(frame);
+      controls.stop();
     };
-  }, [isInView, metric]);
+  }, [active, metric, prefersReducedMotion]);
 
   const renderValue = () => {
     switch (metric.animation.kind) {
@@ -77,7 +92,7 @@ export default function MetricCounter({ metric }: MetricCounterProps) {
   };
 
   return (
-    <span ref={ref} className="retain-stat-value">
+    <span ref={ref} className="retain-stat-value inline-block">
       {renderValue()}
     </span>
   );
