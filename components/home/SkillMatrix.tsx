@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import type { IconType } from "react-icons";
 import { FaAws } from "react-icons/fa6";
 import { motion } from "framer-motion";
@@ -37,8 +37,9 @@ import type { SkillGroupEntry } from "@/lib/portfolio-content";
 
 type SkillTone = {
   color: string;
+  fallbackIcon: IconType;
   glow: string;
-  icon: IconType;
+  skillIcon?: string;
   surface: string;
 };
 
@@ -82,174 +83,201 @@ function GroupIcon({ type }: { type: SkillGroupEntry["icon"] }) {
 
 const skillTones: Record<string, SkillTone> = {
   TypeScript: {
-    icon: SiTypescript,
+    fallbackIcon: SiTypescript,
     color: "#3b82f6",
     surface: "rgba(59,130,246,0.16)",
     glow: "rgba(59,130,246,0.24)",
+    skillIcon: "ts",
   },
   Python: {
-    icon: SiPython,
+    fallbackIcon: SiPython,
     color: "#facc15",
     surface: "rgba(59,130,246,0.14)",
     glow: "rgba(250,204,21,0.2)",
+    skillIcon: "py",
   },
   SQL: {
-    icon: SiMysql,
+    fallbackIcon: SiMysql,
     color: "#67e8f9",
     surface: "rgba(103,232,249,0.12)",
     glow: "rgba(103,232,249,0.18)",
+    skillIcon: "mysql",
   },
   Go: {
-    icon: SiGo,
+    fallbackIcon: SiGo,
     color: "#22d3ee",
     surface: "rgba(34,211,238,0.14)",
     glow: "rgba(34,211,238,0.2)",
+    skillIcon: "go",
   },
   "C/C++": {
-    icon: SiCplusplus,
+    fallbackIcon: SiCplusplus,
     color: "#a78bfa",
     surface: "rgba(167,139,250,0.16)",
     glow: "rgba(167,139,250,0.22)",
+    skillIcon: "cpp",
   },
   React: {
-    icon: SiReact,
+    fallbackIcon: SiReact,
     color: "#67e8f9",
     surface: "rgba(103,232,249,0.14)",
     glow: "rgba(103,232,249,0.18)",
+    skillIcon: "react",
   },
   "Next.js": {
-    icon: SiNextdotjs,
+    fallbackIcon: SiNextdotjs,
     color: "#f8fafc",
     surface: "rgba(248,250,252,0.12)",
     glow: "rgba(248,250,252,0.16)",
+    skillIcon: "nextjs",
   },
   "Tailwind CSS": {
-    icon: SiTailwindcss,
+    fallbackIcon: SiTailwindcss,
     color: "#22d3ee",
     surface: "rgba(34,211,238,0.14)",
     glow: "rgba(34,211,238,0.2)",
+    skillIcon: "tailwind",
   },
   "Framer Motion": {
-    icon: SiFramer,
+    fallbackIcon: SiFramer,
     color: "#9f7aea",
     surface: "rgba(159,122,234,0.16)",
     glow: "rgba(159,122,234,0.22)",
   },
   "HTML/CSS": {
-    icon: SiHtml5,
+    fallbackIcon: SiHtml5,
     color: "#fb7185",
     surface: "rgba(251,113,133,0.16)",
     glow: "rgba(251,113,133,0.22)",
+    skillIcon: "html,css",
   },
   "Node.js": {
-    icon: SiNodedotjs,
+    fallbackIcon: SiNodedotjs,
     color: "#4ade80",
     surface: "rgba(74,222,128,0.16)",
     glow: "rgba(74,222,128,0.2)",
+    skillIcon: "nodejs",
   },
   FastAPI: {
-    icon: SiFastapi,
+    fallbackIcon: SiFastapi,
     color: "#2dd4bf",
     surface: "rgba(45,212,191,0.16)",
     glow: "rgba(45,212,191,0.22)",
+    skillIcon: "fastapi",
   },
   Express: {
-    icon: SiExpress,
+    fallbackIcon: SiExpress,
     color: "#cbd5e1",
     surface: "rgba(203,213,225,0.12)",
     glow: "rgba(203,213,225,0.16)",
+    skillIcon: "express",
   },
   PostgreSQL: {
-    icon: SiPostgresql,
+    fallbackIcon: SiPostgresql,
     color: "#60a5fa",
     surface: "rgba(96,165,250,0.16)",
     glow: "rgba(96,165,250,0.22)",
+    skillIcon: "postgres",
   },
   Supabase: {
-    icon: SiSupabase,
+    fallbackIcon: SiSupabase,
     color: "#34d399",
     surface: "rgba(52,211,153,0.16)",
     glow: "rgba(52,211,153,0.2)",
+    skillIcon: "supabase",
   },
   MongoDB: {
-    icon: SiMongodb,
+    fallbackIcon: SiMongodb,
     color: "#4ade80",
     surface: "rgba(74,222,128,0.14)",
     glow: "rgba(74,222,128,0.18)",
+    skillIcon: "mongodb",
   },
   TensorFlow: {
-    icon: SiTensorflow,
+    fallbackIcon: SiTensorflow,
     color: "#fb923c",
     surface: "rgba(251,146,60,0.16)",
     glow: "rgba(251,146,60,0.22)",
+    skillIcon: "tensorflow",
   },
   "scikit-learn": {
-    icon: SiScikitlearn,
+    fallbackIcon: SiScikitlearn,
     color: "#38bdf8",
     surface: "rgba(56,189,248,0.16)",
     glow: "rgba(56,189,248,0.2)",
+    skillIcon: "scikitlearn",
   },
   Docker: {
-    icon: SiDocker,
+    fallbackIcon: SiDocker,
     color: "#60a5fa",
     surface: "rgba(96,165,250,0.16)",
     glow: "rgba(96,165,250,0.22)",
+    skillIcon: "docker",
   },
   AWS: {
-    icon: FaAws,
+    fallbackIcon: FaAws,
     color: "#f59e0b",
     surface: "rgba(245,158,11,0.16)",
     glow: "rgba(245,158,11,0.22)",
+    skillIcon: "aws",
   },
   Gemini: {
-    icon: SiGooglegemini,
+    fallbackIcon: SiGooglegemini,
     color: "#a78bfa",
     surface: "rgba(167,139,250,0.16)",
     glow: "rgba(167,139,250,0.22)",
   },
   Twilio: {
-    icon: SiTwilio,
+    fallbackIcon: SiTwilio,
     color: "#fb7185",
     surface: "rgba(251,113,133,0.16)",
     glow: "rgba(251,113,133,0.22)",
   },
   Vercel: {
-    icon: SiVercel,
+    fallbackIcon: SiVercel,
     color: "#f8fafc",
     surface: "rgba(248,250,252,0.12)",
     glow: "rgba(248,250,252,0.16)",
+    skillIcon: "vercel",
   },
   GitHub: {
-    icon: SiGithub,
+    fallbackIcon: SiGithub,
     color: "#e2e8f0",
     surface: "rgba(226,232,240,0.12)",
     glow: "rgba(226,232,240,0.16)",
+    skillIcon: "github",
   },
   Stripe: {
-    icon: SiStripe,
+    fallbackIcon: SiStripe,
     color: "#a78bfa",
     surface: "rgba(167,139,250,0.16)",
     glow: "rgba(167,139,250,0.22)",
   },
   Clerk: {
-    icon: SiClerk,
+    fallbackIcon: SiClerk,
     color: "#c4b5fd",
     surface: "rgba(196,181,253,0.16)",
     glow: "rgba(196,181,253,0.22)",
   },
   "REST APIs": {
-    icon: TbApi,
+    fallbackIcon: TbApi,
     color: "#67e8f9",
     surface: "rgba(103,232,249,0.12)",
     glow: "rgba(103,232,249,0.18)",
+    skillIcon: "postman",
   },
   "Cloudflare Workers": {
-    icon: SiCloudflare,
+    fallbackIcon: SiCloudflare,
     color: "#fb923c",
     surface: "rgba(251,146,60,0.16)",
     glow: "rgba(251,146,60,0.22)",
+    skillIcon: "workers",
   },
 };
+
+function skillIconUrl(slug: string) {
+  return `https://skillicons.dev/icons?i=${slug}&theme=dark`;
+}
 
 function SkillTile({
   icon: groupIcon,
@@ -259,7 +287,8 @@ function SkillTile({
   item: string;
 }) {
   const tone = skillTones[item];
-  const Icon = tone?.icon ?? TbApi;
+  const [remoteIconFailed, setRemoteIconFailed] = useState(false);
+  const Icon = tone?.fallbackIcon ?? TbApi;
   const tileStyle = tone
     ? ({
         "--skill-icon-color": tone.color,
@@ -272,7 +301,21 @@ function SkillTile({
   return (
     <div className="skill-tech-tile" data-cursor="interactive" style={tileStyle}>
       <div className={`skill-tech-icon ${accentClass(groupIcon)}`}>
-        <Icon className="h-[1.48rem] w-[1.48rem]" aria-hidden="true" />
+        {tone?.skillIcon && !remoteIconFailed ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={skillIconUrl(tone.skillIcon)}
+            alt=""
+            aria-hidden="true"
+            data-skill-icon={tone.skillIcon}
+            loading="lazy"
+            decoding="async"
+            className="skill-tech-icon-image"
+            onError={() => setRemoteIconFailed(true)}
+          />
+        ) : (
+          <Icon className="h-[1.48rem] w-[1.48rem]" aria-hidden="true" />
+        )}
       </div>
       <span className="text-[0.97rem] font-medium tracking-[-0.02em] text-slate-100">{item}</span>
     </div>

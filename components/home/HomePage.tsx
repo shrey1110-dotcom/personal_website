@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import HeroHeadshot from "@/components/home/HeroHeadshot";
 import HeroProfilePanel from "@/components/home/HeroProfilePanel";
 import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
@@ -102,8 +103,8 @@ export default function HomePage() {
                     Software engineer · product systems · applied ML
                   </motion.p>
 
-                  <motion.h1
-                    className="hero-title mt-5"
+                  <motion.div
+                    className="mt-5 flex items-center gap-4 md:gap-5"
                     variants={{
                       hidden: { opacity: 0, y: 28 },
                       show: {
@@ -113,8 +114,9 @@ export default function HomePage() {
                       },
                     }}
                   >
-                    Shreyansh Sharma
-                  </motion.h1>
+                    <HeroHeadshot />
+                    <h1 className="hero-title">Shreyansh Sharma</h1>
+                  </motion.div>
 
                   <motion.p
                     className="hero-support mt-6"

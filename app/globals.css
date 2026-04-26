@@ -967,6 +967,13 @@ section[id] {
     flex-shrink: 0;
   }
 
+  .skill-tech-icon-image {
+    height: 1.75rem;
+    width: auto;
+    max-width: 2.9rem;
+    object-fit: contain;
+  }
+
   .skill-accent-languages {
     border: 1px solid rgba(143, 166, 255, 0.16);
   }
