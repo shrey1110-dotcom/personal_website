@@ -7,6 +7,7 @@ import ProjectBand from "@/components/home/ProjectBand";
 import ProjectCompactCard from "@/components/home/ProjectCompactCard";
 import RetainProductSection from "@/components/home/RetainProductSection";
 import SectionHeading from "@/components/home/SectionHeading";
+import SkillMatrix from "@/components/home/SkillMatrix";
 import {
   archiveProjects,
   contactLinks,
@@ -205,35 +206,15 @@ export default function HomePage() {
 
         <section id="stack" className="section-shell pt-6 md:pt-8">
           <div className="section-frame">
-            <motion.div
-              initial={{ opacity: 0.74, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.18 }}
-              transition={{ duration: 0.72, ease: revealEase }}
-              className="stack-strip"
-            >
-              <div className="stack-strip-header">
-                <div className="max-w-[40rem]">
-                  <p className="section-label">Stack</p>
-                  <h2 className="mt-4 text-[1.7rem] font-semibold tracking-[-0.05em] text-white md:text-[2.15rem]">
-                    Core tools behind the work
-                  </h2>
-                  <p className="mt-4 text-base leading-8 text-slate-300">
-                    TypeScript, Python, Next.js, APIs, databases, and deployment tooling show up
-                    across most of the products here.
-                  </p>
-                </div>
-              </div>
+            <SectionHeading
+              label="Stack"
+              title="Core tools behind the work"
+              body="Languages, frameworks, infra, and platforms that show up repeatedly across shipped products."
+            />
 
-              <div className="stack-strip-grid">
-                {skillGroups.map((group) => (
-                  <div key={group.label} className="stack-strip-card">
-                    <p className="mono-label">{group.label}</p>
-                    <p className="stack-strip-items">{group.items.join(" · ")}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+            <div className="mt-10">
+              <SkillMatrix groups={skillGroups} />
+            </div>
           </div>
         </section>
 
