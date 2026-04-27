@@ -13,6 +13,8 @@ const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function ProjectBand({ index, project }: ProjectBandProps) {
   const reversed = index % 2 === 1;
+  const specItems =
+    project.proofPoints?.length ? project.proofPoints : project.surfaces?.length ? project.surfaces : [];
 
   return (
     <article className="project-band-shell border-t border-white/8 py-10 first:border-t-0 md:py-14">
@@ -71,6 +73,37 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
                     {integration}
                   </span>
                 ))}
+              </div>
+            ) : null}
+
+            {(specItems.length || project.tags.length) ? (
+              <div className="project-detail-grid">
+                {specItems.length ? (
+                  <div className="project-detail-panel project-detail-panel-specs">
+                    <p className="mono-label">Specs</p>
+                    <div className="mt-4 grid gap-2.5">
+                      {specItems.map((item) => (
+                        <div key={`${project.name}-${item}`} className="project-spec-row">
+                          <span className="project-spec-dot" />
+                          <span className="project-spec-copy">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                {project.tags.length ? (
+                  <div className="project-detail-panel project-detail-panel-stack">
+                    <p className="mono-label">Tech stack</p>
+                    <div className="mt-4 flex flex-wrap gap-2.5">
+                      {project.tags.map((tag) => (
+                        <span key={`${project.name}-${tag}`} className="project-stack-pill">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ) : null}
 

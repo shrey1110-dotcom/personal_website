@@ -12,6 +12,9 @@ type ProjectCompactCardProps = {
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function ProjectCompactCard({ index, project }: ProjectCompactCardProps) {
+  const specItems =
+    project.proofPoints?.length ? project.proofPoints : project.surfaces?.length ? project.surfaces : [];
+
   return (
     <motion.article
       initial={{ opacity: 0.72, y: 22 }}
@@ -42,6 +45,37 @@ export default function ProjectCompactCard({ index, project }: ProjectCompactCar
             ))}
           </div>
         </div>
+
+        {(specItems.length || project.tags.length) ? (
+          <div className="compact-project-detail-grid">
+            {specItems.length ? (
+              <div className="project-detail-panel project-detail-panel-specs">
+                <p className="mono-label">Specs</p>
+                <div className="mt-4 grid gap-2.5">
+                  {specItems.map((item) => (
+                    <div key={`${project.name}-${item}`} className="project-spec-row">
+                      <span className="project-spec-dot" />
+                      <span className="project-spec-copy">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {project.tags.length ? (
+              <div className="project-detail-panel project-detail-panel-stack">
+                <p className="mono-label">Tech stack</p>
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  {project.tags.map((tag) => (
+                    <span key={`${project.name}-${tag}`} className="project-stack-pill">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
 
         <a
           href={project.href}
