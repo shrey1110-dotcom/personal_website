@@ -13,6 +13,7 @@ import {
   featuredProjects,
   heroActions,
   navItems,
+  skillGroups,
 } from "@/lib/portfolio-content";
 import { withBasePath } from "@/lib/site";
 
@@ -44,7 +45,7 @@ export default function HomePage() {
                 Shreyansh Sharma
               </span>
               <span className="block text-xs text-slate-400">
-                Software engineer · product-minded full-stack
+                Software engineer · full-stack products · applied ML
               </span>
             </span>
           </a>
@@ -62,14 +63,28 @@ export default function HomePage() {
             ))}
           </nav>
 
-          <a
-            href={withBasePath("/resume.pdf")}
-            target="_blank"
-            rel="noreferrer"
-            className="header-resume rounded-full border border-[rgba(146,169,255,0.24)] bg-[rgba(146,169,255,0.08)] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-[rgba(112,224,215,0.42)] hover:bg-[rgba(112,224,215,0.12)]"
-          >
-            Resume
-          </a>
+          <div className="flex items-center gap-2.5">
+            <span className="header-status-pill hidden md:inline-flex">
+              <span className="header-status-dot" />
+              Open to internships
+            </span>
+            <a
+              href="mailto:shreyansh.sharma01@student.csulb.edu"
+              className="header-hire-cta"
+              data-cursor="interactive"
+            >
+              Email
+            </a>
+            <a
+              href={withBasePath("/resume.pdf")}
+              target="_blank"
+              rel="noreferrer"
+              className="header-resume rounded-full border border-[rgba(146,169,255,0.24)] bg-[rgba(146,169,255,0.08)] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-[rgba(112,224,215,0.42)] hover:bg-[rgba(112,224,215,0.12)]"
+              data-cursor="interactive"
+            >
+              Resume
+            </a>
+          </div>
         </div>
       </header>
 
@@ -79,9 +94,7 @@ export default function HomePage() {
             <div className="hero-stage-panel">
               <div className="hero-grid">
                 <div className="max-w-[720px]">
-                  <p className="section-label">
-                    Software engineer building real products and ML-backed features
-                  </p>
+                  <p className="section-label">Software engineer · full-stack products · applied ML</p>
 
                   <h1 className="hero-title hero-title-expanded mt-5">
                     <span className="hero-title-line">Shreyansh</span>
@@ -89,14 +102,12 @@ export default function HomePage() {
                   </h1>
 
                   <p className="hero-support mt-6">
-                    I build real software products and ML-backed features that people can actually
-                    use, not just demos.
+                    I build real software products and ML-backed features.
                   </p>
 
                   <p className="hero-body mt-5">
-                    Recent work includes live customer messaging infrastructure, an on-chain aid
-                    platform, a credential verification product, and ML interfaces that turn model
-                    output into something useful.
+                    I build customer messaging products, on-chain workflows, credential tools, and
+                    ML interfaces with clear user value and reliable underlying systems.
                   </p>
 
                   <div className="hero-action-grid mt-9">
@@ -124,17 +135,21 @@ export default function HomePage() {
                     })}
                   </div>
 
-                  <div className="mt-5 flex items-center gap-4 text-sm text-slate-400">
-                    <span>GitHub</span>
+                  <div className="mt-4 max-w-[28rem]">
                     <a
                       href={githubAction.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="hero-inline-link"
+                      className="hero-action-card hero-action-card-muted hero-action-card-compact"
                       data-cursor="interactive"
                     >
-                      {githubAction.value}
-                      <span aria-hidden="true">↗</span>
+                      <div>
+                        <span className="hero-action-label">{githubAction.label}</span>
+                        <span className="hero-action-support">{githubAction.value}</span>
+                      </div>
+                      <span aria-hidden="true" className="hero-action-arrow">
+                        ↗
+                      </span>
                     </a>
                   </div>
 
@@ -160,8 +175,8 @@ export default function HomePage() {
           <div className="section-frame">
             <SectionHeading
               label="Selected Work"
-              title="The strongest work, in the clearest format"
-              body="These are the products that best show how I build: real interfaces, real use cases, and enough technical depth to matter."
+              title="Flagship work"
+              body="The clearest examples of how I build products people can actually use."
             />
 
             <div className="mt-12">
@@ -176,8 +191,8 @@ export default function HomePage() {
           <div className="section-frame">
             <SectionHeading
               label="More Work"
-              title="Smaller builds that still show useful range"
-              body="These are lighter-weight than the flagship work above, but each one still shows a clear use case and a concrete result."
+              title="More shipped work"
+              body="Smaller builds that still show range, judgment, and execution."
             />
 
             <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -185,6 +200,40 @@ export default function HomePage() {
                 <ProjectCompactCard key={project.name} index={index} project={project} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section id="stack" className="section-shell pt-6 md:pt-8">
+          <div className="section-frame">
+            <motion.div
+              initial={{ opacity: 0.74, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.18 }}
+              transition={{ duration: 0.72, ease: revealEase }}
+              className="stack-strip"
+            >
+              <div className="stack-strip-header">
+                <div className="max-w-[40rem]">
+                  <p className="section-label">Stack</p>
+                  <h2 className="mt-4 text-[1.7rem] font-semibold tracking-[-0.05em] text-white md:text-[2.15rem]">
+                    Core tools behind the work
+                  </h2>
+                  <p className="mt-4 text-base leading-8 text-slate-300">
+                    TypeScript, Python, Next.js, APIs, databases, and deployment tooling show up
+                    across most of the products here.
+                  </p>
+                </div>
+              </div>
+
+              <div className="stack-strip-grid">
+                {skillGroups.map((group) => (
+                  <div key={group.label} className="stack-strip-card">
+                    <p className="mono-label">{group.label}</p>
+                    <p className="stack-strip-items">{group.items.join(" · ")}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -200,8 +249,8 @@ export default function HomePage() {
               <div className="max-w-[38rem]">
                 <SectionHeading
                   label="Contact"
-                  title="Easy ways to reach me"
-                  body="If the work here lines up with what your team is building, send a note. Email is best, but LinkedIn, GitHub, and my resume are one click away."
+                  title="Let’s talk"
+                  body="If the work here lines up with what your team is building, send a note. Email is best. LinkedIn, GitHub, and my resume are right here."
                 />
               </div>
 

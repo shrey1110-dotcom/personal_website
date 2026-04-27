@@ -59,6 +59,7 @@ export type SkillGroupEntry = {
 
 export const navItems = [
   { href: "#retain", label: "Work" },
+  { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
@@ -210,10 +211,10 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Aid protocol",
     blurb:
-      "Tracks how donated funds move from donors to beneficiaries and vendors through a transparent on-chain aid flow.",
+      "Moves aid money from donors to beneficiaries and vendors with full on-chain tracking.",
     features: [
-      "Separate dashboards handle admin, donor, beneficiary, and vendor work.",
-      "Donors can see where funds go instead of sending money into a black box.",
+      "Separate dashboards support admins, donors, beneficiaries, and vendors.",
+      "Donors can see exactly where funds move instead of sending money into a black box.",
       "Beneficiaries receive credits quickly and vendors settle in under two seconds.",
       "Every transfer is recorded on-chain with zero platform fees.",
     ],
@@ -246,7 +247,7 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "AI marketplace",
     blurb:
-      "Helps people discover and buy handmade goods while AI identifies the likely craft origin from product photos.",
+      "Helps shoppers discover handmade goods while AI identifies the likely cultural origin from product photos.",
     features: [
       "A swipeable feed surfaces artisans, products, and short stories quickly.",
       "Buyers can browse live listings, trends, and seller pages in one place.",
@@ -314,12 +315,12 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Computer vision",
     blurb:
-      "Scores exercise form from pose data and turns it into coaching feedback someone can actually use.",
+      "Scores exercise form from pose data and turns it into coaching feedback someone can use right away.",
     features: [
       "Tracks 17 body keypoints across video frames.",
       "Scores depth, balance, tempo, and alignment.",
       "Turns raw pose output into readable coaching notes.",
-      "Built to make model output useful outside a notebook.",
+      "Highlights the mistakes that matter instead of dumping raw model output.",
     ],
     context:
       "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
@@ -337,7 +338,7 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Medical ML",
     blurb:
-      "Classifies Pap smear images across five cell types in a medical imaging workflow that is easier to train, inspect, and evaluate.",
+      "Classifies Pap smear images across five cell types in a medical imaging workflow that is easier to inspect and evaluate.",
     features: [
       "Trained on 4,000 labeled images across five classes.",
       "Preprocessing stays consistent before training and evaluation.",
@@ -423,11 +424,6 @@ export const contactLinks = [
     value: "shreyansh.sharma01@student.csulb.edu",
   },
   {
-    href: "https://github.com/shrey1110-dotcom",
-    label: "GitHub",
-    value: "github.com/shrey1110-dotcom",
-  },
-  {
     href: "https://linkedin.com/in/sharmasshrey",
     label: "LinkedIn",
     value: "linkedin.com/in/sharmasshrey",
@@ -436,5 +432,10 @@ export const contactLinks = [
     href: "/resume.pdf",
     label: "Resume",
     value: "Open PDF",
+  },
+  {
+    href: "https://github.com/shrey1110-dotcom",
+    label: "GitHub",
+    value: "github.com/shrey1110-dotcom",
   },
 ] as const;
