@@ -5,8 +5,10 @@ export type RetainProductEntry = {
   features: string[];
   href: string;
   integrations: string[];
+  liveMeta: string;
   name: string;
   proofMetrics: { label: string; value: string }[];
+  roleLine: string;
   stats: {
     animation:
       | { kind: "int"; end: number; suffix?: string }
@@ -22,8 +24,11 @@ export type RetainProductEntry = {
 
 export type ProjectEntry = {
   blurb: string;
+  browserMeta?: string;
+  browserLabel?: string;
   context?: string;
   ctaLabel?: string;
+  embedHref?: string;
   featureCards?: { copy: string; title: string }[];
   features: string[];
   href: string;
@@ -82,18 +87,18 @@ export const heroActions = [
 
 export const ambientRails = [
   [
-    "Live communications product",
+    "Real products in production",
     "Full-stack engineering",
-    "Applied machine learning",
-    "Product + infrastructure",
+    "ML-backed features",
+    "Built for real use",
     "Long Beach, California",
   ],
   [
-    "Multi-tenant runtime",
-    "On-chain aid protocol",
-    "AI marketplace",
+    "Customer messaging",
+    "Aid distribution",
     "Credential verification",
-    "Built to be used",
+    "AI marketplace",
+    "Clear product demos",
   ],
   [
     "APIs • data flow • integrations",
@@ -115,14 +120,16 @@ export const retainProduct: RetainProductEntry = {
   name: "RETAIN AI",
   href: "https://retain-ai-eight.vercel.app",
   ctaLabel: "Open platform →",
+  liveMeta: "retain-ai-eight.vercel.app",
+  roleLine: "RETAIN AI · Founder & Solo Engineer · 2025–Present",
   subtitle: "AI communications infrastructure for customer-facing businesses.",
   blurb:
-    "Handles inbound customer messaging for local service businesses and responds with business-specific routing, AI assistance, and conversation memory instead of generic chatbot behavior.",
+    "Built and operate live AI communications infrastructure. It handles inbound customer messages for local service businesses with business-specific rules, memory, and AI assistance instead of generic chatbot replies.",
   features: [
-    "Tenant-specific business rules, FAQs, tone, and availability managed at runtime",
-    "Hybrid response flow that routes deterministically before handing off to Gemini",
-    "Conversation memory and QA loops designed for repeat use, not one-off demos",
-    "Voice assistant in progress on top of the same orchestration pipeline",
+    "Each business gets its own reply rules, FAQs, tone, and escalation logic.",
+    "The system decides when to answer directly and when to bring in Gemini.",
+    "Conversation memory keeps follow-ups consistent instead of starting cold each time.",
+    "The same backend is now being extended into a voice assistant for phone calls.",
   ],
   proofMetrics: [
     { value: "4M+", label: "Messages stress-tested" },
@@ -197,15 +204,18 @@ export const projects: ProjectEntry[] = [
   {
     name: "ResilientAid",
     href: "https://resilient-aid.vercel.app",
+    embedHref: "https://resilient-aid.vercel.app",
+    browserLabel: "Aid workflow",
+    browserMeta: "resilient-aid.vercel.app",
     ctaLabel: "Open →",
     type: "Aid protocol",
     blurb:
-      "Moves aid from donors to beneficiaries through a tracked on-chain flow with separate interfaces for admins, donors, beneficiaries, and vendors.",
+      "Tracks how donated funds move from donors to beneficiaries and vendors through a transparent on-chain aid flow.",
     features: [
-      "Four role-specific product surfaces built on one shared protocol",
-      "Sub-two-second settlement on Polygon Amoy with zero platform fees",
-      "Every transfer stays transparent and traceable on-chain",
-      "Distribution flow designed for real-world disbursement, not token theater",
+      "Separate dashboards handle admin, donor, beneficiary, and vendor work.",
+      "Donors can see where funds go instead of sending money into a black box.",
+      "Beneficiaries receive credits quickly and vendors settle in under two seconds.",
+      "Every transfer is recorded on-chain with zero platform fees.",
     ],
     context:
       "Offline-capable distribution, zero platform fees, sub-two-second settlement, and complete on-chain traceability are all designed into the runtime instead of added as separate features.",
@@ -230,15 +240,18 @@ export const projects: ProjectEntry[] = [
   {
     name: "KalaAI",
     href: "https://artisian.vercel.app",
+    embedHref: "https://artisian.vercel.app",
+    browserLabel: "Marketplace demo",
+    browserMeta: "artisian.vercel.app",
     ctaLabel: "Open →",
     type: "AI marketplace",
     blurb:
-      "Helps shoppers discover handcrafted goods through a marketplace that recognizes cultural origin from product images and turns that into a stronger buying experience.",
+      "Helps people discover and buy handmade goods while AI identifies the likely craft origin from product photos.",
     features: [
-      "AI origin detection across 120+ craft categories",
-      "Shorts-style discovery feed built around artisan stories and products",
-      "Live marketplace flows for browsing, listings, accounts, and trends",
-      "Consumer product surface that makes the model output useful in context",
+      "A swipeable feed surfaces artisans, products, and short stories quickly.",
+      "Buyers can browse live listings, trends, and seller pages in one place.",
+      "Image analysis suggests the craft origin across 120+ categories.",
+      "The AI result shows up inside the shopping flow instead of as a separate tool.",
     ],
     context:
       "The product combines discovery, marketplace behavior, and computer vision into one consumer-facing surface instead of isolating AI as a separate demo.",
@@ -272,15 +285,18 @@ export const projects: ProjectEntry[] = [
   {
     name: "VeriDegree",
     href: "https://veri-degree.vercel.app",
+    embedHref: "https://veri-degree.vercel.app",
+    browserLabel: "Verification flow",
+    browserMeta: "veri-degree.vercel.app",
     ctaLabel: "Open →",
     type: "Credential verification",
     blurb:
-      "Issues tamper-resistant academic credentials and lets institutions or employers verify them without relying on manual document review.",
+      "Issues digital credentials that schools can publish once and employers can verify in seconds.",
     features: [
-      "On-chain credential issuance instead of PDF-heavy manual workflows",
-      "Soulbound records that stay attached to the holder",
-      "Verification flow designed for fast trust checks",
-      "Privacy-aware credential logic built for real institutional use",
+      "Schools issue tamper-resistant records instead of sending PDFs around.",
+      "Students keep the credential in a wallet they control.",
+      "Employers can verify status immediately from a simple public check.",
+      "The verification flow is built to reduce fraud without adding manual review.",
     ],
     context:
       "The protocol uses Algorand soulbound assets and privacy-preserving verification flows so institutions can issue once and verifiers can trust the credential state immediately.",
@@ -298,12 +314,12 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Computer vision",
     blurb:
-      "Turns pose keypoints into movement scores and readable coaching feedback for exercises that need more than raw model output.",
+      "Scores exercise form from pose data and turns it into coaching feedback someone can actually use.",
     features: [
-      "17-point MoveNet keypoints processed across frame sequences",
-      "Biomechanical scoring logic on top of raw pose estimation",
-      "Readable feedback designed for a person, not a notebook",
-      "Post-inference pipeline that makes the model output usable",
+      "Tracks 17 body keypoints across video frames.",
+      "Scores depth, balance, tempo, and alignment.",
+      "Turns raw pose output into readable coaching notes.",
+      "Built to make model output useful outside a notebook.",
     ],
     context:
       "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
@@ -321,12 +337,12 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Medical ML",
     blurb:
-      "Classifies Pap smear images across five cell types with a training pipeline built for repeatable preprocessing, transfer learning, and evaluation.",
+      "Classifies Pap smear images across five cell types in a medical imaging workflow that is easier to train, inspect, and evaluate.",
     features: [
-      "4,000 medical images across five clinically relevant classes",
-      "Preprocessing pipeline built for consistency before training",
-      "Transfer-learning workflow tuned for image classification",
-      "Evaluation flow focused on understanding model behavior, not just accuracy",
+      "Trained on 4,000 labeled images across five classes.",
+      "Preprocessing stays consistent before training and evaluation.",
+      "Transfer learning speeds up training and improves performance.",
+      "Class confidence makes model mistakes easier to inspect.",
     ],
     context:
       "Built around repeatable preprocessing, transfer learning, and evaluation against a medical dataset instead of a one-off notebook run.",
@@ -345,12 +361,12 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open →",
     type: "Web3 systems",
     blurb:
-      "Scans EVM markets for arbitrage routes, filters the opportunities, and keeps execution guarded under tight timing constraints.",
+      "Scans DeFi markets for arbitrage routes and filters out trades that are too risky or too slow to execute.",
     features: [
-      "Scans 13,240+ token pairs for viable route combinations",
-      "Separates discovery, validation, and execution into distinct steps",
-      "Guards against slippage and timing failures before execution",
-      "Built for automated decision-making instead of manual market watching",
+      "Checks 13,240+ token pairs for route opportunities.",
+      "Separates scanning, validation, and execution into clear stages.",
+      "Filters by spread, gas cost, and slippage before acting.",
+      "Built for automated decisions instead of manual market watching.",
     ],
     context:
       "Discovery, validation, and execution are separated so the system can move fast without turning execution into guesswork.",

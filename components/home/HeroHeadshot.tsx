@@ -13,8 +13,8 @@ export default function HeroHeadshot({ size = "hero" }: HeroHeadshotProps) {
   const sizing =
     size === "compact"
       ? "h-16 w-16 text-lg md:h-20 md:w-20 md:text-xl"
-      : "h-36 w-36 text-2xl md:h-52 md:w-52 md:text-4xl";
-  const imageSizes = size === "compact" ? "(min-width: 768px) 80px, 64px" : "(min-width: 768px) 208px, 144px";
+      : "h-40 w-40 text-2xl md:h-60 md:w-60 md:text-4xl";
+  const imageSizes = size === "compact" ? "(min-width: 768px) 80px, 64px" : "(min-width: 768px) 240px, 160px";
 
   if (hasImageError) {
     return (

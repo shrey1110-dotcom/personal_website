@@ -41,9 +41,6 @@ export default function InfoRails({ className = "" }: InfoRailsProps) {
         <div className="hidden md:block">
           <RailTrack items={ambientRails[1]} reverse />
         </div>
-        <div className="hidden lg:block">
-          <RailTrack items={ambientRails[2]} />
-        </div>
       </div>
     </div>
   );
