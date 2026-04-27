@@ -39,6 +39,41 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
             <h3 className="project-title">{project.name}</h3>
             <p className="project-copy">{project.blurb}</p>
 
+            {project.metrics?.length ? (
+              <div>
+                <p className="mono-label">Proof</p>
+                <div className="project-metric-grid mt-4">
+                  {project.metrics.map((metric, metricIndex) => (
+                    <motion.div
+                      key={`${project.name}-${metric.label}`}
+                      initial={{ opacity: 0.72, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.22 }}
+                      transition={{
+                        duration: 0.48,
+                        delay: metricIndex * 0.04,
+                        ease: revealEase,
+                      }}
+                      className="metric-card"
+                    >
+                      <p className="metric-value">{metric.value}</p>
+                      <p className="metric-label">{metric.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {project.integrations?.length ? (
+              <div className="project-trust-row">
+                {project.integrations.map((integration) => (
+                  <span key={`${project.name}-${integration}`} className="project-trust-pill">
+                    {integration}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+
             <div>
               <p className="mono-label">Features</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -63,6 +98,32 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
                 ))}
               </div>
             </div>
+
+            {project.interfaceCards?.length ? (
+              <div>
+                <p className="mono-label">Interfaces</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {project.interfaceCards.map((card) => (
+                    <a
+                      key={`${project.name}-${card.label}`}
+                      href={card.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="interface-card"
+                      data-cursor="interactive"
+                    >
+                      <span className="block text-sm font-medium tracking-[-0.02em] text-white">
+                        {card.label}
+                      </span>
+                      <span className="mt-3 inline-flex items-center gap-2 text-sm text-slate-300">
+                        Open
+                        <span aria-hidden="true">↗</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : null}
 
             <a
               href={project.href}
