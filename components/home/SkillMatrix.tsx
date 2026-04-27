@@ -299,7 +299,13 @@ function SkillTile({
     : undefined;
 
   return (
-    <div className="skill-tech-tile" data-cursor="interactive" style={tileStyle}>
+    <div
+      className="skill-tech-tile group"
+      data-cursor="interactive"
+      style={tileStyle}
+      aria-label={item}
+      title={item}
+    >
       <div className={`skill-tech-icon ${accentClass(groupIcon)}`}>
         {tone?.skillIcon && !remoteIconFailed ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -317,7 +323,8 @@ function SkillTile({
           <Icon className="h-[1.48rem] w-[1.48rem]" aria-hidden="true" />
         )}
       </div>
-      <span className="text-[0.97rem] font-medium tracking-[-0.02em] text-slate-100">{item}</span>
+      <span className="sr-only">{item}</span>
+      <span className="skill-tech-tooltip">{item}</span>
     </div>
   );
 }
@@ -376,7 +383,7 @@ export default function SkillMatrix({ groups }: SkillMatrixProps) {
                 </div>
               </div>
 
-              <div className="mt-6 grid gap-3">
+              <div className="mt-6 flex flex-wrap gap-3">
                 {group.items.map((item) => (
                   <SkillTile key={`${group.label}-${item}`} icon={group.icon} item={item} />
                 ))}
