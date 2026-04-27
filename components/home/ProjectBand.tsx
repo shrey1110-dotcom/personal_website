@@ -15,7 +15,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
   const reversed = index % 2 === 1;
 
   return (
-    <article className="project-band-shell border-t border-white/8 py-12 first:border-t-0 md:py-16">
+    <article className="project-band-shell border-t border-white/8 py-10 first:border-t-0 md:py-14">
       <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
         <motion.div
           className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}
@@ -34,7 +34,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.72, ease: revealEase, delay: 0.06 }}
         >
-          <div className="space-y-6">
+          <div className="space-y-5">
             <p className="section-label">{project.type}</p>
             <h3 className="project-title">{project.name}</h3>
             <p className="project-copy">{project.blurb}</p>

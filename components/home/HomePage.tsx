@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import HeroProfilePanel from "@/components/home/HeroProfilePanel";
 import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
+import ProjectCompactCard from "@/components/home/ProjectCompactCard";
 import RetainProductSection from "@/components/home/RetainProductSection";
 import SectionHeading from "@/components/home/SectionHeading";
 import {
@@ -18,6 +19,9 @@ import { withBasePath } from "@/lib/site";
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
+  const primaryHeroActions = heroActions.slice(0, 3);
+  const githubAction = heroActions[3];
+
   return (
     <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
@@ -76,7 +80,7 @@ export default function HomePage() {
               <div className="hero-grid">
                 <div className="max-w-[720px]">
                   <p className="section-label">
-                    Full-stack software engineer building products and ML-backed features
+                    Software engineer building real products and ML-backed features
                   </p>
 
                   <h1 className="hero-title hero-title-expanded mt-5">
@@ -85,20 +89,19 @@ export default function HomePage() {
                   </h1>
 
                   <p className="hero-support mt-6">
-                    I build full-stack products and ML-backed features that solve real workflow
-                    problems.
+                    I build real software products and ML-backed features that people can actually
+                    use, not just demos.
                   </p>
 
                   <p className="hero-body mt-5">
-                    Recent work spans a live communications platform, an on-chain aid protocol, a
-                    marketplace with AI in the loop, and applied ML tools built to produce clear,
-                    usable output.
+                    Recent work includes live customer messaging infrastructure, an on-chain aid
+                    platform, a credential verification product, and ML interfaces that turn model
+                    output into something useful.
                   </p>
 
-                  <div className="hero-action-grid mt-8">
-                    {heroActions.map((action, index) => {
+                  <div className="hero-action-grid mt-9">
+                    {primaryHeroActions.map((action) => {
                       const href = action.href.startsWith("/") ? withBasePath(action.href) : action.href;
-                      const prominent = index < 3;
 
                       return (
                         <a
@@ -106,23 +109,36 @@ export default function HomePage() {
                           href={href}
                           target="_blank"
                           rel="noreferrer"
-                          className={prominent ? "hero-action-card" : "hero-action-card hero-action-card-muted"}
+                          className="hero-action-card hero-action-card-primary"
                           data-cursor="interactive"
                         >
-                          <span className="hero-action-label">{action.label}</span>
+                          <div>
+                            <span className="hero-action-label">{action.label}</span>
+                            <span className="hero-action-support">{action.value}</span>
+                          </div>
                           <span aria-hidden="true" className="hero-action-arrow">
                             ↗
                           </span>
                         </a>
-                        );
+                      );
                     })}
                   </div>
 
-                  <a
-                    href="#retain"
-                    className="hero-scroll-cue mt-10"
-                    data-cursor="interactive"
-                  >
+                  <div className="mt-5 flex items-center gap-4 text-sm text-slate-400">
+                    <span>GitHub</span>
+                    <a
+                      href={githubAction.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hero-inline-link"
+                      data-cursor="interactive"
+                    >
+                      {githubAction.value}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
+
+                  <a href="#retain" className="hero-scroll-cue mt-10" data-cursor="interactive">
                     <span>Scroll to explore</span>
                     <span aria-hidden="true" className="hero-scroll-arrow">
                       ↓
@@ -133,7 +149,7 @@ export default function HomePage() {
                 <HeroProfilePanel />
               </div>
 
-              <InfoRails className="mt-10 md:mt-12" />
+              <InfoRails className="mt-12 md:mt-14" />
             </div>
           </div>
         </section>
@@ -144,8 +160,8 @@ export default function HomePage() {
           <div className="section-frame">
             <SectionHeading
               label="Selected Work"
-              title="Clear products, real interfaces, and technical depth you can see quickly"
-              body="The goal here is simple: show what each product does, why it matters, and what makes it technically credible without making you decode the page."
+              title="The strongest work, in the clearest format"
+              body="These are the products that best show how I build: real interfaces, real use cases, and enough technical depth to matter."
             />
 
             <div className="mt-12">
@@ -160,49 +176,36 @@ export default function HomePage() {
           <div className="section-frame">
             <SectionHeading
               label="More Work"
-              title="Additional systems and applied ML work"
-              body="These are smaller in scope than the featured work above, but they still show the same pattern: clear product behavior, careful implementation, and useful output."
+              title="Smaller builds that still show useful range"
+              body="These are lighter-weight than the flagship work above, but each one still shows a clear use case and a concrete result."
             />
 
-            <div className="mt-12">
+            <div className="mt-10 grid gap-5 lg:grid-cols-3">
               {archiveProjects.map((project, index) => (
-                <ProjectBand key={project.name} index={index} project={project} />
+                <ProjectCompactCard key={project.name} index={index} project={project} />
               ))}
             </div>
           </div>
         </section>
 
-        <section id="contact" className="section-shell pt-10 md:pt-14">
+        <section id="contact" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
             <motion.div
               initial={{ opacity: 0.74, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.76, ease: revealEase }}
-              className="contact-panel lg:grid-cols-[1.08fr_0.92fr]"
+              className="contact-panel contact-panel-compact"
             >
-              <div>
+              <div className="max-w-[38rem]">
                 <SectionHeading
                   label="Contact"
-                  title="Reach out if the work here maps to what your team is building"
-                  body="I’m looking for software engineering internships and product-minded teams where full-stack work, systems thinking, and applied ML can all show up in real product work."
+                  title="Easy ways to reach me"
+                  body="If the work here lines up with what your team is building, send a note. Email is best, but LinkedIn, GitHub, and my resume are one click away."
                 />
-
-                <a
-                  href="mailto:shreyansh.sharma01@student.csulb.edu"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-10 inline-flex flex-col text-left"
-                  data-cursor="interactive"
-                >
-                  <span className="mono-label">Email</span>
-                  <span className="mt-3 text-[clamp(1.4rem,2.5vw,2.7rem)] font-semibold tracking-[-0.05em] text-white">
-                    shreyansh.sharma01@student.csulb.edu
-                  </span>
-                </a>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {contactLinks.map((link) => {
                   const href = link.href.startsWith("/") ? withBasePath(link.href) : link.href;
 
@@ -217,7 +220,7 @@ export default function HomePage() {
                     >
                       <span className="mono-label">{link.label}</span>
                       <span className="contact-link-value">{link.value}</span>
-                      <span className="mt-6 inline-flex items-center gap-2 text-sm text-slate-300">
+                      <span className="mt-5 inline-flex items-center gap-2 text-sm text-slate-300">
                         Open
                         <span aria-hidden="true">↗</span>
                       </span>
@@ -238,6 +241,23 @@ export default function HomePage() {
           <p className="text-sm text-slate-500">
             Built with Next.js, TypeScript, Tailwind, Framer Motion, and Lenis.
           </p>
+          <div className="flex flex-wrap gap-x-5 gap-y-2 pt-1">
+            {contactLinks.map((link) => {
+              const href = link.href.startsWith("/") ? withBasePath(link.href) : link.href;
+
+              return (
+                <a
+                  key={link.label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm text-slate-400 transition-colors duration-200 hover:text-white"
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
         </div>
       </footer>
     </div>
