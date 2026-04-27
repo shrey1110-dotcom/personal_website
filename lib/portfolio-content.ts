@@ -2,9 +2,11 @@ export type RetainProductEntry = {
   blurb: string;
   ctaLabel: string;
   featureCards: { copy: string; title: string }[];
+  features: string[];
   href: string;
   integrations: string[];
   name: string;
+  proofMetrics: { label: string; value: string }[];
   stats: {
     animation:
       | { kind: "int"; end: number; suffix?: string }
@@ -20,9 +22,10 @@ export type RetainProductEntry = {
 
 export type ProjectEntry = {
   blurb: string;
-  context: string;
+  context?: string;
   ctaLabel?: string;
   featureCards?: { copy: string; title: string }[];
+  features: string[];
   href: string;
   integrations?: string[];
   interfaceCards?: { href: string; label: string }[];
@@ -50,42 +53,54 @@ export type SkillGroupEntry = {
 };
 
 export const navItems = [
-  { href: "#home", label: "Home" },
-  { href: "#retain", label: "Retain AI" },
-  { href: "#work", label: "Projects" },
-  { href: "#stack", label: "Stack" },
+  { href: "#retain", label: "Work" },
   { href: "#contact", label: "Contact" },
 ] as const;
 
-export const heroChips = [
-  "Retain AI live",
-  "Operator software",
-  "Applied ML",
-  "CSULB Computer Science",
-  "Long Beach, CA",
+export const heroActions = [
+  {
+    href: "mailto:shreyansh.sharma01@student.csulb.edu",
+    label: "Email",
+    value: "shreyansh.sharma01@student.csulb.edu",
+  },
+  {
+    href: "https://linkedin.com/in/sharmasshrey",
+    label: "LinkedIn",
+    value: "linkedin.com/in/sharmasshrey",
+  },
+  {
+    href: "/resume.pdf",
+    label: "Resume",
+    value: "Open PDF",
+  },
+  {
+    href: "https://github.com/shrey1110-dotcom",
+    label: "GitHub",
+    value: "github.com/shrey1110-dotcom",
+  },
 ] as const;
 
 export const ambientRails = [
   [
-    "Retain AI • live communications infrastructure",
-    "4M+ messages stress-tested",
-    "Multi-tenant runtime",
-    "Gemini • Twilio • Supabase",
-    "500 concurrent users tested",
-  ],
-  [
-    "ResilientAid • 425 tx/s",
-    "0% platform fees",
-    "KalaAI • 120+ craft categories",
-    "VeriDegree • on-chain credentials",
+    "Live communications product",
+    "Full-stack engineering",
+    "Applied machine learning",
+    "Product + infrastructure",
     "Long Beach, California",
   ],
   [
-    "17-point pose scoring",
-    "4,000 Pap smear images",
-    "13,240+ token pairs scanned",
+    "Multi-tenant runtime",
+    "On-chain aid protocol",
+    "AI marketplace",
+    "Credential verification",
+    "Built to be used",
+  ],
+  [
+    "APIs • data flow • integrations",
+    "Computer vision",
+    "Medical ML",
+    "EVM automation",
     "CSULB Computer Science",
-    "Built to ship",
   ],
 ] as const;
 
@@ -96,64 +111,25 @@ export const heroStats = [
   { value: "500", label: "Concurrent users tested" },
 ] as const;
 
-export const aboutBuildLines = [
-  {
-    index: "01",
-    copy:
-      "Built AI communications infrastructure handling 4M+ stress-tested message exchanges across multi-tenant business deployments",
-  },
-  {
-    index: "02",
-    copy:
-      "Shipped a decentralized aid protocol processing 425 tx/s with 0% platform fees on Polygon — four live stakeholder interfaces",
-  },
-  {
-    index: "03",
-    copy:
-      "Built a global artisan marketplace with AI cultural origin detection across 120+ categories",
-  },
-  {
-    index: "04",
-    copy:
-      "Trained a medical classifier on 4,000 Pap smear images across 5 cell classes with transfer learning",
-  },
-  {
-    index: "05",
-    copy:
-      "Built a multi-DEX EVM scanner evaluating 13,240+ token pairs for real-time arbitrage routing",
-  },
-  {
-    index: "06",
-    copy:
-      "Engineered biomechanical scoring from 17-point MoveNet pose keypoint sequences",
-  },
-] as const;
-
-export const aboutBlocks = [
-  {
-    copy:
-      "Interfaces that stay sharp once real usage, operational edge cases, and product constraints start showing up.",
-    title: "Product surfaces",
-  },
-  {
-    copy:
-      "APIs, auth, data flow, messaging, and the integration work that makes the surface trustworthy.",
-    title: "System layers",
-  },
-  {
-    copy:
-      "Clear ownership, fast iteration, and a bias toward shipping work that still reads well after launch.",
-    title: "Execution",
-  },
-] as const;
-
 export const retainProduct: RetainProductEntry = {
   name: "RETAIN AI",
   href: "https://retain-ai-eight.vercel.app",
   ctaLabel: "Open platform →",
   subtitle: "AI communications infrastructure for customer-facing businesses.",
   blurb:
-    "Built and deployed a multi-tenant AI communications platform that handles inbound customer messaging for local service businesses. Hybrid orchestration pipeline combines deterministic routing, Gemini LLM, and conversation memory to respond like a trained front-desk operator — not a chatbot. Voice assistant in progress.",
+    "Handles inbound customer messaging for local service businesses and responds with business-specific routing, AI assistance, and conversation memory instead of generic chatbot behavior.",
+  features: [
+    "Tenant-specific business rules, FAQs, tone, and availability managed at runtime",
+    "Hybrid response flow that routes deterministically before handing off to Gemini",
+    "Conversation memory and QA loops designed for repeat use, not one-off demos",
+    "Voice assistant in progress on top of the same orchestration pipeline",
+  ],
+  proofMetrics: [
+    { value: "4M+", label: "Messages stress-tested" },
+    { value: "10,000+", label: "Scenario variations" },
+    { value: "150–250ms", label: "p95 under load" },
+    { value: "500", label: "Concurrent users tested" },
+  ],
   featureCards: [
     {
       title: "HYBRID ORCHESTRATION",
@@ -222,10 +198,15 @@ export const projects: ProjectEntry[] = [
     name: "ResilientAid",
     href: "https://resilient-aid.vercel.app",
     ctaLabel: "Open →",
-    type: "Aid Protocol",
-    tagline: "Aid that actually reaches people.",
+    type: "Aid protocol",
     blurb:
-      "Built a decentralized aid distribution protocol with donor, admin, beneficiary, and vendor flows coordinated across one on-chain system.",
+      "Moves aid from donors to beneficiaries through a tracked on-chain flow with separate interfaces for admins, donors, beneficiaries, and vendors.",
+    features: [
+      "Four role-specific product surfaces built on one shared protocol",
+      "Sub-two-second settlement on Polygon Amoy with zero platform fees",
+      "Every transfer stays transparent and traceable on-chain",
+      "Distribution flow designed for real-world disbursement, not token theater",
+    ],
     context:
       "Offline-capable distribution, zero platform fees, sub-two-second settlement, and complete on-chain traceability are all designed into the runtime instead of added as separate features.",
     metrics: [
@@ -250,10 +231,15 @@ export const projects: ProjectEntry[] = [
     name: "KalaAI",
     href: "https://artisian.vercel.app",
     ctaLabel: "Open →",
-    type: "AI MARKETPLACE",
-    tagline: "Discover stories behind every craft.",
+    type: "AI marketplace",
     blurb:
-      "Built a full-stack global artisan marketplace with AI-powered cultural origin detection. Shoppers discover handcrafted goods through a shorts-style feed, browse live market listings, and track cultural trends — while AI identifies provenance and origin from product imagery across 120+ craft categories.",
+      "Helps shoppers discover handcrafted goods through a marketplace that recognizes cultural origin from product images and turns that into a stronger buying experience.",
+    features: [
+      "AI origin detection across 120+ craft categories",
+      "Shorts-style discovery feed built around artisan stories and products",
+      "Live marketplace flows for browsing, listings, accounts, and trends",
+      "Consumer product surface that makes the model output useful in context",
+    ],
     context:
       "The product combines discovery, marketplace behavior, and computer vision into one consumer-facing surface instead of isolating AI as a separate demo.",
     metrics: [
@@ -287,10 +273,15 @@ export const projects: ProjectEntry[] = [
     name: "VeriDegree",
     href: "https://veri-degree.vercel.app",
     ctaLabel: "Open →",
-    type: "Credential Verification",
-    tagline: "Trust, mathematically proven.",
+    type: "Credential verification",
     blurb:
-      "Built a decentralized academic credential platform that issues tamper-resistant records and verifies qualifications without relying on manual document review.",
+      "Issues tamper-resistant academic credentials and lets institutions or employers verify them without relying on manual document review.",
+    features: [
+      "On-chain credential issuance instead of PDF-heavy manual workflows",
+      "Soulbound records that stay attached to the holder",
+      "Verification flow designed for fast trust checks",
+      "Privacy-aware credential logic built for real institutional use",
+    ],
     context:
       "The protocol uses Algorand soulbound assets and privacy-preserving verification flows so institutions can issue once and verifiers can trust the credential state immediately.",
     proofPoints: [
@@ -304,9 +295,16 @@ export const projects: ProjectEntry[] = [
   {
     name: "AI Motion Analysis",
     href: "https://github.com/shrey1110-dotcom",
-    type: "Computer Vision",
+    ctaLabel: "Open →",
+    type: "Computer vision",
     blurb:
-      "Pose-analysis pipeline that turns keypoint streams into movement scoring and readable biomechanical feedback.",
+      "Turns pose keypoints into movement scores and readable coaching feedback for exercises that need more than raw model output.",
+    features: [
+      "17-point MoveNet keypoints processed across frame sequences",
+      "Biomechanical scoring logic on top of raw pose estimation",
+      "Readable feedback designed for a person, not a notebook",
+      "Post-inference pipeline that makes the model output usable",
+    ],
     context:
       "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
     proofPoints: [
@@ -320,9 +318,16 @@ export const projects: ProjectEntry[] = [
   {
     name: "Cervical Cell CNN",
     href: "https://github.com/shrey1110-dotcom/cervical-cancer-detection",
+    ctaLabel: "Open →",
     type: "Medical ML",
     blurb:
-      "Transfer-learning pipeline for five-class Pap smear classification with disciplined preprocessing, training flow, and evaluation.",
+      "Classifies Pap smear images across five cell types with a training pipeline built for repeatable preprocessing, transfer learning, and evaluation.",
+    features: [
+      "4,000 medical images across five clinically relevant classes",
+      "Preprocessing pipeline built for consistency before training",
+      "Transfer-learning workflow tuned for image classification",
+      "Evaluation flow focused on understanding model behavior, not just accuracy",
+    ],
     context:
       "Built around repeatable preprocessing, transfer learning, and evaluation against a medical dataset instead of a one-off notebook run.",
     proofPoints: [
@@ -337,9 +342,16 @@ export const projects: ProjectEntry[] = [
   {
     name: "Flashloan Bot",
     href: "https://gist.github.com/shrey1110-dotcom/ef53904ed184311d8a8dd5587ef11716",
-    type: "Web3 Systems",
+    ctaLabel: "Open →",
+    type: "Web3 systems",
     blurb:
-      "Route-scanning bot for EVM markets that evaluates token-pair opportunities and coordinates guarded execution under tight timing constraints.",
+      "Scans EVM markets for arbitrage routes, filters the opportunities, and keeps execution guarded under tight timing constraints.",
+    features: [
+      "Scans 13,240+ token pairs for viable route combinations",
+      "Separates discovery, validation, and execution into distinct steps",
+      "Guards against slippage and timing failures before execution",
+      "Built for automated decision-making instead of manual market watching",
+    ],
     context:
       "Discovery, validation, and execution are separated so the system can move fast without turning execution into guesswork.",
     proofPoints: [
@@ -351,6 +363,9 @@ export const projects: ProjectEntry[] = [
     visual: "flashloan",
   },
 ];
+
+export const featuredProjects = projects.slice(0, 3);
+export const archiveProjects = projects.slice(3);
 
 export const skillGroups: readonly SkillGroupEntry[] = [
   {
