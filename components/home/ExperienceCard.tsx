@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { ExperienceEntry } from "@/lib/portfolio-content";
+import { withBasePath } from "@/lib/site";
 
 type ExperienceCardProps = {
   compact?: boolean;
@@ -25,7 +27,15 @@ export default function ExperienceCard({
       className={`experience-card ${compact ? "experience-card-compact" : ""}`}
     >
       <div className="experience-logo-shell">
-        <div className="experience-logo">{entry.logo}</div>
+        <div className="experience-logo">
+          <Image
+            src={withBasePath(entry.logoSrc)}
+            alt={entry.logoAlt}
+            fill
+            sizes="(min-width: 768px) 88px, 68px"
+            className="experience-logo-image"
+          />
+        </div>
       </div>
 
       <div className="experience-body">

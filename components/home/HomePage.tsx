@@ -172,7 +172,6 @@ export default function HomePage() {
         </section>
 
         <RetainProductSection />
-        <ExperienceSection />
 
         <section id="work" className="section-shell pt-10">
           <div className="section-frame">
@@ -263,6 +262,8 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
+
+        <ExperienceSection />
       </main>
 
       <footer className="relative z-10 border-t border-white/8 px-4 py-8 md:px-8">
