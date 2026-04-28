@@ -47,14 +47,14 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
 
     const duration =
       metric.animation.kind === "range"
-        ? 2.7
+        ? 3.15
         : metric.animation.kind === "decimal"
-          ? 2.4
+          ? 2.9
           : metric.animation.kind === "int" && metric.animation.end >= 1_000_000
-            ? 2.9
+            ? 3.35
             : metric.animation.kind === "int" && metric.animation.end >= 1_000
-              ? 2.7
-              : 2.35;
+              ? 3.05
+              : 2.7;
 
     if (metric.animation.kind === "range") {
       const rangeAnimation = metric.animation;
