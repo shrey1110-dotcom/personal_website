@@ -3,14 +3,9 @@
 import HeroHeadshot from "@/components/home/HeroHeadshot";
 
 const profileSignals = [
-  {
-    label: "Current work",
-    value: "Founder & Solo Engineer, RETAIN AI",
-  },
-  {
-    label: "School",
-    value: "CS @ CSULB · May 2027",
-  },
+  "Founder, RETAIN AI",
+  "CS @ CSULB · 2027",
+  "Long Beach, CA",
 ] as const;
 
 export default function HeroProfilePanel() {
@@ -24,15 +19,16 @@ export default function HeroProfilePanel() {
 
           <div className="space-y-3 text-center">
             <p className="hero-portrait-name">Shreyansh Sharma</p>
-            <p className="hero-portrait-title">Full-stack products, live integrations, and ML-backed features.</p>
+            <p className="hero-portrait-title">
+              Messaging products, on-chain workflows, and ML-backed tools.
+            </p>
           </div>
 
-          <div className="hero-proof-list hero-proof-list-compact">
+          <div className="hero-profile-facts">
             {profileSignals.map((signal) => (
-              <div key={signal.label} className="hero-proof-row">
-                <span className="hero-proof-label">{signal.label}</span>
-                <span className="hero-proof-value">{signal.value}</span>
-              </div>
+              <span key={signal} className="hero-profile-chip">
+                {signal}
+              </span>
             ))}
           </div>
         </div>

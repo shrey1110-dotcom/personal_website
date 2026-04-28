@@ -80,22 +80,22 @@ export const heroActions = [
   {
     href: "mailto:shreyansh.sharma01@student.csulb.edu",
     label: "Email",
-    value: "shreyansh.sharma01@student.csulb.edu",
+    value: "Direct outreach",
   },
   {
     href: "https://linkedin.com/in/sharmasshrey",
     label: "LinkedIn",
-    value: "linkedin.com/in/sharmasshrey",
+    value: "Professional profile",
   },
   {
     href: "/resume.pdf",
     label: "Resume",
-    value: "Open PDF",
+    value: "Latest PDF",
   },
   {
     href: "https://github.com/shrey1110-dotcom",
     label: "GitHub",
-    value: "github.com/shrey1110-dotcom",
+    value: "Code and repos",
   },
 ] as const;
 
@@ -127,7 +127,7 @@ export const heroStats = [
   { value: "7", label: "Projects shipped" },
   { value: "5", label: "Live in production" },
   { value: "4M+", label: "Messages stress-tested" },
-  { value: "500", label: "Concurrent users tested" },
+  { value: "500+", label: "Concurrent users tested" },
 ] as const;
 
 export const retainProduct: RetainProductEntry = {
@@ -174,13 +174,13 @@ export const retainProduct: RetainProductEntry = {
     },
     {
       label: "Concurrent users stress-tested",
-      value: "500",
-      animation: { kind: "int", end: 500 },
+      value: "500+",
+      animation: { kind: "int", end: 500, suffix: "+" },
     },
     {
       label: "Error rate under heavy load",
-      value: "0.4%",
-      animation: { kind: "decimal", end: 0.4, decimals: 1, suffix: "%" },
+      value: "<0.4%",
+      animation: { kind: "text" },
     },
     {
       label: "Runtime-configurable per business",
@@ -214,8 +214,8 @@ export const projects: ProjectEntry[] = [
     blurb:
       "Moves aid money from donors to beneficiaries and vendors with full on-chain tracking.",
     features: [
-      "Separate dashboards support admins, donors, beneficiaries, and vendors.",
-      "Donors can see exactly where funds move instead of sending money into a black box.",
+      "Separate surfaces support admins, donors, beneficiaries, and vendors.",
+      "Donors can track where funds move instead of sending money into a black box.",
       "Beneficiaries receive credits quickly and vendors settle in under two seconds.",
       "Every transfer is recorded on-chain with zero platform fees.",
     ],
@@ -251,7 +251,7 @@ export const projects: ProjectEntry[] = [
       "Helps shoppers discover handmade goods while AI identifies the likely cultural origin from product photos.",
     features: [
       "A swipeable feed surfaces artisans, products, and short stories quickly.",
-      "Buyers can browse live listings, trends, and seller pages in one place.",
+      "Buyers can browse listings, trends, and seller pages in one place.",
       "Image analysis suggests the craft origin across 120+ categories.",
       "The AI result shows up inside the shopping flow instead of as a separate tool.",
     ],
@@ -297,8 +297,8 @@ export const projects: ProjectEntry[] = [
     features: [
       "Schools issue tamper-resistant records instead of sending PDFs around.",
       "Students keep the credential in a wallet they control.",
-      "Employers can verify status immediately from a simple public check.",
-      "The verification flow is built to reduce fraud without adding manual review.",
+      "Employers can verify status from a simple public check.",
+      "The flow reduces fraud without adding manual review.",
     ],
     context:
       "The protocol uses Algorand soulbound assets and privacy-preserving verification flows so institutions can issue once and verifiers can trust the credential state immediately.",
@@ -326,17 +326,17 @@ export const projects: ProjectEntry[] = [
     features: [
       "Tracks 17 body keypoints across video frames.",
       "Scores depth, balance, tempo, and alignment.",
-      "Turns raw pose output into readable coaching notes.",
-      "Highlights the mistakes that matter instead of dumping raw model output.",
+      "Turns pose output into readable coaching notes.",
+      "Highlights the mistakes that matter instead of dumping raw keypoints.",
     ],
     context:
       "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
     proofPoints: [
-      "17-point MoveNet sequences",
-      "Movement scoring logic",
+      "17-point MoveNet pose sequences",
+      "PyTorch scoring pipeline",
       "Readable coaching output",
     ],
-    tags: ["Python", "Pose estimation", "Computer vision", "Movement scoring"],
+    tags: ["Python", "PyTorch", "MoveNet", "OpenCV"],
     visual: "motion",
   },
   {
@@ -433,7 +433,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     bullets: [
       "Architected multi-tenant runtime with business-specific rules, tone, FAQs, and escalation logic per tenant",
       "Built hybrid AI orchestration combining deterministic routing, Gemini LLM, and conversation memory",
-      "Stress tested to 500 concurrent users — 4M+ message exchanges, 150–250ms p95, 0.4% error rate under load",
+      "Stress tested to 500+ concurrent users — 4M+ message exchanges, 150–250ms p95, <0.4% error rate under load",
       "Voice assistant extension currently in progress",
     ],
     tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel", "Multi-tenant SaaS"],

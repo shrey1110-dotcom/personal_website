@@ -22,8 +22,8 @@ import { withBasePath } from "@/lib/site";
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
-  const primaryHeroActions = heroActions.slice(0, 3);
-  const githubAction = heroActions[3];
+  const getLinkBehavior = (href: string) =>
+    href.startsWith("mailto:") ? {} : { rel: "noreferrer", target: "_blank" as const };
 
   return (
     <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
@@ -104,24 +104,23 @@ export default function HomePage() {
                   </h1>
 
                   <p className="hero-support mt-6">
-                    I build real software products and ML-backed features.
+                    I build software products and ML-backed features.
                   </p>
 
                   <p className="hero-body mt-5">
-                    I build customer messaging products, on-chain workflows, credential tools, and
-                    ML interfaces with clear user value and reliable underlying systems.
+                    From customer messaging to on-chain flows and verification tools, I focus on
+                    products that feel clear to use and reliable underneath.
                   </p>
 
                   <div className="hero-action-grid mt-9">
-                    {primaryHeroActions.map((action) => {
+                    {heroActions.map((action) => {
                       const href = action.href.startsWith("/") ? withBasePath(action.href) : action.href;
 
                       return (
                         <a
                           key={action.label}
                           href={href}
-                          target="_blank"
-                          rel="noreferrer"
+                          {...getLinkBehavior(href)}
                           className="hero-action-card hero-action-card-primary"
                           data-cursor="interactive"
                         >
@@ -135,24 +134,6 @@ export default function HomePage() {
                         </a>
                       );
                     })}
-                  </div>
-
-                  <div className="mt-4 max-w-[28rem]">
-                    <a
-                      href={githubAction.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hero-action-card hero-action-card-muted hero-action-card-compact"
-                      data-cursor="interactive"
-                    >
-                      <div>
-                        <span className="hero-action-label">{githubAction.label}</span>
-                        <span className="hero-action-support">{githubAction.value}</span>
-                      </div>
-                      <span aria-hidden="true" className="hero-action-arrow">
-                        ↗
-                      </span>
-                    </a>
                   </div>
 
                   <a href="#retain" className="hero-scroll-cue mt-10" data-cursor="interactive">
@@ -219,6 +200,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        <ExperienceSection />
+
         <section id="contact" className="section-shell pt-10 md:pt-12">
           <div className="section-frame">
             <motion.div
@@ -244,8 +227,7 @@ export default function HomePage() {
                     <a
                       key={link.label}
                       href={href}
-                      target="_blank"
-                      rel="noreferrer"
+                      {...getLinkBehavior(href)}
                       className="contact-link-card"
                       data-cursor="interactive"
                     >
@@ -262,8 +244,6 @@ export default function HomePage() {
             </motion.div>
           </div>
         </section>
-
-        <ExperienceSection />
       </main>
 
       <footer className="relative z-10 border-t border-white/8 px-4 py-8 md:px-8">
@@ -282,8 +262,7 @@ export default function HomePage() {
                 <a
                   key={link.label}
                   href={href}
-                  target="_blank"
-                  rel="noreferrer"
+                  {...getLinkBehavior(href)}
                   className="text-sm text-slate-400 transition-colors duration-200 hover:text-white"
                 >
                   {link.label}

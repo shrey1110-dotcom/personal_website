@@ -66,16 +66,6 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
               </div>
             ) : null}
 
-            {project.integrations?.length ? (
-              <div className="project-trust-row">
-                {project.integrations.map((integration) => (
-                  <span key={`${project.name}-${integration}`} className="project-trust-pill">
-                    {integration}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-
             {(specItems.length || project.tags.length) ? (
               <div className="project-detail-grid">
                 {specItems.length ? (

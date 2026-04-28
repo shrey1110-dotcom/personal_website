@@ -313,17 +313,24 @@ section[id] {
   }
 
   .hero-action-grid {
-    @apply grid gap-3 md:grid-cols-3;
-    max-width: 54rem;
+    @apply grid gap-3;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 42rem;
   }
 
   .hero-action-card {
     @apply inline-flex items-center justify-between gap-4 rounded-[22px] px-5 py-4 transition-all duration-200;
+    min-width: 0;
     border: 1px solid rgba(143, 166, 255, 0.16);
     background:
       linear-gradient(180deg, rgba(142, 135, 255, 0.1), rgba(98, 231, 223, 0.06)),
       rgba(8, 12, 20, 0.82);
     box-shadow: 0 18px 42px rgba(4, 8, 18, 0.22);
+  }
+
+  .hero-action-card > div {
+    min-width: 0;
+    flex: 1;
   }
 
   .hero-action-card:hover {
@@ -359,13 +366,16 @@ section[id] {
     display: block;
     margin-top: 0.45rem;
     color: rgba(203, 214, 236, 0.72);
-    font-size: 0.76rem;
-    line-height: 1.5;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    white-space: normal;
   }
 
   .hero-action-arrow {
+    align-self: flex-start;
     color: rgba(193, 205, 230, 0.72);
     font-size: 0.95rem;
+    margin-top: 0.18rem;
   }
 
   .hero-inline-link {
@@ -540,6 +550,19 @@ section[id] {
     letter-spacing: 0.12em;
     line-height: 1.5;
     text-transform: uppercase;
+  }
+
+  .hero-profile-facts {
+    @apply flex flex-wrap justify-center gap-2.5;
+  }
+
+  .hero-profile-chip {
+    @apply rounded-full px-3.5 py-2 text-sm;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(142, 135, 255, 0.12), rgba(98, 231, 223, 0.05)),
+      rgba(255, 255, 255, 0.03);
+    color: rgba(241, 245, 255, 0.9);
   }
 
   .hero-proof-list {
@@ -1009,6 +1032,7 @@ section[id] {
   .project-visual {
     @apply overflow-hidden rounded-[32px];
     position: relative;
+    transition: transform 220ms ease;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
       rgba(7, 11, 20, 0.95);
@@ -1041,6 +1065,19 @@ section[id] {
     animation: rgb-border-drift 8s linear infinite;
   }
 
+  .project-visual::after {
+    position: absolute;
+    inset: auto -18% 18% 28%;
+    height: 7rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    filter: blur(18px);
+    content: "";
+    opacity: 0.42;
+    pointer-events: none;
+    animation: frame-sheen 7.5s ease-in-out infinite;
+  }
+
   .project-visual-compact {
     border-radius: 28px;
   }
@@ -1048,6 +1085,7 @@ section[id] {
   .compact-project-card {
     @apply rounded-[30px] p-5 md:p-6;
     position: relative;
+    transition: transform 220ms ease;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       radial-gradient(circle at top left, rgba(142, 135, 255, 0.08), transparent 18%),
@@ -1079,6 +1117,19 @@ section[id] {
     opacity: 0.58;
     pointer-events: none;
     animation: rgb-border-drift 9s linear infinite;
+  }
+
+  .compact-project-card::after {
+    position: absolute;
+    inset: 12% -18% auto 36%;
+    height: 5rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.11), transparent);
+    filter: blur(18px);
+    content: "";
+    opacity: 0.36;
+    pointer-events: none;
+    animation: frame-sheen 8.5s ease-in-out infinite;
   }
 
   .compact-project-title {
@@ -1121,6 +1172,7 @@ section[id] {
   .live-demo-shell {
     @apply overflow-hidden rounded-[32px];
     position: relative;
+    transition: transform 220ms ease;
     background:
       linear-gradient(
         125deg,
@@ -1137,12 +1189,27 @@ section[id] {
   }
 
   .live-demo-frame {
+    position: relative;
     height: 100%;
     overflow: hidden;
     border-radius: inherit;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
       rgba(7, 11, 20, 0.95);
+  }
+
+  .live-demo-frame::before {
+    position: absolute;
+    inset: -18% auto auto -24%;
+    height: 8rem;
+    width: 70%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    filter: blur(18px);
+    content: "";
+    opacity: 0.44;
+    pointer-events: none;
+    z-index: 2;
+    animation: frame-sheen 8.5s ease-in-out infinite;
   }
 
   .live-demo-feature {
@@ -1258,16 +1325,12 @@ section[id] {
       0 10px 24px rgba(6, 10, 18, 0.16);
   }
 
-  .experience-grid {
-    @apply grid gap-4;
+  .experience-showcase-grid {
+    @apply grid gap-5 xl:grid-cols-[1.05fr_0.95fr];
   }
 
-  .experience-support-grid {
-    @apply grid gap-4 xl:grid-cols-3;
-  }
-
-  .experience-card {
-    @apply grid gap-5 rounded-[30px] p-5 md:grid-cols-[160px_minmax(0,1fr)] md:gap-6 md:p-6;
+  .experience-showcase-main,
+  .experience-showcase-side {
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1277,9 +1340,19 @@ section[id] {
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
       rgba(7, 11, 20, 0.9);
     box-shadow: var(--shadow);
+    border-radius: 32px;
   }
 
-  .experience-card::before {
+  .experience-showcase-main {
+    @apply p-5 md:p-6;
+  }
+
+  .experience-showcase-side {
+    @apply p-6 md:p-7;
+  }
+
+  .experience-showcase-main::before,
+  .experience-showcase-side::before {
     position: absolute;
     inset: 0;
     border-radius: inherit;
@@ -1303,27 +1376,43 @@ section[id] {
     animation: rgb-border-drift 9s linear infinite;
   }
 
-  .experience-card-compact {
-    @apply p-5;
-    background:
-      radial-gradient(circle at top left, rgba(142, 135, 255, 0.09), transparent 20%),
-      radial-gradient(circle at bottom right, rgba(98, 231, 223, 0.06), transparent 20%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.016)),
-      rgba(7, 11, 20, 0.86);
-  }
-
-  .experience-logo-shell,
-  .experience-body {
+  .experience-showcase-toolbar,
+  .experience-selector-row,
+  .experience-spotlight,
+  .experience-showcase-side > * {
     position: relative;
     z-index: 1;
   }
 
-  .experience-logo-shell {
-    @apply flex items-start justify-start;
+  .experience-showcase-toolbar {
+    @apply flex items-center justify-between gap-4;
   }
 
-  .experience-logo {
-    @apply relative flex h-[5rem] w-full max-w-[8.5rem] items-center justify-center overflow-hidden rounded-[22px] px-4;
+  .experience-nav-button {
+    @apply inline-flex h-12 w-12 items-center justify-center rounded-[18px] text-xl transition-all duration-200;
+    border: 1px solid rgba(91, 129, 255, 0.28);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(116, 166, 255, 0.94);
+  }
+
+  .experience-nav-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(112, 224, 215, 0.38);
+    color: rgba(172, 239, 234, 0.96);
+  }
+
+  .experience-nav-count {
+    color: rgba(218, 226, 244, 0.84);
+    font-size: 1.12rem;
+    letter-spacing: -0.03em;
+  }
+
+  .experience-selector-row {
+    @apply mt-6 grid gap-3 sm:grid-cols-2;
+  }
+
+  .experience-selector-button {
+    @apply flex items-center gap-4 rounded-[22px] px-4 py-4 text-left transition-all duration-200;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background:
       radial-gradient(circle at 24% 24%, rgba(142, 135, 255, 0.24), transparent 34%),
@@ -1331,7 +1420,67 @@ section[id] {
       rgba(255, 255, 255, 0.02);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 16px 34px rgba(4, 8, 18, 0.22);
+      0 16px 34px rgba(4, 8, 18, 0.2);
+    color: inherit;
+  }
+
+  .experience-selector-button:hover,
+  .experience-selector-button-active {
+    transform: translateY(-1px);
+    border-color: rgba(112, 224, 215, 0.34);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 20px 42px rgba(4, 8, 18, 0.24),
+      0 0 0 1px rgba(142, 135, 255, 0.12);
+  }
+
+  .experience-selector-logo {
+    @apply relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-[18px] px-3;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      radial-gradient(circle at 24% 24%, rgba(142, 135, 255, 0.22), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      rgba(255, 255, 255, 0.02);
+  }
+
+  .experience-selector-copy {
+    @apply min-w-0;
+  }
+
+  .experience-selector-company {
+    display: block;
+    color: #f8fbff;
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .experience-selector-role {
+    display: block;
+    margin-top: 0.3rem;
+    color: rgba(198, 209, 230, 0.72);
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .experience-spotlight {
+    @apply mt-6;
+  }
+
+  .experience-spotlight-brand {
+    @apply grid items-center gap-5 md:grid-cols-[132px_minmax(0,1fr)];
+  }
+
+  .experience-spotlight-logo {
+    @apply relative h-[8.25rem] w-full overflow-hidden rounded-[28px] px-6;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      radial-gradient(circle at 24% 24%, rgba(142, 135, 255, 0.26), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+      rgba(255, 255, 255, 0.02);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 16px 38px rgba(4, 8, 18, 0.24);
   }
 
   .experience-logo-image {
@@ -1339,12 +1488,8 @@ section[id] {
     object-position: center;
   }
 
-  .experience-body {
+  .experience-spotlight-copy {
     @apply min-w-0;
-  }
-
-  .experience-header {
-    @apply flex flex-col gap-4 md:flex-row md:items-start md:justify-between;
   }
 
   .experience-company {
@@ -1366,59 +1511,12 @@ section[id] {
     color: rgba(143, 166, 255, 0.72);
   }
 
-  .experience-link {
-    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background:
-      linear-gradient(180deg, rgba(142, 135, 255, 0.1), rgba(98, 231, 223, 0.05)),
-      rgba(255, 255, 255, 0.03);
-    color: #f7f9ff;
-  }
-
-  .experience-link:hover {
-    transform: translateY(-1px);
-    border-color: rgba(112, 224, 215, 0.34);
-    background:
-      linear-gradient(180deg, rgba(142, 135, 255, 0.14), rgba(98, 231, 223, 0.08)),
-      rgba(255, 255, 255, 0.04);
-  }
-
-  .experience-meta-row {
-    @apply mt-5 flex flex-wrap gap-2.5;
-  }
-
-  .experience-meta-pill {
-    @apply inline-flex items-center gap-2 rounded-full px-3.5 py-2;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    background:
-      linear-gradient(180deg, rgba(143, 166, 255, 0.08), rgba(114, 224, 215, 0.05)),
-      rgba(255, 255, 255, 0.03);
-  }
-
-  .experience-meta-label {
-    color: rgba(193, 205, 230, 0.68);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    line-height: 1.4;
-    text-transform: uppercase;
-  }
-
-  .experience-meta-value {
-    color: rgba(242, 246, 255, 0.92);
-    font-size: 0.82rem;
-    letter-spacing: -0.02em;
-    line-height: 1.5;
-  }
-
-  .experience-copy {
-    margin-top: 1.1rem;
-    color: rgba(231, 237, 250, 0.94);
-    font-size: 1rem;
-    line-height: 1.76;
+  .experience-spotlight-body {
+    @apply mt-7;
   }
 
   .experience-bullet-list {
-    @apply mt-5 grid gap-3;
+    @apply grid gap-3;
   }
 
   .experience-bullet-row {
@@ -1446,6 +1544,68 @@ section[id] {
 
   .experience-tech-row {
     @apply mt-5 flex flex-wrap gap-2.5;
+  }
+
+  .experience-side-title {
+    color: rgba(95, 160, 255, 0.96);
+    font-size: clamp(1.8rem, 2.7vw, 2.7rem);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  .experience-about-grid {
+    @apply mt-8 grid gap-4 sm:grid-cols-2;
+  }
+
+  .experience-about-stat {
+    @apply rounded-[22px] px-4 py-4;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .experience-about-label {
+    color: rgba(95, 160, 255, 0.94);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .experience-about-value {
+    margin-top: 0.8rem;
+    color: rgba(245, 248, 255, 0.96);
+    font-size: 1.02rem;
+    line-height: 1.66;
+  }
+
+  .experience-about-copy-block {
+    @apply mt-8;
+  }
+
+  .experience-about-copy {
+    margin-top: 1rem;
+    color: rgba(230, 236, 250, 0.92);
+    font-size: 1.02rem;
+    line-height: 1.82;
+  }
+
+  .experience-link {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(180deg, rgba(142, 135, 255, 0.1), rgba(98, 231, 223, 0.05)),
+      rgba(255, 255, 255, 0.03);
+    color: #f7f9ff;
+  }
+
+  .experience-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(112, 224, 215, 0.34);
+    background:
+      linear-gradient(180deg, rgba(142, 135, 255, 0.14), rgba(98, 231, 223, 0.08)),
+      rgba(255, 255, 255, 0.04);
   }
 
   .live-demo-retain {
@@ -1518,6 +1678,12 @@ section[id] {
     background:
       radial-gradient(circle at 18% 18%, rgba(142, 135, 255, 0.08), transparent 24%),
       linear-gradient(180deg, rgba(15, 19, 30, 1), rgba(10, 14, 24, 1));
+  }
+
+  .project-band-shell:hover .project-visual,
+  .project-band-shell:hover .live-demo-shell,
+  .compact-project-card:hover .project-visual {
+    transform: translateY(-2px);
   }
 
   .live-demo-iframe {
@@ -2126,6 +2292,19 @@ section[id] {
   }
 }
 
+@keyframes frame-sheen {
+  0%,
+  100% {
+    transform: translateX(-12%) translateY(0) scale(0.96);
+    opacity: 0.18;
+  }
+
+  50% {
+    transform: translateX(18%) translateY(-6px) scale(1.04);
+    opacity: 0.46;
+  }
+}
+
 @keyframes scroll-nudge {
   0%,
   100% {
@@ -2179,6 +2358,7 @@ section[id] {
 
   .hero-action-grid {
     gap: 0.75rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .hero-body {
@@ -2210,6 +2390,19 @@ section[id] {
 
   .retain-browser-url {
     display: none;
+  }
+
+  .experience-selector-row,
+  .experience-about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .experience-spotlight-brand {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .experience-spotlight-logo {
+    max-width: 12rem;
   }
 
   .skill-palette-grid {
