@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { animate, useReducedMotion } from "framer-motion";
 import type { RetainProductEntry } from "@/lib/portfolio-content";
 
@@ -15,9 +15,12 @@ type RangeState = {
 };
 
 const numberFormatter = new Intl.NumberFormat("en-US");
+const compactFormatter = new Intl.NumberFormat("en-US", {
+  maximumFractionDigits: 1,
+  notation: "compact",
+});
 
 export default function MetricCounter({ active, metric }: MetricCounterProps) {
-  const ref = useRef<HTMLSpanElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
   const [numericValue, setNumericValue] = useState(0);
   const [rangeValue, setRangeValue] = useState<RangeState>({ start: 0, end: 0 });
@@ -42,12 +45,20 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
       }
     }
 
-    const duration = 1.2;
+    const duration =
+      metric.animation.kind === "range"
+        ? 2.7
+        : metric.animation.kind === "decimal"
+          ? 2.4
+          : metric.animation.kind === "int" && metric.animation.end >= 1_000_000
+            ? 2.9
+            : metric.animation.kind === "int" && metric.animation.end >= 1_000
+              ? 2.7
+              : 2.35;
 
     if (metric.animation.kind === "range") {
       const rangeAnimation = metric.animation;
-      const progress = { value: 0 };
-      const controls = animate(progress.value, 1, {
+      const controls = animate(0, 1, {
         duration,
         ease: [0.22, 1, 0.36, 1],
         onUpdate: (latest) => {
@@ -79,7 +90,9 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
   const renderValue = () => {
     switch (metric.animation.kind) {
       case "int":
-        return `${numberFormatter.format(Math.round(numericValue))}${metric.animation.suffix ?? ""}`;
+        return `${metric.animation.compact
+          ? compactFormatter.format(numericValue)
+          : numberFormatter.format(Math.round(numericValue))}${metric.animation.suffix ?? ""}`;
       case "decimal":
         return `${numericValue.toFixed(metric.animation.decimals)}${metric.animation.suffix ?? ""}`;
       case "range":
@@ -92,7 +105,7 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
   };
 
   return (
-    <span ref={ref} className="retain-stat-value inline-block">
+    <span className="retain-stat-value inline-block">
       {renderValue()}
     </span>
   );

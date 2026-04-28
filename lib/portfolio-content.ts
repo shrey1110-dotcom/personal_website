@@ -2,16 +2,14 @@ export type RetainProductEntry = {
   blurb: string;
   ctaLabel: string;
   featureCards: { copy: string; title: string }[];
-  features: string[];
   href: string;
   integrations: string[];
   liveMeta: string;
   name: string;
-  proofMetrics: { label: string; value: string }[];
   roleLine: string;
   stats: {
     animation:
-      | { kind: "int"; end: number; suffix?: string }
+      | { compact?: boolean; kind: "int"; end: number; suffix?: string }
       | { decimals: number; end: number; kind: "decimal"; suffix?: string }
       | { end: number; kind: "range"; start: number; suffix?: string }
       | { kind: "text" };
@@ -57,8 +55,22 @@ export type SkillGroupEntry = {
   label: string;
 };
 
+export type ExperienceEntry = {
+  bullets: string[];
+  company: string;
+  date: string;
+  description: string;
+  featured?: boolean;
+  href?: string;
+  logo: string;
+  meta: { label: string; value: string }[];
+  role: string;
+  tags: string[];
+};
+
 export const navItems = [
   { href: "#retain", label: "Work" },
+  { href: "#experience", label: "Experience" },
   { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -126,18 +138,6 @@ export const retainProduct: RetainProductEntry = {
   subtitle: "AI communications infrastructure for customer-facing businesses.",
   blurb:
     "Built and operate live AI communications infrastructure. It handles inbound customer messages for local service businesses with business-specific rules, memory, and AI assistance instead of generic chatbot replies.",
-  features: [
-    "Each business gets its own reply rules, FAQs, tone, and escalation logic.",
-    "The system decides when to answer directly and when to bring in Gemini.",
-    "Conversation memory keeps follow-ups consistent instead of starting cold each time.",
-    "The same backend is now being extended into a voice assistant for phone calls.",
-  ],
-  proofMetrics: [
-    { value: "4M+", label: "Messages stress-tested" },
-    { value: "10,000+", label: "Scenario variations" },
-    { value: "150–250ms", label: "p95 under load" },
-    { value: "500", label: "Concurrent users tested" },
-  ],
   featureCards: [
     {
       title: "HYBRID ORCHESTRATION",
@@ -164,7 +164,7 @@ export const retainProduct: RetainProductEntry = {
     {
       label: "Message exchanges stress-tested",
       value: "4M+",
-      animation: { kind: "int", end: 4, suffix: "M+" },
+      animation: { kind: "int", end: 4000000, compact: true, suffix: "+" },
     },
     {
       label: "p95 response time under load",
@@ -301,6 +301,12 @@ export const projects: ProjectEntry[] = [
     ],
     context:
       "The protocol uses Algorand soulbound assets and privacy-preserving verification flows so institutions can issue once and verifiers can trust the credential state immediately.",
+    metrics: [
+      { value: "Mainnet", label: "Algorand deployment" },
+      { value: "Soulbound", label: "Academic records" },
+      { value: "Instant", label: "Employer verification" },
+      { value: "Private", label: "Selective disclosure" },
+    ],
     proofPoints: [
       "Mainnet credential protocol",
       "Soulbound academic records",
@@ -383,6 +389,113 @@ export const projects: ProjectEntry[] = [
 
 export const featuredProjects = projects.slice(0, 3);
 export const archiveProjects = projects.slice(3);
+
+export const experienceEntries: readonly ExperienceEntry[] = [
+  {
+    company: "Rezolve.ai",
+    role: "AI Voice Engineer · Contract",
+    date: "2025",
+    href: "https://rezolve.ai",
+    logo: "RZ",
+    featured: true,
+    meta: [
+      { label: "Employees", value: "300–350" },
+      { label: "Valuation", value: "Undisclosed · VC-backed" },
+      { label: "Backed by", value: "SIG Venture Capital · Exfinity Ventures" },
+      { label: "Recognition", value: "Forrester 2026 Landscape Report" },
+      { label: "Listed", value: "NASDAQ (RZLV)" },
+    ],
+    description:
+      "Contributed to the early-stage development of Rezolve VoiceIQ — an enterprise AI voice assistant that handles inbound IT and HR support calls with human-like conversation, real-time knowledge retrieval, and intelligent escalation.",
+    bullets: [
+      "Helped build conversational flow logic for the voice assistant's intent recognition and call handling pipeline",
+      "Worked on integrating the voice layer with enterprise ITSM systems for real-time ticket creation and escalation",
+      "Contributed during early startup phase before the product scaled to Fortune 500 deployments",
+    ],
+    tags: ["Voice AI", "NLP", "ITSM Integration", "Conversational AI", "LLM Orchestration"],
+  },
+  {
+    company: "RETAIN AI",
+    role: "Founder & Solo Engineer",
+    date: "May 2026 – Present",
+    href: "https://retain-ai-eight.vercel.app",
+    logo: "RA",
+    featured: true,
+    meta: [
+      { label: "Employees", value: "1–10" },
+      { label: "Launch", value: "May 1, 2026" },
+      { label: "Status", value: "Live · Self-funded" },
+      { label: "Stack", value: "Next.js · Supabase · Gemini · Twilio" },
+    ],
+    description:
+      "Founded and built RETAIN AI — live AI communications infrastructure for local service businesses. Sole engineer across product, infrastructure, and AI integration.",
+    bullets: [
+      "Architected multi-tenant runtime with business-specific rules, tone, FAQs, and escalation logic per tenant",
+      "Built hybrid AI orchestration combining deterministic routing, Gemini LLM, and conversation memory",
+      "Stress tested to 500 concurrent users — 4M+ message exchanges, 150–250ms p95, 0.4% error rate under load",
+      "Voice assistant extension currently in progress",
+    ],
+    tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel", "Multi-tenant SaaS"],
+  },
+  {
+    company: "Aura Lifestyle",
+    role: "Web Engineer · Contract",
+    date: "2025",
+    href: "https://theauralifestyle.org",
+    logo: "AU",
+    meta: [
+      { label: "Engagement", value: "Client launch" },
+      { label: "Surface", value: "Public-facing brand site" },
+      { label: "Status", value: "Live" },
+    ],
+    description:
+      "Built and launched Aura Lifestyle’s public brand site with cleaner storytelling, stronger visual hierarchy, and a clearer conversion path.",
+    bullets: [
+      "Shipped the production site in Next.js with responsive layouts and launch-ready performance",
+      "Turned the brand story into a simpler landing flow with clearer navigation and calls to action",
+      "Handled build, deployment, and post-launch iteration directly with the client",
+    ],
+    tags: ["Next.js", "Brand site", "Responsive UI", "Launch"],
+  },
+  {
+    company: "Freelance",
+    role: "Product Engineer · Independent",
+    date: "2024 – Present",
+    logo: "FL",
+    meta: [
+      { label: "Mode", value: "Independent" },
+      { label: "Focus", value: "Web products · integrations" },
+      { label: "Delivery", value: "Client-facing launches" },
+    ],
+    description:
+      "Built websites, product flows, and integrations for clients who needed something live quickly and polished enough to ship.",
+    bullets: [
+      "Handled front end, APIs, deployment, and production fixes directly",
+      "Moved from rough ideas to live product surfaces on tight timelines",
+      "Balanced speed with enough structure to keep the work maintainable",
+    ],
+    tags: ["Next.js", "TypeScript", "APIs", "Deployment"],
+  },
+  {
+    company: "Chess Club",
+    role: "Operations & Community",
+    date: "2024 – Present",
+    logo: "CC",
+    meta: [
+      { label: "Type", value: "Campus organization" },
+      { label: "Focus", value: "Events · coordination" },
+      { label: "Mode", value: "Member-facing operations" },
+    ],
+    description:
+      "Helped run club activity and keep a consistent community around weekly play, communication, and campus events.",
+    bullets: [
+      "Supported weekly meetups and event logistics",
+      "Helped keep communication and coordination consistent across members",
+      "Contributed to the day-to-day operations behind the club experience",
+    ],
+    tags: ["Operations", "Community", "Events"],
+  },
+] as const;
 
 export const skillGroups: readonly SkillGroupEntry[] = [
   {

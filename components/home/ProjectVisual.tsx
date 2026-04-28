@@ -139,7 +139,7 @@ function CervicalVisual() {
         </div>
         <div className="rounded-[1.35rem] border border-white/8 bg-black/18 p-5">
           <div className="flex items-center justify-between">
-            <p className="mono-label">Confidence</p>
+            <p className="mono-label">Model output</p>
             <span className="text-xs uppercase tracking-[0.16em] text-slate-300">eval run</span>
           </div>
           <div className="mt-4 space-y-3">
