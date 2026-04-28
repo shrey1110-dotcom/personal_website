@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ExperienceSection from "@/components/home/ExperienceSection";
 import HeroProfilePanel from "@/components/home/HeroProfilePanel";
 import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
@@ -171,6 +172,7 @@ export default function HomePage() {
         </section>
 
         <RetainProductSection />
+        <ExperienceSection />
 
         <section id="work" className="section-shell pt-10">
           <div className="section-frame">

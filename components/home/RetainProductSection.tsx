@@ -1,12 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import LiveDemoWindow from "@/components/home/LiveDemoWindow";
+import MetricCounter from "@/components/home/MetricCounter";
 import { retainProduct } from "@/lib/portfolio-content";
 
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function RetainProductSection() {
+  const statsRef = useRef<HTMLDivElement | null>(null);
+  const statsInView = useInView(statsRef, {
+    amount: 0.28,
+    once: true,
+  });
+
   return (
     <section id="retain" className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
@@ -25,25 +33,13 @@ export default function RetainProductSection() {
               <p className="retain-support mt-5">{retainProduct.subtitle}</p>
               <p className="section-body mt-6 max-w-[39rem]">{retainProduct.blurb}</p>
 
-              <div className="mt-8">
-                <p className="mono-label">Features</p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {retainProduct.features.map((feature, index) => (
-                    <motion.div
-                      key={feature}
-                      initial={{ opacity: 0.7, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.22 }}
-                      transition={{
-                        duration: 0.48,
-                        delay: index * 0.04,
-                        ease: revealEase,
-                      }}
-                      className="feature-card"
-                    >
-                      <span className="feature-index">{String(index + 1).padStart(2, "0")}</span>
-                      <p className="feature-copy">{feature}</p>
-                    </motion.div>
+              <div className="mt-7">
+                <p className="mono-label">Tech stack</p>
+                <div className="mt-4 flex flex-wrap gap-2.5">
+                  {retainProduct.tags.map((tag) => (
+                    <span key={`retain-tag-${tag}`} className="project-stack-pill">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -79,19 +75,53 @@ export default function RetainProductSection() {
             </motion.div>
           </div>
 
+            <motion.div
+              initial={{ opacity: 0.78, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.14 }}
+              transition={{ duration: 0.72, ease: revealEase }}
+            className="mt-8"
+          >
+            <div ref={statsRef} className="retain-stat-grid">
+              {retainProduct.stats.map((metric) => (
+                <div key={metric.label} className="retain-stat-card">
+                  <MetricCounter active={statsInView} metric={metric} />
+                  <p className="retain-stat-label">{metric.label}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0.78, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.14 }}
-            transition={{ duration: 0.72, ease: revealEase }}
-            className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4"
+            transition={{ duration: 0.72, ease: revealEase, delay: 0.04 }}
+            className="mt-6 retain-feature-grid"
           >
-            {retainProduct.proofMetrics.map((metric) => (
-              <div key={metric.label} className="retain-proof-card">
-                <p className="retain-proof-value">{metric.value}</p>
-                <p className="retain-proof-label">{metric.label}</p>
+            {retainProduct.featureCards.map((featureCard) => (
+              <div key={featureCard.title} className="retain-feature-card">
+                <p className="mono-label">{featureCard.title}</p>
+                <p className="feature-copy mt-4">{featureCard.copy}</p>
               </div>
             ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0.78, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.14 }}
+            transition={{ duration: 0.72, ease: revealEase, delay: 0.08 }}
+            className="mt-6 retain-integrations-row"
+          >
+            <p className="mono-label">Integrations</p>
+            <div className="mt-4 flex flex-wrap gap-2.5">
+              {retainProduct.integrations.map((integration) => (
+                <span key={`retain-integration-${integration}`} className="retain-integration-chip">
+                  {integration}
+                </span>
+              ))}
+            </div>
           </motion.div>
         </div>
       </div>
