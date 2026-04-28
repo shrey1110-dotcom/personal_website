@@ -62,7 +62,8 @@ export type ExperienceEntry = {
   description: string;
   featured?: boolean;
   href?: string;
-  logo: string;
+  logoAlt: string;
+  logoSrc: string;
   meta: { label: string; value: string }[];
   role: string;
   tags: string[];
@@ -70,7 +71,7 @@ export type ExperienceEntry = {
 
 export const navItems = [
   { href: "#retain", label: "Work" },
-  { href: "#experience", label: "Experience" },
+  { href: "#experience", label: "Work Experience" },
   { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -396,8 +397,8 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     role: "AI Voice Engineer · Contract",
     date: "2025",
     href: "https://rezolve.ai",
-    logo: "RZ",
-    featured: true,
+    logoSrc: "/rezolve-ai-logo.png",
+    logoAlt: "Rezolve.ai logo",
     meta: [
       { label: "Employees", value: "300–350" },
       { label: "Valuation", value: "Undisclosed · VC-backed" },
@@ -419,8 +420,8 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     role: "Founder & Solo Engineer",
     date: "May 2026 – Present",
     href: "https://retain-ai-eight.vercel.app",
-    logo: "RA",
-    featured: true,
+    logoSrc: "/retain-ai-wordmark.svg",
+    logoAlt: "RETAIN AI logo",
     meta: [
       { label: "Employees", value: "1–10" },
       { label: "Launch", value: "May 1, 2026" },
@@ -436,64 +437,6 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       "Voice assistant extension currently in progress",
     ],
     tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel", "Multi-tenant SaaS"],
-  },
-  {
-    company: "Aura Lifestyle",
-    role: "Web Engineer · Contract",
-    date: "2025",
-    href: "https://theauralifestyle.org",
-    logo: "AU",
-    meta: [
-      { label: "Engagement", value: "Client launch" },
-      { label: "Surface", value: "Public-facing brand site" },
-      { label: "Status", value: "Live" },
-    ],
-    description:
-      "Built and launched Aura Lifestyle’s public brand site with cleaner storytelling, stronger visual hierarchy, and a clearer conversion path.",
-    bullets: [
-      "Shipped the production site in Next.js with responsive layouts and launch-ready performance",
-      "Turned the brand story into a simpler landing flow with clearer navigation and calls to action",
-      "Handled build, deployment, and post-launch iteration directly with the client",
-    ],
-    tags: ["Next.js", "Brand site", "Responsive UI", "Launch"],
-  },
-  {
-    company: "Freelance",
-    role: "Product Engineer · Independent",
-    date: "2024 – Present",
-    logo: "FL",
-    meta: [
-      { label: "Mode", value: "Independent" },
-      { label: "Focus", value: "Web products · integrations" },
-      { label: "Delivery", value: "Client-facing launches" },
-    ],
-    description:
-      "Built websites, product flows, and integrations for clients who needed something live quickly and polished enough to ship.",
-    bullets: [
-      "Handled front end, APIs, deployment, and production fixes directly",
-      "Moved from rough ideas to live product surfaces on tight timelines",
-      "Balanced speed with enough structure to keep the work maintainable",
-    ],
-    tags: ["Next.js", "TypeScript", "APIs", "Deployment"],
-  },
-  {
-    company: "Chess Club",
-    role: "Operations & Community",
-    date: "2024 – Present",
-    logo: "CC",
-    meta: [
-      { label: "Type", value: "Campus organization" },
-      { label: "Focus", value: "Events · coordination" },
-      { label: "Mode", value: "Member-facing operations" },
-    ],
-    description:
-      "Helped run club activity and keep a consistent community around weekly play, communication, and campus events.",
-    bullets: [
-      "Supported weekly meetups and event logistics",
-      "Helped keep communication and coordination consistent across members",
-      "Contributed to the day-to-day operations behind the club experience",
-    ],
-    tags: ["Operations", "Community", "Events"],
   },
 ] as const;
 
