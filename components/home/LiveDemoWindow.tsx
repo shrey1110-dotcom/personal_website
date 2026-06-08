@@ -44,6 +44,7 @@ export default function LiveDemoWindow({
             loading="eager"
             className="live-demo-iframe"
             referrerPolicy="strict-origin-when-cross-origin"
+            sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
           />
           <div className="live-demo-overlay" />
         </div>
