@@ -31,18 +31,7 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
     }
 
     if (prefersReducedMotion) {
-      switch (metric.animation.kind) {
-        case "int":
-        case "decimal":
-          setNumericValue(metric.animation.end);
-          return;
-        case "range":
-          setRangeValue({
-            start: metric.animation.start,
-            end: metric.animation.end,
-          });
-          return;
-      }
+      return;
     }
 
     const duration =
@@ -88,6 +77,10 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
   }, [active, metric, prefersReducedMotion]);
 
   const renderValue = () => {
+    if (active && prefersReducedMotion) {
+      return metric.value;
+    }
+
     switch (metric.animation.kind) {
       case "int":
         return `${metric.animation.compact
