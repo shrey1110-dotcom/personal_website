@@ -6,7 +6,7 @@ ScopeKit is framed as a developer tool for AI coding agents, not a benchmark lan
 
 - Claude, Codex, Cursor, and MCP clients need the right files before they search.
 - ScopeKit creates task-complete context packs from local repo indexing.
-- Setup writes repo-local instruction files and does not require an API key.
+- Setup writes repo-local instruction files and does not require an API key or LLM routing.
 
 ## Homepage signals
 
@@ -15,6 +15,7 @@ ScopeKit is framed as a developer tool for AI coding agents, not a benchmark lan
 - `npm install -g scopekit`
 - `~1,280×` baseline-equivalent context compression
 - `18×` scoped task-context reduction vs Graphify best-effort
+- No LLM routing for indexing and packing
 - Local indexing and packing
 
 ## Links
@@ -35,9 +36,8 @@ ScopeKit is framed as a developer tool for AI coding agents, not a benchmark lan
 - Soft Gold: `#FFF8E1`
 - Border: `#E5E7EB`
 
-## Claim guardrails
+## Claim boundaries
 
-- Do not claim ScopeKit beats Graphify overall.
-- Do not claim universal token savings.
-- Do not claim Claude token savings.
-- Do not claim setup installs ScopeKit into Claude or Codex accounts.
+- Keep Graphify comparisons scoped to task-context size, not overall product superiority.
+- Keep token claims scoped to measured supplied-context benchmarks.
+- Keep setup language repo-local; setup writes instruction files for agents to use.

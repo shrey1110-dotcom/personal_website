@@ -1216,6 +1216,12 @@ section[id] {
     min-height: clamp(29rem, 38vw, 36rem);
   }
 
+  .live-demo-feature .live-demo-frame {
+    display: flex;
+    min-height: inherit;
+    flex-direction: column;
+  }
+
   .project-metric-grid {
     @apply grid gap-3 sm:grid-cols-2 xl:grid-cols-3;
   }
@@ -1323,6 +1329,24 @@ section[id] {
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.03),
       0 10px 24px rgba(6, 10, 18, 0.16);
+  }
+
+  .project-link-pill {
+    @apply inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-all duration-200;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      linear-gradient(180deg, rgba(15, 138, 95, 0.12), rgba(212, 160, 23, 0.06)),
+      rgba(255, 255, 255, 0.03);
+    color: rgba(246, 249, 255, 0.94);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .project-link-pill:hover {
+    transform: translateY(-1px);
+    border-color: rgba(212, 160, 23, 0.36);
+    background:
+      linear-gradient(180deg, rgba(15, 138, 95, 0.18), rgba(212, 160, 23, 0.1)),
+      rgba(255, 255, 255, 0.045);
   }
 
   .experience-showcase-grid {
@@ -1615,6 +1639,10 @@ section[id] {
       linear-gradient(180deg, rgba(7, 11, 20, 1), rgba(5, 8, 16, 1));
   }
 
+  .live-demo-retain .live-demo-viewport {
+    min-height: 0;
+  }
+
   .live-demo-resilient {
     background:
       radial-gradient(circle at 18% 18%, rgba(168, 85, 247, 0.16), transparent 24%),
@@ -1677,6 +1705,7 @@ section[id] {
 
   .live-demo-viewport {
     position: relative;
+    flex: 1;
     aspect-ratio: 16 / 10;
     min-height: clamp(20rem, 31vw, 30rem);
     overflow: hidden;
@@ -1699,9 +1728,9 @@ section[id] {
   }
 
   .live-demo-feature .live-demo-iframe {
-    height: 92.6%;
-    width: 92.6%;
-    transform: scale(1.08);
+    height: 90.9%;
+    width: 90.9%;
+    transform: scale(1.1);
     transform-origin: left top;
   }
 
