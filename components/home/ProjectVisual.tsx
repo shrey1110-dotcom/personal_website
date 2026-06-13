@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import LiveDemoWindow from "@/components/home/LiveDemoWindow";
 import TiltPanel from "@/components/home/TiltPanel";
 import type { ProjectEntry } from "@/lib/portfolio-content";
 
@@ -213,34 +212,110 @@ function ScopeKitVisual() {
   return (
     <VisualShell
       accentClassName="project-visual-scopekit"
-      chromeLabel="Context pack"
-      compact
+      chromeLabel="ScopeKit run"
       rightLabel="local CLI"
     >
-      <div className="grid min-h-[15rem] gap-4 px-5 py-5">
-        <div className="rounded-[1.25rem] border border-white/8 bg-[#07120f] p-4">
-          <p className="font-mono text-xs leading-6 text-[#9be7c4]">
-            <span className="text-[#d4a017]">$</span> npx scopekit setup
-            <br />
-            <span className="text-slate-500">index</span> ./src
-            <br />
-            <span className="text-slate-500">pack</span> &quot;Find auth/session logic&quot;
+      <div className="grid min-h-[32rem] grid-rows-[auto_1fr_auto] gap-4 px-5 py-5">
+        <div className="grid gap-3 rounded-[1.35rem] border border-emerald-300/15 bg-[#07120f] p-4 font-mono text-[0.76rem] leading-6 text-[#9be7c4] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+          <p>
+            <span className="text-[#d4a017]">$</span> scopekit pack &quot;trace auth/session
+            impact&quot;
           </p>
+          <p className="text-slate-500">indexed ./src ./app ./tests</p>
+          <p className="text-slate-500">resolved imports, symbols, risks, commands</p>
+          <p className="text-emerald-200">wrote .scopekit/context-pack.md</p>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
           {[
-            ["Files", "targeted"],
-            ["Symbols", "included"],
-            ["Tests", "linked"],
-            ["API key", "not required"],
+            ["Files", "8 selected"],
+            ["Symbols", "call graph included"],
+            ["Tests", "commands attached"],
+            ["Routing", "No LLM routing"],
           ].map(([label, value]) => (
             <div
               key={label}
-              className="flex items-center justify-between rounded-[1.05rem] border border-white/8 bg-black/18 px-4 py-3 text-sm text-slate-200"
+              className="rounded-[1.05rem] border border-white/8 bg-black/18 px-4 py-3"
             >
-              <span>{label}</span>
-              <span className="text-[#d4a017]">{value}</span>
+              <p className="mono-label">{label}</p>
+              <p className="mt-2 text-sm font-medium text-slate-100">{value}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="rounded-[1.35rem] border border-[#d4a017]/20 bg-[#d4a017]/8 p-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm font-medium text-[#f7dfa1]">Agent receives a bounded pack.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#d4a017]">
+              ~1,280x smaller context target
+            </p>
+          </div>
+        </div>
+      </div>
+    </VisualShell>
+  );
+}
+
+function ResilientVisual() {
+  return (
+    <VisualShell
+      accentClassName="project-visual-resilient"
+      chromeLabel="Aid workflow"
+      rightLabel="donor -> vendor"
+    >
+      <div className="grid min-h-[32rem] grid-rows-[auto_1fr_auto] gap-4 px-5 py-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.35rem] border border-white/8 bg-black/20 px-4 py-3">
+          <div>
+            <p className="text-lg font-semibold tracking-[-0.04em] text-white">ResilientAid</p>
+            <p className="text-xs text-slate-400">Aid that actually reaches people.</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {["Admin", "Donor", "Beneficiary", "Vendor"].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-xs text-cyan-100"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative overflow-hidden rounded-[1.45rem] border border-white/8 bg-[radial-gradient(circle_at_45%_42%,rgba(45,212,191,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012))] p-5">
+          <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-cyan-200/42 to-transparent" />
+          <div className="relative grid h-full grid-cols-2 gap-4 lg:grid-cols-4">
+            {[
+              ["Donor wallet", "$2,500 locked", "connect"],
+              ["Smart contract", "0% platform fee", "settle"],
+              ["Beneficiary", "credits issued", "receive"],
+              ["Vendor POS", "<2s redeem", "close"],
+            ].map(([title, detail, status]) => (
+              <div
+                key={title}
+                className="flex min-h-[11rem] flex-col justify-between rounded-[1.25rem] border border-white/8 bg-black/32 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+              >
+                <span className="h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,0.48)]" />
+                <div>
+                  <p className="text-sm font-medium text-white">{title}</p>
+                  <p className="mt-2 text-xs leading-5 text-slate-400">{detail}</p>
+                </div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-cyan-200">
+                  {status}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          {[
+            ["Network", "425 tx/s"],
+            ["Settlement", "<2s"],
+            ["Chain", "Polygon Amoy"],
+          ].map(([label, value]) => (
+            <div key={label} className="rounded-[1rem] border border-white/8 bg-black/20 px-4 py-3">
+              <p className="mono-label">{label}</p>
+              <p className="mt-2 text-lg font-semibold tracking-[-0.04em] text-white">{value}</p>
             </div>
           ))}
         </div>
@@ -249,22 +324,150 @@ function ScopeKitVisual() {
   );
 }
 
-export default function ProjectVisual({ compact = false, project }: ProjectVisualProps) {
-  if (!compact && project.embedHref && project.browserLabel && project.browserMeta) {
-    return (
-      <LiveDemoWindow
-        accentClassName={`live-demo-feature live-demo-${project.visual}`}
-        chromeLabel={project.browserLabel}
-        src={project.embedHref}
-        title={`${project.name} live demo`}
-        urlLabel={project.browserMeta}
-      />
-    );
-  }
+function KalaVisual() {
+  return (
+    <VisualShell
+      accentClassName="project-visual-kala"
+      chromeLabel="Marketplace demo"
+      rightLabel="AI origin scan"
+    >
+      <div className="grid min-h-[32rem] gap-4 px-5 py-5 lg:grid-cols-[0.74fr_1fr]">
+        <div className="flex flex-col rounded-[1.55rem] border border-amber-200/15 bg-black/26 p-4">
+          <div className="rounded-[1.15rem] border border-white/8 bg-[linear-gradient(145deg,rgba(250,204,21,0.18),rgba(168,85,247,0.12)),rgba(255,255,255,0.035)] p-4">
+            <p className="text-xl font-semibold tracking-[-0.04em] text-amber-100">KalaAI</p>
+            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
+              artisan commerce
+            </p>
+          </div>
+          <div className="mt-4 grid flex-1 gap-3">
+            {["Home", "Shorts", "Market", "Trends", "Account"].map((item, index) => (
+              <div
+                key={item}
+                className={`flex items-center justify-between rounded-[1rem] border px-3 py-3 text-sm ${
+                  index === 1
+                    ? "border-amber-200/24 bg-amber-200/10 text-amber-100"
+                    : "border-white/8 bg-white/[0.035] text-slate-300"
+                }`}
+              >
+                <span>{item}</span>
+                <span className="text-xs text-slate-500">{index === 1 ? "live" : "view"}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
+        <div className="grid gap-4">
+          <div className="rounded-[1.55rem] border border-white/8 bg-black/24 p-5">
+            <p className="mono-label">Product image scan</p>
+            <div className="mt-4 grid gap-4 sm:grid-cols-[0.86fr_1fr]">
+              <div className="rounded-[1.2rem] border border-white/8 bg-[radial-gradient(circle_at_44%_38%,rgba(250,204,21,0.34),transparent_28%),radial-gradient(circle_at_62%_66%,rgba(168,85,247,0.2),transparent_32%),rgba(255,255,255,0.035)] p-4">
+                <div className="h-32 rounded-[1rem] border border-white/10 bg-black/24" />
+              </div>
+              <div className="space-y-3">
+                {[
+                  ["Likely origin", "Rajasthan textile craft"],
+                  ["Category match", "Handwoven decor"],
+                  ["Confidence", "87%"],
+                ].map(([label, value]) => (
+                  <div key={label} className="rounded-[1rem] border border-white/8 bg-white/[0.035] px-4 py-3">
+                    <p className="mono-label">{label}</p>
+                    <p className="mt-2 text-sm font-medium text-white">{value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              ["120+", "craft categories"],
+              ["5", "product surfaces"],
+              ["Live", "Vercel deploy"],
+            ].map(([value, label]) => (
+              <div key={label} className="rounded-[1rem] border border-white/8 bg-black/20 px-4 py-3">
+                <p className="text-lg font-semibold tracking-[-0.04em] text-white">{value}</p>
+                <p className="mt-2 text-xs uppercase tracking-[0.14em] text-slate-400">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </VisualShell>
+  );
+}
+
+function VeriDegreeVisual() {
+  return (
+    <VisualShell
+      accentClassName="project-visual-veridegree"
+      chromeLabel="Verification flow"
+      rightLabel="mainnet status"
+    >
+      <div className="grid min-h-[32rem] grid-rows-[auto_1fr_auto] gap-4 px-5 py-5">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.35rem] border border-white/8 bg-black/24 px-4 py-3">
+          <div>
+            <p className="text-lg font-semibold tracking-[0.06em] text-white">VERIDEGREE</p>
+            <p className="text-xs text-slate-400">School-issued records, employer verification.</p>
+          </div>
+          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs uppercase tracking-[0.16em] text-emerald-200">
+            verified
+          </span>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-[1fr_0.88fr]">
+          <div className="rounded-[1.45rem] border border-yellow-200/18 bg-[radial-gradient(circle_at_18%_18%,rgba(250,204,21,0.16),transparent_28%),rgba(255,255,255,0.035)] p-5">
+            <p className="mono-label">Credential packet</p>
+            <div className="mt-5 rounded-[1.2rem] border border-yellow-200/16 bg-black/32 p-5">
+              <p className="text-2xl font-semibold tracking-[-0.05em] text-yellow-100">
+                B.S. Computer Science
+              </p>
+              <div className="mt-5 grid gap-3">
+                {[
+                  ["Issuer", "University registrar"],
+                  ["Record type", "Soulbound credential"],
+                  ["Disclosure", "Private fields hidden"],
+                ].map(([label, value]) => (
+                  <div key={label} className="flex items-center justify-between gap-4 rounded-[0.9rem] border border-white/8 bg-white/[0.035] px-3 py-2.5 text-sm">
+                    <span className="text-slate-400">{label}</span>
+                    <span className="text-right font-medium text-white">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-3">
+            {[
+              ["Chain", "Algorand mainnet"],
+              ["Employer check", "Instant status"],
+              ["Fraud path", "No PDF forwarding"],
+              ["Privacy", "Selective disclosure"],
+            ].map(([label, value]) => (
+              <div key={label} className="rounded-[1rem] border border-white/8 bg-black/24 px-4 py-3">
+                <p className="mono-label">{label}</p>
+                <p className="mt-2 text-sm font-medium text-white">{value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-[1.2rem] border border-white/8 bg-black/24 px-4 py-3 font-mono text-xs text-slate-300">
+          tx: ALGO-mainnet / issuer-signature / credential-status: active
+        </div>
+      </div>
+    </VisualShell>
+  );
+}
+
+export default function ProjectVisual({ compact = false, project }: ProjectVisualProps) {
   switch (project.visual) {
     case "scopekit":
       return <ScopeKitVisual />;
+    case "resilient":
+      return <ResilientVisual />;
+    case "kala":
+      return <KalaVisual />;
+    case "veridegree":
+      return <VeriDegreeVisual />;
     case "motion":
       return <MotionVisual />;
     case "cervical":

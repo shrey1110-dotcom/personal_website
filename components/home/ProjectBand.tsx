@@ -18,9 +18,9 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
 
   return (
     <article className="project-band-shell border-t border-white/8 py-10 first:border-t-0 md:py-14">
-      <div className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
         <motion.div
-          className={`lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
+          className={`lg:col-span-6 ${reversed ? "lg:order-2" : ""}`}
           initial={{ opacity: 0.62, x: reversed ? 28 : -28, y: 18 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -30,7 +30,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
         </motion.div>
 
         <motion.div
-          className={`lg:col-span-5 ${reversed ? "lg:order-1" : ""}`}
+          className={`lg:col-span-6 ${reversed ? "lg:order-1" : ""}`}
           initial={{ opacity: 0.66, x: reversed ? -28 : 28, y: 18 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -40,6 +40,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
             <p className="section-label">{project.type}</p>
             <h3 className="project-title">{project.name}</h3>
             <p className="project-copy">{project.blurb}</p>
+            {project.context ? <p className="project-context-line">{project.context}</p> : null}
 
             {project.metrics?.length ? (
               <div>
@@ -67,11 +68,11 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
             ) : null}
 
             {(specItems.length || project.tags.length) ? (
-              <div className="project-detail-grid">
+              <div className="project-evidence-panel">
                 {specItems.length ? (
-                  <div className="project-detail-panel project-detail-panel-specs">
+                  <div>
                     <p className="mono-label">Specs</p>
-                    <div className="mt-4 grid gap-2.5">
+                    <div className="project-spec-grid mt-4">
                       {specItems.map((item) => (
                         <div key={`${project.name}-${item}`} className="project-spec-row">
                           <span className="project-spec-dot" />
@@ -83,7 +84,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
                 ) : null}
 
                 {project.tags.length ? (
-                  <div className="project-detail-panel project-detail-panel-stack">
+                  <div>
                     <p className="mono-label">Tech stack</p>
                     <div className="mt-4 flex flex-wrap gap-2.5">
                       {project.tags.map((tag) => (

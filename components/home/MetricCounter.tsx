@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { animate, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { animate, useInView, useReducedMotion } from "framer-motion";
 import type { RetainProductEntry } from "@/lib/portfolio-content";
 
 type MetricCounterProps = {
@@ -21,12 +21,18 @@ const compactFormatter = new Intl.NumberFormat("en-US", {
 });
 
 export default function MetricCounter({ active, metric }: MetricCounterProps) {
+  const counterRef = useRef<HTMLSpanElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const counterInView = useInView(counterRef, {
+    amount: 0.01,
+    once: true,
+  });
+  const shouldRun = active || counterInView;
   const [numericValue, setNumericValue] = useState(0);
   const [rangeValue, setRangeValue] = useState<RangeState>({ start: 0, end: 0 });
 
   useEffect(() => {
-    if (!active || metric.animation.kind === "text") {
+    if (!shouldRun || metric.animation.kind === "text") {
       return;
     }
 
@@ -74,10 +80,10 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
     return () => {
       controls.stop();
     };
-  }, [active, metric, prefersReducedMotion]);
+  }, [shouldRun, metric, prefersReducedMotion]);
 
   const renderValue = () => {
-    if (active && prefersReducedMotion) {
+    if (shouldRun && prefersReducedMotion) {
       return metric.value;
     }
 
@@ -98,7 +104,7 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
   };
 
   return (
-    <span className="retain-stat-value inline-block">
+    <span ref={counterRef} className="retain-stat-value inline-block">
       {renderValue()}
     </span>
   );
