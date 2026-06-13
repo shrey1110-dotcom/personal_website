@@ -35,7 +35,6 @@ export type ProjectEntry = {
   metrics?: { label: string; value: string }[];
   name: string;
   proofPoints?: string[];
-  previewImage?: string;
   resourceLinks?: { href: string; label: string }[];
   surfaces?: string[];
   tags: string[];
@@ -242,7 +241,6 @@ export const projects: ProjectEntry[] = [
       { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
       { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
     ],
-    previewImage: "/project-previews/scopekit.png",
     tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
     visual: "scopekit",
   },
@@ -279,14 +277,13 @@ export const projects: ProjectEntry[] = [
       { label: "Beneficiary App", href: "https://resilient-aid.vercel.app/beneficiary" },
       { label: "Vendor POS", href: "https://resilient-aid.vercel.app/vendor" },
     ],
-    previewImage: "/project-previews/resilient-aid.png",
     tags: ["Polygon", "Smart contracts", "Aid distribution", "Offline-capable", "Stablecoin settlement"],
     visual: "resilient",
   },
   {
     name: "KalaAI",
     href: "https://artisian.vercel.app",
-    embedHref: "https://artisian.vercel.app",
+    embedHref: "https://artisian.vercel.app/trends",
     browserLabel: "Marketplace demo",
     browserMeta: "artisian.vercel.app/trends",
     ctaLabel: "Open →",
@@ -358,7 +355,6 @@ export const projects: ProjectEntry[] = [
       "Wallet-based credential state",
       "Selective disclosure workflow",
     ],
-    previewImage: "/project-previews/veridegree.png",
     tags: ["Algorand", "Soulbound credentials", "Zero-knowledge privacy", "Academic verification"],
     visual: "veridegree",
   },

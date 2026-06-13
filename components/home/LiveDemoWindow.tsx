@@ -1,12 +1,9 @@
 "use client";
 
-import Image from "next/image";
-
 type LiveDemoWindowProps = {
   accentClassName?: string;
   chromeLabel: string;
   className?: string;
-  imageSrc?: string;
   src: string;
   title: string;
   urlLabel: string;
@@ -16,7 +13,6 @@ export default function LiveDemoWindow({
   accentClassName = "",
   chromeLabel,
   className = "",
-  imageSrc,
   src,
   title,
   urlLabel,
@@ -42,25 +38,14 @@ export default function LiveDemoWindow({
         </div>
 
         <div className="live-demo-viewport">
-          {imageSrc ? (
-            <Image
-              src={imageSrc}
-              alt={title}
-              fill
-              sizes="(min-width: 1024px) 48vw, 92vw"
-              className="live-demo-image"
-              loading="eager"
-            />
-          ) : (
-            <iframe
-              src={src}
-              title={title}
-              loading="eager"
-              className="live-demo-iframe"
-              referrerPolicy="strict-origin-when-cross-origin"
-              sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-            />
-          )}
+          <iframe
+            src={src}
+            title={title}
+            loading="eager"
+            className="live-demo-iframe"
+            referrerPolicy="strict-origin-when-cross-origin"
+            sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          />
           <div className="live-demo-overlay" />
         </div>
       </div>
