@@ -206,6 +206,45 @@ export const retainProduct: RetainProductEntry = {
 
 export const projects: ProjectEntry[] = [
   {
+    name: "ScopeKit",
+    href: "https://scopekit-sandy.vercel.app",
+    embedHref: "https://scopekit-sandy.vercel.app",
+    browserLabel: "Developer tool",
+    browserMeta: "scopekit-sandy.vercel.app",
+    ctaLabel: "View ScopeKit",
+    type: "Developer Tool",
+    tagline: "The right files, not a graph to wander.",
+    blurb:
+      "Gives Claude, Codex, and Cursor task-ready context packs before they search.",
+    features: [
+      "Packs the files, symbols, tests, risks, and commands an agent needs for one job.",
+      "Creates repo-local instructions for Claude, Codex, Cursor, and optional MCP clients.",
+      "Runs local indexing and packing with no API key required.",
+      "Keeps agents focused on the task instead of wandering through the whole repo.",
+    ],
+    context:
+      "Graph tools are useful when you want to explore. ScopeKit is for the moment an agent needs to act.",
+    metrics: [
+      { value: "~1,280×", label: "Baseline-equivalent context compression" },
+      { value: "18×", label: "Scoped task-context reduction vs Graphify best-effort" },
+      { value: "0", label: "External LLM indexing tokens" },
+      { value: "npm", label: "Published package" },
+    ],
+    proofPoints: [
+      "npx scopekit setup",
+      "npm install -g scopekit",
+      "Scoped benchmark comparison",
+      "Local indexing and packing",
+    ],
+    resourceLinks: [
+      { label: "Website", href: "https://scopekit-sandy.vercel.app" },
+      { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
+      { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
+    ],
+    tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
+    visual: "scopekit",
+  },
+  {
     name: "ResilientAid",
     href: "https://resilient-aid.vercel.app",
     embedHref: "https://resilient-aid.vercel.app",
@@ -317,45 +356,6 @@ export const projects: ProjectEntry[] = [
     ],
     tags: ["Algorand", "Soulbound credentials", "Zero-knowledge privacy", "Academic verification"],
     visual: "veridegree",
-  },
-  {
-    name: "ScopeKit",
-    href: "https://scopekit-sandy.vercel.app",
-    embedHref: "https://scopekit-sandy.vercel.app",
-    browserLabel: "Developer tool",
-    browserMeta: "scopekit-sandy.vercel.app",
-    ctaLabel: "View ScopeKit",
-    type: "Developer Tool",
-    tagline: "The right files, not a graph to wander.",
-    blurb:
-      "Give Claude, Codex, and Cursor the right files before they search.",
-    features: [
-      "Creates task-complete packs with files, symbols, tests, risks, and validation commands.",
-      "Sets up repo-local instructions for Claude, Codex, Cursor, and optional MCP clients.",
-      "Indexes and packs locally without requiring an API key.",
-      "Gives coding agents focused context before they start broad search.",
-    ],
-    context:
-      "Graph tools are useful when you want to explore. ScopeKit is for the moment an agent needs to act.",
-    metrics: [
-      { value: "npm", label: "Published package" },
-      { value: "npx", label: "Setup command" },
-      { value: "0", label: "API keys required" },
-      { value: "MCP", label: "Optional client mode" },
-    ],
-    proofPoints: [
-      "npx scopekit setup",
-      "npm install -g scopekit",
-      "scopekit setup",
-      "Local indexing and packing",
-    ],
-    resourceLinks: [
-      { label: "Website", href: "https://scopekit-sandy.vercel.app" },
-      { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
-      { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
-    ],
-    tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
-    visual: "scopekit",
   },
   {
     name: "AI Motion Analysis",

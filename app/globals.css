@@ -1213,7 +1213,7 @@ section[id] {
   }
 
   .live-demo-feature {
-    min-height: 27rem;
+    min-height: clamp(29rem, 38vw, 36rem);
   }
 
   .project-metric-grid {
@@ -1678,6 +1678,7 @@ section[id] {
   .live-demo-viewport {
     position: relative;
     aspect-ratio: 16 / 10;
+    min-height: clamp(20rem, 31vw, 30rem);
     overflow: hidden;
     background:
       radial-gradient(circle at 18% 18%, rgba(142, 135, 255, 0.08), transparent 24%),
@@ -1695,6 +1696,13 @@ section[id] {
     width: 100%;
     border: 0;
     background: white;
+  }
+
+  .live-demo-feature .live-demo-iframe {
+    height: 92.6%;
+    width: 92.6%;
+    transform: scale(1.08);
+    transform-origin: left top;
   }
 
   .live-demo-overlay {
