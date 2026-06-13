@@ -162,7 +162,7 @@ export default function HomePage() {
               body="The clearest examples of how I build products people can actually use."
             />
 
-            <div className="mt-12">
+            <div className="mt-8">
               {featuredProjects.map((project, index) => (
                 <ProjectBand key={project.name} index={index} project={project} />
               ))}
@@ -178,7 +178,7 @@ export default function HomePage() {
               body="Smaller builds that still show range, judgment, and execution."
             />
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
               {archiveProjects.map((project, index) => (
                 <ProjectCompactCard key={project.name} index={index} project={project} />
               ))}
@@ -194,7 +194,7 @@ export default function HomePage() {
               body="Languages, frameworks, infra, and platforms that show up repeatedly across shipped products."
             />
 
-            <div className="mt-10">
+            <div className="mt-8">
               <SkillMatrix groups={skillGroups} />
             </div>
           </div>

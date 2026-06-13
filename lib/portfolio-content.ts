@@ -35,6 +35,7 @@ export type ProjectEntry = {
   metrics?: { label: string; value: string }[];
   name: string;
   proofPoints?: string[];
+  previewImage?: string;
   resourceLinks?: { href: string; label: string }[];
   surfaces?: string[];
   tags: string[];
@@ -231,16 +232,17 @@ export const projects: ProjectEntry[] = [
       { value: "npm", label: "Published package" },
     ],
     proofPoints: [
-      "npx scopekit setup",
-      "npm install -g scopekit",
-      "Scoped benchmark comparison",
-      "Local index + context pack",
+      "Measured auth-discovery task",
+      "8 files / 7 concepts recovered",
+      "Codex usage parsed",
+      "No LLM routing",
     ],
     resourceLinks: [
       { label: "Website", href: "https://scopekit-sandy.vercel.app" },
       { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
       { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
     ],
+    previewImage: "/project-previews/scopekit.png",
     tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
     visual: "scopekit",
   },
@@ -277,6 +279,7 @@ export const projects: ProjectEntry[] = [
       { label: "Beneficiary App", href: "https://resilient-aid.vercel.app/beneficiary" },
       { label: "Vendor POS", href: "https://resilient-aid.vercel.app/vendor" },
     ],
+    previewImage: "/project-previews/resilient-aid.png",
     tags: ["Polygon", "Smart contracts", "Aid distribution", "Offline-capable", "Stablecoin settlement"],
     visual: "resilient",
   },
@@ -285,7 +288,7 @@ export const projects: ProjectEntry[] = [
     href: "https://artisian.vercel.app",
     embedHref: "https://artisian.vercel.app",
     browserLabel: "Marketplace demo",
-    browserMeta: "artisian.vercel.app",
+    browserMeta: "artisian.vercel.app/trends",
     ctaLabel: "Open →",
     type: "AI marketplace",
     blurb:
@@ -350,10 +353,12 @@ export const projects: ProjectEntry[] = [
       { value: "Private", label: "Selective disclosure" },
     ],
     proofPoints: [
-      "Mainnet credential protocol",
-      "Soulbound academic records",
-      "Private verification workflow",
+      "Algorand credential issuance",
+      "Issuer / student / employer flow",
+      "Wallet-based credential state",
+      "Selective disclosure workflow",
     ],
+    previewImage: "/project-previews/veridegree.png",
     tags: ["Algorand", "Soulbound credentials", "Zero-knowledge privacy", "Academic verification"],
     visual: "veridegree",
   },

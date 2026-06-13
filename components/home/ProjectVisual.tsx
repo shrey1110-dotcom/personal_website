@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import LiveDemoWindow from "@/components/home/LiveDemoWindow";
 import TiltPanel from "@/components/home/TiltPanel";
 import type { ProjectEntry } from "@/lib/portfolio-content";
 
@@ -459,6 +460,19 @@ function VeriDegreeVisual() {
 }
 
 export default function ProjectVisual({ compact = false, project }: ProjectVisualProps) {
+  if (!compact && project.previewImage && project.browserLabel && project.browserMeta) {
+    return (
+      <LiveDemoWindow
+        accentClassName={`live-demo-feature live-demo-${project.visual}`}
+        chromeLabel={project.browserLabel}
+        imageSrc={project.previewImage}
+        src={project.embedHref ?? project.href}
+        title={`${project.name} live product preview`}
+        urlLabel={project.browserMeta}
+      />
+    );
+  }
+
   switch (project.visual) {
     case "scopekit":
       return <ScopeKitVisual />;

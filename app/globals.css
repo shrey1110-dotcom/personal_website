@@ -959,7 +959,7 @@ section[id] {
 
   .project-title {
     color: #f6f8ff;
-    font-size: clamp(2rem, 3vw, 2.9rem);
+    font-size: clamp(1.9rem, 2.7vw, 2.65rem);
     font-weight: 600;
     letter-spacing: -0.056em;
     line-height: 1.04;
@@ -967,19 +967,19 @@ section[id] {
 
   .project-copy {
     color: #e3e9f8;
-    font-size: 1rem;
-    line-height: 1.64;
+    font-size: 0.98rem;
+    line-height: 1.58;
     max-width: 36rem;
   }
 
   .project-context-line {
-    margin-top: 0.85rem;
+    margin-top: 0.7rem;
     max-width: 38rem;
     border-left: 1px solid rgba(112, 224, 215, 0.34);
     padding-left: 0.95rem;
     color: rgba(190, 202, 225, 0.84);
-    font-size: 0.92rem;
-    line-height: 1.58;
+    font-size: 0.88rem;
+    line-height: 1.48;
   }
 
   .project-tagline {
@@ -999,7 +999,7 @@ section[id] {
   }
 
   .feature-card {
-    @apply rounded-[20px] px-4 py-4;
+    @apply rounded-[18px] px-3.5 py-3.5;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
@@ -1016,10 +1016,10 @@ section[id] {
   }
 
   .feature-copy {
-    margin-top: 0.62rem;
+    margin-top: 0.54rem;
     color: rgba(232, 238, 252, 0.92);
-    font-size: 0.9rem;
-    line-height: 1.58;
+    font-size: 0.86rem;
+    line-height: 1.48;
   }
 
   .project-cta {
@@ -1042,7 +1042,7 @@ section[id] {
   .project-visual {
     @apply overflow-hidden rounded-[32px];
     position: relative;
-    min-height: clamp(34rem, 46vw, 42rem);
+    min-height: clamp(30rem, 39vw, 38rem);
     transition: transform 220ms ease;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
@@ -1225,7 +1225,7 @@ section[id] {
   }
 
   .live-demo-feature {
-    min-height: clamp(34rem, 46vw, 43rem);
+    min-height: clamp(30rem, 39vw, 38rem);
   }
 
   .live-demo-feature .live-demo-frame {
@@ -1235,7 +1235,7 @@ section[id] {
   }
 
   .project-metric-grid {
-    @apply grid gap-3 sm:grid-cols-2;
+    @apply grid gap-2.5 sm:grid-cols-2;
   }
 
   .project-trust-row {
@@ -1261,7 +1261,7 @@ section[id] {
   }
 
   .project-evidence-panel {
-    @apply grid gap-5 rounded-[24px] px-4 py-4;
+    @apply grid gap-4 rounded-[22px] px-3.5 py-3.5;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1296,7 +1296,7 @@ section[id] {
   }
 
   .project-spec-grid {
-    @apply grid gap-2.5 sm:grid-cols-2;
+    @apply grid gap-2 sm:grid-cols-2;
   }
 
   .project-detail-panel {
@@ -1348,7 +1348,7 @@ section[id] {
   }
 
   .project-spec-row {
-    @apply flex items-start gap-3 rounded-[15px] px-3 py-2.5;
+    @apply flex items-start gap-2.5 rounded-[14px] px-3 py-2.5;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
@@ -1366,12 +1366,12 @@ section[id] {
 
   .project-spec-copy {
     color: rgba(236, 241, 255, 0.9);
-    font-size: 0.86rem;
-    line-height: 1.48;
+    font-size: 0.8rem;
+    line-height: 1.42;
   }
 
   .project-stack-pill {
-    @apply rounded-full px-3 py-1.5 text-[0.82rem];
+    @apply rounded-full px-2.5 py-1.5 text-[0.78rem];
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(142, 135, 255, 0.12), rgba(98, 231, 223, 0.05)),
@@ -1758,7 +1758,7 @@ section[id] {
     position: relative;
     flex: 1;
     aspect-ratio: 16 / 10;
-    min-height: clamp(27rem, 40vw, 36rem);
+    min-height: clamp(23rem, 32vw, 30rem);
     overflow: hidden;
     background:
       radial-gradient(circle at 18% 18%, rgba(142, 135, 255, 0.08), transparent 24%),
@@ -1781,6 +1781,10 @@ section[id] {
   .live-demo-image {
     object-fit: cover;
     object-position: top center;
+  }
+
+  .live-demo-kala .live-demo-image {
+    object-position: top left;
   }
 
   .live-demo-feature .live-demo-iframe {
@@ -2063,7 +2067,7 @@ section[id] {
   }
 
   .metric-card {
-    @apply rounded-[22px] px-4 py-4;
+    @apply rounded-[18px] px-3.5 py-3.5;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(142, 135, 255, 0.08), rgba(98, 231, 223, 0.04)),
@@ -2072,17 +2076,17 @@ section[id] {
 
   .metric-value {
     color: #f8faff;
-    font-size: clamp(1.25rem, 2.1vw, 2rem);
+    font-size: clamp(1.15rem, 1.7vw, 1.7rem);
     font-weight: 600;
     letter-spacing: -0.05em;
     line-height: 1;
   }
 
   .metric-label {
-    margin-top: 0.65rem;
+    margin-top: 0.5rem;
     color: rgba(193, 205, 230, 0.8);
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 0.68rem;
+    line-height: 1.38;
     text-transform: uppercase;
     letter-spacing: 0.12em;
   }
@@ -2473,6 +2477,21 @@ section[id] {
   .hero-profile-panel,
   .contact-panel {
     overflow: hidden;
+  }
+
+  .project-visual,
+  .live-demo-feature {
+    min-height: 0;
+  }
+
+  .live-demo-viewport {
+    aspect-ratio: 1 / 0.86;
+    min-height: 18rem;
+  }
+
+  .live-demo-shell,
+  .project-visual {
+    max-width: 100%;
   }
 
   .header-resume {
