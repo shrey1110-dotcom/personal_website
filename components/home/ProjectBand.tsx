@@ -151,23 +151,18 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
             {project.resourceLinks?.length ? (
               <div>
                 <p className="mono-label">Links</p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                <div className="mt-4 flex flex-wrap gap-2.5">
                   {project.resourceLinks.map((link) => (
                     <a
                       key={`${project.name}-${link.label}`}
                       href={link.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="interface-card"
+                      className="project-link-pill"
                       data-cursor="interactive"
                     >
-                      <span className="block text-sm font-medium tracking-[-0.02em] text-white">
-                        {link.label}
-                      </span>
-                      <span className="mt-3 inline-flex items-center gap-2 text-sm text-slate-300">
-                        Open
-                        <span aria-hidden="true">↗</span>
-                      </span>
+                      {link.label}
+                      <span aria-hidden="true">↗</span>
                     </a>
                   ))}
                 </div>

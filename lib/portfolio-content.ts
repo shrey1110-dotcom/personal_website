@@ -217,24 +217,24 @@ export const projects: ProjectEntry[] = [
     blurb:
       "Gives Claude, Codex, and Cursor task-ready context packs before they search.",
     features: [
-      "Packs the files, symbols, tests, risks, and commands an agent needs for one job.",
-      "Creates repo-local instructions for Claude, Codex, Cursor, and optional MCP clients.",
-      "Runs local indexing and packing with no API key required.",
-      "Keeps agents focused on the task instead of wandering through the whole repo.",
+      "Packs the exact files, symbols, tests, risks, and commands needed for one job.",
+      "Writes repo-local Claude, Codex, Cursor, and MCP setup instructions.",
+      "Indexes locally with no API key and no LLM routing.",
+      "Cuts supplied context before agents spend tokens searching.",
     ],
     context:
       "Graph tools are useful when you want to explore. ScopeKit is for the moment an agent needs to act.",
     metrics: [
       { value: "~1,280×", label: "Baseline-equivalent context compression" },
       { value: "18×", label: "Scoped task-context reduction vs Graphify best-effort" },
-      { value: "0", label: "External LLM indexing tokens" },
+      { value: "No", label: "LLM routing" },
       { value: "npm", label: "Published package" },
     ],
     proofPoints: [
       "npx scopekit setup",
       "npm install -g scopekit",
       "Scoped benchmark comparison",
-      "Local indexing and packing",
+      "Local index + context pack",
     ],
     resourceLinks: [
       { label: "Website", href: "https://scopekit-sandy.vercel.app" },
