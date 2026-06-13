@@ -209,6 +209,46 @@ function FlashloanVisual() {
   );
 }
 
+function ScopeKitVisual() {
+  return (
+    <VisualShell
+      accentClassName="project-visual-scopekit"
+      chromeLabel="Context pack"
+      compact
+      rightLabel="local CLI"
+    >
+      <div className="grid min-h-[15rem] gap-4 px-5 py-5">
+        <div className="rounded-[1.25rem] border border-white/8 bg-[#07120f] p-4">
+          <p className="font-mono text-xs leading-6 text-[#9be7c4]">
+            <span className="text-[#d4a017]">$</span> npx scopekit setup
+            <br />
+            <span className="text-slate-500">index</span> ./src
+            <br />
+            <span className="text-slate-500">pack</span> &quot;Find auth/session logic&quot;
+          </p>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[
+            ["Files", "targeted"],
+            ["Symbols", "included"],
+            ["Tests", "linked"],
+            ["API key", "not required"],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="flex items-center justify-between rounded-[1.05rem] border border-white/8 bg-black/18 px-4 py-3 text-sm text-slate-200"
+            >
+              <span>{label}</span>
+              <span className="text-[#d4a017]">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </VisualShell>
+  );
+}
+
 export default function ProjectVisual({ compact = false, project }: ProjectVisualProps) {
   if (!compact && project.embedHref && project.browserLabel && project.browserMeta) {
     return (
@@ -223,6 +263,8 @@ export default function ProjectVisual({ compact = false, project }: ProjectVisua
   }
 
   switch (project.visual) {
+    case "scopekit":
+      return <ScopeKitVisual />;
     case "motion":
       return <MotionVisual />;
     case "cervical":

@@ -35,6 +35,7 @@ export type ProjectEntry = {
   metrics?: { label: string; value: string }[];
   name: string;
   proofPoints?: string[];
+  resourceLinks?: { href: string; label: string }[];
   surfaces?: string[];
   tags: string[];
   tagline?: string;
@@ -43,6 +44,7 @@ export type ProjectEntry = {
     | "resilient"
     | "kala"
     | "veridegree"
+    | "scopekit"
     | "motion"
     | "cervical"
     | "flashloan";
@@ -317,6 +319,45 @@ export const projects: ProjectEntry[] = [
     visual: "veridegree",
   },
   {
+    name: "ScopeKit",
+    href: "https://scopekit-sandy.vercel.app",
+    embedHref: "https://scopekit-sandy.vercel.app",
+    browserLabel: "Developer tool",
+    browserMeta: "scopekit-sandy.vercel.app",
+    ctaLabel: "View ScopeKit",
+    type: "Developer Tool",
+    tagline: "The right files, not a graph to wander.",
+    blurb:
+      "Give Claude, Codex, and Cursor the right files before they search.",
+    features: [
+      "Creates task-complete packs with files, symbols, tests, risks, and validation commands.",
+      "Sets up repo-local instructions for Claude, Codex, Cursor, and optional MCP clients.",
+      "Indexes and packs locally without requiring an API key.",
+      "Gives coding agents focused context before they start broad search.",
+    ],
+    context:
+      "Graph tools are useful when you want to explore. ScopeKit is for the moment an agent needs to act.",
+    metrics: [
+      { value: "npm", label: "Published package" },
+      { value: "npx", label: "Setup command" },
+      { value: "0", label: "API keys required" },
+      { value: "MCP", label: "Optional client mode" },
+    ],
+    proofPoints: [
+      "npx scopekit setup",
+      "npm install -g scopekit",
+      "scopekit setup",
+      "Local indexing and packing",
+    ],
+    resourceLinks: [
+      { label: "Website", href: "https://scopekit-sandy.vercel.app" },
+      { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
+      { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
+    ],
+    tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
+    visual: "scopekit",
+  },
+  {
     name: "AI Motion Analysis",
     href: "https://github.com/shrey1110-dotcom",
     ctaLabel: "Open →",
@@ -388,8 +429,8 @@ export const projects: ProjectEntry[] = [
   },
 ];
 
-export const featuredProjects = projects.slice(0, 3);
-export const archiveProjects = projects.slice(3);
+export const featuredProjects = projects.slice(0, 4);
+export const archiveProjects = projects.slice(4);
 
 export const experienceEntries: readonly ExperienceEntry[] = [
   {
