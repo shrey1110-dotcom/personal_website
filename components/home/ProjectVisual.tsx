@@ -460,12 +460,11 @@ function VeriDegreeVisual() {
 }
 
 export default function ProjectVisual({ compact = false, project }: ProjectVisualProps) {
-  if (!compact && project.previewImage && project.browserLabel && project.browserMeta) {
+  if (!compact && project.embedHref && project.browserLabel && project.browserMeta) {
     return (
       <LiveDemoWindow
         accentClassName={`live-demo-feature live-demo-${project.visual}`}
         chromeLabel={project.browserLabel}
-        imageSrc={project.previewImage}
         src={project.embedHref ?? project.href}
         title={`${project.name} live product preview`}
         urlLabel={project.browserMeta}

@@ -64,7 +64,6 @@ export default function RetainProductSection() {
                 <LiveDemoWindow
                   accentClassName="live-demo-retain"
                   chromeLabel="Live platform"
-                  imageSrc="/retain-screenshot.png"
                   src={retainProduct.href}
                   title="Retain AI live platform preview"
                   urlLabel={retainProduct.liveMeta}

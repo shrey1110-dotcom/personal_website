@@ -1225,7 +1225,7 @@ section[id] {
   }
 
   .live-demo-feature {
-    min-height: clamp(30rem, 39vw, 38rem);
+    min-height: clamp(35rem, 48vw, 45rem);
   }
 
   .live-demo-feature .live-demo-frame {
@@ -1758,7 +1758,7 @@ section[id] {
     position: relative;
     flex: 1;
     aspect-ratio: 16 / 10;
-    min-height: clamp(23rem, 32vw, 30rem);
+    min-height: clamp(28rem, 39vw, 36rem);
     overflow: hidden;
     background:
       radial-gradient(circle at 18% 18%, rgba(142, 135, 255, 0.08), transparent 24%),
@@ -1788,9 +1788,9 @@ section[id] {
   }
 
   .live-demo-feature .live-demo-iframe {
-    height: 86.95%;
-    width: 86.95%;
-    transform: scale(1.15);
+    height: 90.9%;
+    width: 90.9%;
+    transform: scale(1.1);
     transform-origin: left top;
   }
 
@@ -2492,6 +2492,20 @@ section[id] {
   .live-demo-shell,
   .project-visual {
     max-width: 100%;
+  }
+
+  .project-metric-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metric-card {
+    padding: 0.9rem 1rem;
+  }
+
+  .metric-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.09em;
+    overflow-wrap: anywhere;
   }
 
   .header-resume {
