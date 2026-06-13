@@ -1636,6 +1636,10 @@ section[id] {
       linear-gradient(180deg, rgba(7, 11, 20, 1), rgba(5, 8, 16, 1));
   }
 
+  .live-demo-scopekit {
+    background: #07120f;
+  }
+
   .live-demo-header {
     @apply flex items-center justify-between gap-4 px-5 py-4;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -1729,6 +1733,10 @@ section[id] {
       radial-gradient(circle at 18% 18%, rgba(74, 222, 128, 0.16), transparent 22%),
       radial-gradient(circle at 82% 18%, rgba(96, 165, 250, 0.14), transparent 24%),
       linear-gradient(180deg, rgba(8, 12, 20, 1), rgba(6, 10, 18, 1));
+  }
+
+  .project-visual-scopekit {
+    background: #07120f;
   }
 
   .project-visual-cervical {
