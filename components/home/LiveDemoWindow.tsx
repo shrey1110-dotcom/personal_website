@@ -49,7 +49,7 @@ export default function LiveDemoWindow({
               fill
               sizes="(min-width: 1024px) 48vw, 92vw"
               className="live-demo-image"
-              priority={false}
+              loading="eager"
             />
           ) : (
             <iframe
