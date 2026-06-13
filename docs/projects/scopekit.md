@@ -8,11 +8,13 @@ ScopeKit is framed as a developer tool for AI coding agents, not a benchmark lan
 - ScopeKit creates task-complete context packs from local repo indexing.
 - Setup writes repo-local instruction files and does not require an API key.
 
-## Homepage proof points
+## Homepage signals
 
 - Published npm package with a `scopekit` binary
 - `npx scopekit setup`
 - `npm install -g scopekit`
+- `~1,280×` baseline-equivalent context compression
+- `18×` scoped task-context reduction vs Graphify best-effort
 - Local indexing and packing
 
 ## Links
