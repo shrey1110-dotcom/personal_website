@@ -9,9 +9,9 @@ import { retainProduct } from "@/lib/portfolio-content";
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function RetainProductSection() {
-  const statsRef = useRef<HTMLDivElement | null>(null);
-  const statsInView = useInView(statsRef, {
-    amount: 0.28,
+  const productRef = useRef<HTMLDivElement | null>(null);
+  const retainInView = useInView(productRef, {
+    amount: 0.24,
     once: true,
   });
 
@@ -19,7 +19,7 @@ export default function RetainProductSection() {
     <section id="retain" className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
         <div className="retain-shell">
-          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div ref={productRef} className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <motion.div
               initial={{ opacity: 0.78, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -64,12 +64,13 @@ export default function RetainProductSection() {
                 <LiveDemoWindow
                   accentClassName="live-demo-retain"
                   chromeLabel="Live platform"
+                  imageSrc="/retain-screenshot.png"
                   src={retainProduct.href}
                   title="Retain AI live platform preview"
                   urlLabel={retainProduct.liveMeta}
                 />
                 <p className="retain-window-note">
-                  Live product window. Open the platform to inspect the full messaging flow.
+                  Product preview. Open the platform to inspect the full messaging flow.
                 </p>
               </div>
             </motion.div>
@@ -82,10 +83,10 @@ export default function RetainProductSection() {
               transition={{ duration: 0.72, ease: revealEase }}
             className="mt-8"
           >
-            <div ref={statsRef} className="retain-stat-grid">
+            <div className="retain-stat-grid">
               {retainProduct.stats.map((metric) => (
                 <div key={metric.label} className="retain-stat-card">
-                  <MetricCounter active={statsInView} metric={metric} />
+                  <MetricCounter active={retainInView} metric={metric} />
                   <p className="retain-stat-label">{metric.label}</p>
                 </div>
               ))}

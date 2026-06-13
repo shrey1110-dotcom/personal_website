@@ -967,9 +967,19 @@ section[id] {
 
   .project-copy {
     color: #e3e9f8;
-    font-size: 1.04rem;
-    line-height: 1.72;
-    max-width: 35rem;
+    font-size: 1rem;
+    line-height: 1.64;
+    max-width: 36rem;
+  }
+
+  .project-context-line {
+    margin-top: 0.85rem;
+    max-width: 38rem;
+    border-left: 1px solid rgba(112, 224, 215, 0.34);
+    padding-left: 0.95rem;
+    color: rgba(190, 202, 225, 0.84);
+    font-size: 0.92rem;
+    line-height: 1.58;
   }
 
   .project-tagline {
@@ -989,7 +999,7 @@ section[id] {
   }
 
   .feature-card {
-    @apply rounded-[22px] px-4 py-4;
+    @apply rounded-[20px] px-4 py-4;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
@@ -1006,10 +1016,10 @@ section[id] {
   }
 
   .feature-copy {
-    margin-top: 0.75rem;
+    margin-top: 0.62rem;
     color: rgba(232, 238, 252, 0.92);
-    font-size: 0.94rem;
-    line-height: 1.64;
+    font-size: 0.9rem;
+    line-height: 1.58;
   }
 
   .project-cta {
@@ -1032,6 +1042,7 @@ section[id] {
   .project-visual {
     @apply overflow-hidden rounded-[32px];
     position: relative;
+    min-height: clamp(34rem, 46vw, 42rem);
     transition: transform 220ms ease;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.02)),
@@ -1080,6 +1091,7 @@ section[id] {
 
   .project-visual-compact {
     border-radius: 28px;
+    min-height: auto;
   }
 
   .compact-project-card {
@@ -1213,7 +1225,7 @@ section[id] {
   }
 
   .live-demo-feature {
-    min-height: clamp(29rem, 38vw, 36rem);
+    min-height: clamp(34rem, 46vw, 43rem);
   }
 
   .live-demo-feature .live-demo-frame {
@@ -1223,7 +1235,7 @@ section[id] {
   }
 
   .project-metric-grid {
-    @apply grid gap-3 sm:grid-cols-2 xl:grid-cols-3;
+    @apply grid gap-3 sm:grid-cols-2;
   }
 
   .project-trust-row {
@@ -1248,8 +1260,47 @@ section[id] {
     @apply md:grid-cols-2;
   }
 
+  .project-evidence-panel {
+    @apply grid gap-5 rounded-[24px] px-4 py-4;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background:
+      radial-gradient(circle at top left, rgba(142, 135, 255, 0.1), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(98, 231, 223, 0.09), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
+      rgba(7, 11, 20, 0.78);
+  }
+
+  .project-evidence-panel::before {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      125deg,
+      rgba(142, 135, 255, 0.88),
+      rgba(98, 231, 223, 0.78),
+      rgba(244, 114, 182, 0.68),
+      rgba(142, 135, 255, 0.86)
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    content: "";
+    pointer-events: none;
+    opacity: 0.7;
+    animation: rgb-border-drift 8s linear infinite;
+  }
+
+  .project-spec-grid {
+    @apply grid gap-2.5 sm:grid-cols-2;
+  }
+
   .project-detail-panel {
-    @apply rounded-[24px] px-4 py-4;
+    @apply rounded-[22px] px-4 py-4;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1297,7 +1348,7 @@ section[id] {
   }
 
   .project-spec-row {
-    @apply flex items-start gap-3 rounded-[16px] px-3 py-3;
+    @apply flex items-start gap-3 rounded-[15px] px-3 py-2.5;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
@@ -1315,12 +1366,12 @@ section[id] {
 
   .project-spec-copy {
     color: rgba(236, 241, 255, 0.9);
-    font-size: 0.92rem;
-    line-height: 1.65;
+    font-size: 0.86rem;
+    line-height: 1.48;
   }
 
   .project-stack-pill {
-    @apply rounded-full px-3.5 py-2 text-sm;
+    @apply rounded-full px-3 py-1.5 text-[0.82rem];
     border: 1px solid rgba(255, 255, 255, 0.08);
     background:
       linear-gradient(180deg, rgba(142, 135, 255, 0.12), rgba(98, 231, 223, 0.05)),
@@ -1707,7 +1758,7 @@ section[id] {
     position: relative;
     flex: 1;
     aspect-ratio: 16 / 10;
-    min-height: clamp(20rem, 31vw, 30rem);
+    min-height: clamp(27rem, 40vw, 36rem);
     overflow: hidden;
     background:
       radial-gradient(circle at 18% 18%, rgba(142, 135, 255, 0.08), transparent 24%),
@@ -1727,10 +1778,15 @@ section[id] {
     background: white;
   }
 
+  .live-demo-image {
+    object-fit: cover;
+    object-position: top center;
+  }
+
   .live-demo-feature .live-demo-iframe {
-    height: 90.9%;
-    width: 90.9%;
-    transform: scale(1.1);
+    height: 86.95%;
+    width: 86.95%;
+    transform: scale(1.15);
     transform-origin: left top;
   }
 

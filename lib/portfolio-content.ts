@@ -223,7 +223,7 @@ export const projects: ProjectEntry[] = [
       "Cuts supplied context before agents spend tokens searching.",
     ],
     context:
-      "Graph tools are useful when you want to explore. ScopeKit is for the moment an agent needs to act.",
+      "Built as a local CLI: index the repo, resolve task-relevant files, then emit a compact pack an agent can act on.",
     metrics: [
       { value: "~1,280×", label: "Baseline-equivalent context compression" },
       { value: "18×", label: "Scoped task-context reduction vs Graphify best-effort" },
@@ -255,13 +255,13 @@ export const projects: ProjectEntry[] = [
     blurb:
       "Moves aid money from donors to beneficiaries and vendors with full on-chain tracking.",
     features: [
-      "Separate surfaces support admins, donors, beneficiaries, and vendors.",
-      "Donors can track where funds move instead of sending money into a black box.",
-      "Beneficiaries receive credits quickly and vendors settle in under two seconds.",
-      "Every transfer is recorded on-chain with zero platform fees.",
+      "Four role-specific surfaces: admin, donor, beneficiary, and vendor POS.",
+      "Donor flow shows fund movement instead of hiding it behind a dashboard total.",
+      "Vendor settlement is designed around fast redemption and low-friction checkout.",
+      "Polygon Amoy transactions make transfer history inspectable end to end.",
     ],
     context:
-      "Offline-capable distribution, zero platform fees, sub-two-second settlement, and complete on-chain traceability are all designed into the runtime instead of added as separate features.",
+      "Built as a role-based aid workflow with smart-contract settlement, wallet connection, vendor redemption, and on-chain traceability.",
     metrics: [
       { value: "425 tx/s", label: "Network throughput" },
       { value: "0%", label: "Platform fees" },
@@ -291,13 +291,13 @@ export const projects: ProjectEntry[] = [
     blurb:
       "Helps shoppers discover handmade goods while AI identifies the likely cultural origin from product photos.",
     features: [
-      "A swipeable feed surfaces artisans, products, and short stories quickly.",
-      "Buyers can browse listings, trends, and seller pages in one place.",
-      "Image analysis suggests the craft origin across 120+ categories.",
-      "The AI result shows up inside the shopping flow instead of as a separate tool.",
+      "Swipe feed combines artisan stories, products, and discovery in one surface.",
+      "Marketplace flow includes listings, trends, seller context, and account views.",
+      "Image analysis maps product photos to 120+ cultural craft categories.",
+      "AI output appears inside the shopping flow, not as a detached model demo.",
     ],
     context:
-      "The product combines discovery, marketplace behavior, and computer vision into one consumer-facing surface instead of isolating AI as a separate demo.",
+      "Built as a consumer marketplace where product browsing, feed discovery, and computer-vision origin detection share one product flow.",
     metrics: [
       { value: "120+", label: "Cultural detection categories" },
       { value: "5", label: "Product surfaces" },
@@ -336,13 +336,13 @@ export const projects: ProjectEntry[] = [
     blurb:
       "Issues digital credentials that schools can publish once and employers can verify in seconds.",
     features: [
-      "Schools issue tamper-resistant records instead of sending PDFs around.",
-      "Students keep the credential in a wallet they control.",
-      "Employers can verify status from a simple public check.",
-      "The flow reduces fraud without adding manual review.",
+      "Institutions issue credentials once instead of re-sending PDFs.",
+      "Students hold wallet-based academic records they can present later.",
+      "Employers verify credential status from a public verification flow.",
+      "Selective disclosure reduces fraud without adding manual review.",
     ],
     context:
-      "The protocol uses Algorand soulbound assets and privacy-preserving verification flows so institutions can issue once and verifiers can trust the credential state immediately.",
+      "Built around Algorand soulbound assets, issuer-controlled records, and selective disclosure for employer verification.",
     metrics: [
       { value: "Mainnet", label: "Algorand deployment" },
       { value: "Soulbound", label: "Academic records" },
