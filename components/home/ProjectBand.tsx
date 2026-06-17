@@ -18,10 +18,10 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
     project.proofPoints?.length ? project.proofPoints : project.surfaces?.length ? project.surfaces : [];
 
   return (
-    <article id={projectId} className="project-band-shell border-t border-white/8 py-8 first:border-t-0 md:py-10">
-      <div className="grid items-start gap-6 lg:grid-cols-12 lg:gap-8">
+    <article id={projectId} className="project-band-shell border-t border-white/8 py-6 first:border-t-0 md:py-7">
+      <div className="project-band-grid">
         <motion.div
-          className={`lg:col-span-7 ${reversed ? "lg:order-2" : ""}`}
+          className={`project-band-visual-cell ${reversed ? "lg:order-2" : ""}`}
           initial={{ opacity: 0.62, x: reversed ? 28 : -28, y: 18 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
@@ -31,7 +31,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
         </motion.div>
 
         <motion.div
-          className={`lg:col-span-5 ${reversed ? "lg:order-1" : ""}`}
+          className={`project-band-copy-cell ${reversed ? "lg:order-1" : ""}`}
           initial={{ opacity: 0.66, x: reversed ? -28 : 28, y: 18 }}
           whileInView={{ opacity: 1, x: 0, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
