@@ -154,15 +154,15 @@ export default function HomePage() {
 
         <RetainProductSection />
 
-        <section id="work" className="section-shell pt-10">
-          <div className="section-frame">
+        <section id="work" className="section-shell pt-6 md:pt-8">
+          <div className="section-frame project-section-frame">
             <SectionHeading
               label="Selected Work"
               title="Flagship work"
               body="The clearest examples of how I build products people can actually use."
             />
 
-            <div className="mt-8">
+            <div className="mt-6">
               {featuredProjects.map((project, index) => (
                 <ProjectBand key={project.name} index={index} project={project} />
               ))}

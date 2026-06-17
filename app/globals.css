@@ -203,6 +203,10 @@ section[id] {
     @apply mx-auto max-w-[1320px];
   }
 
+  .project-section-frame {
+    max-width: 1420px;
+  }
+
   .section-label {
     color: rgba(190, 201, 225, 0.76);
     font-size: 0.76rem;
@@ -998,6 +1002,51 @@ section[id] {
     max-width: 40rem;
   }
 
+  .project-band-grid {
+    display: grid;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+
+  .project-band-visual-cell {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+  }
+
+  .project-band-copy-cell {
+    min-width: 0;
+  }
+
+  .project-band-visual-cell > .project-visual,
+  .project-band-visual-cell > .live-demo-shell {
+    flex: 1;
+    height: 100%;
+    min-height: clamp(34rem, 46vw, 48rem);
+    width: 100%;
+  }
+
+  @media (min-width: 1024px) {
+    .project-band-grid {
+      grid-template-columns: minmax(0, 1.58fr) minmax(21rem, 0.72fr);
+      gap: clamp(1.15rem, 1.65vw, 1.7rem);
+    }
+
+    .project-band-visual-cell > .project-visual,
+    .project-band-visual-cell > .live-demo-shell {
+      min-height: clamp(42rem, 50vw, 54rem);
+    }
+
+    .project-band-visual-cell > .live-demo-feature {
+      min-height: clamp(44rem, 52vw, 56rem);
+    }
+
+    .project-band-visual-cell .live-demo-feature .live-demo-viewport {
+      aspect-ratio: auto;
+      min-height: 0;
+    }
+  }
+
   .feature-card {
     @apply rounded-[18px] px-3.5 py-3.5;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1232,6 +1281,10 @@ section[id] {
     display: flex;
     min-height: inherit;
     flex-direction: column;
+  }
+
+  .project-band-visual-cell .live-demo-feature .live-demo-frame {
+    height: 100%;
   }
 
   .project-metric-grid {
@@ -2485,8 +2538,8 @@ section[id] {
   }
 
   .live-demo-viewport {
-    aspect-ratio: 1 / 0.86;
-    min-height: 18rem;
+    aspect-ratio: 1 / 1.08;
+    min-height: 25rem;
   }
 
   .live-demo-shell,
