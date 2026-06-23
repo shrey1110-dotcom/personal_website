@@ -1,6 +1,6 @@
 # Shreyansh Sharma Portfolio
 
-Personal portfolio site built with Next.js 14 App Router, TypeScript, Tailwind CSS, and Framer Motion.
+Made with some effort with Next.js 14 App Router, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Stack
 
