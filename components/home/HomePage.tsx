@@ -47,7 +47,7 @@ export default function HomePage() {
                 Shreyansh Sharma
               </span>
               <span className="block text-xs text-slate-400">
-                Software engineer · full-stack products · applied ML
+                Full-stack products · applied ML · CSULB
               </span>
             </span>
           </a>
@@ -96,7 +96,7 @@ export default function HomePage() {
             <div className="hero-stage-panel">
               <div className="hero-grid">
                 <div className="max-w-[720px]">
-                  <p className="section-label">Software engineer · full-stack products · applied ML</p>
+                  <p className="section-label">Software engineer · product-minded builder</p>
 
                   <h1 className="hero-title hero-title-expanded mt-5">
                     <span className="hero-title-line">Shreyansh</span>
@@ -104,12 +104,12 @@ export default function HomePage() {
                   </h1>
 
                   <p className="hero-support mt-6">
-                    I build software products and ML-backed features.
+                    I build full-stack products, applied ML tools, and developer systems.
                   </p>
 
                   <p className="hero-body mt-5">
-                    From customer messaging to on-chain flows and verification tools, I focus on
-                    products that feel clear to use and reliable underneath.
+                    I like work where the interface, backend, and integrations all have to hold
+                    together. The projects below are the clearest examples of that.
                   </p>
 
                   <div className="hero-action-grid mt-9">
@@ -159,7 +159,7 @@ export default function HomePage() {
             <SectionHeading
               label="Selected Work"
               title="Flagship work"
-              body="The clearest examples of how I build products people can actually use."
+              body="Live products and systems with enough moving parts to show how I think, build, and ship."
             />
 
             <div className="mt-6">
@@ -175,7 +175,7 @@ export default function HomePage() {
             <SectionHeading
               label="More Work"
               title="More shipped work"
-              body="Smaller builds that still show range, judgment, and execution."
+              body="Smaller technical builds that show range without competing with the flagship work."
             />
 
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
@@ -191,7 +191,7 @@ export default function HomePage() {
             <SectionHeading
               label="Stack"
               title="Core tools behind the work"
-              body="Languages, frameworks, infra, and platforms that show up repeatedly across shipped products."
+              body="The tools I keep reaching for when the work needs UI, APIs, data, ML, and deployment."
             />
 
             <div className="mt-8">

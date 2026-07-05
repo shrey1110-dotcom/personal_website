@@ -64,10 +64,10 @@ export default function ProjectCompactCard({ index, project }: ProjectCompactCar
 
             {project.tags.length ? (
               <div className="project-detail-panel project-detail-panel-stack">
-                <p className="mono-label">Tech stack</p>
-                <div className="mt-4 flex flex-wrap gap-2.5">
+                <p className="mono-label">Stack</p>
+                <div className="project-stack-list mt-4">
                   {project.tags.map((tag) => (
-                    <span key={`${project.name}-${tag}`} className="project-stack-pill">
+                    <span key={`${project.name}-${tag}`} className="project-stack-token">
                       {tag}
                     </span>
                   ))}
