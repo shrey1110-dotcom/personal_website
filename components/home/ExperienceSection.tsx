@@ -133,9 +133,9 @@ export default function ExperienceSection() {
                     ))}
                   </div>
 
-                  <div className="experience-tech-row">
+                  <div className="experience-tech-row project-stack-list">
                     {activeEntry.tags.map((tag) => (
-                      <span key={`${activeEntry.company}-${tag}`} className="project-stack-pill">
+                      <span key={`${activeEntry.company}-${tag}`} className="project-stack-token">
                         {tag}
                       </span>
                     ))}

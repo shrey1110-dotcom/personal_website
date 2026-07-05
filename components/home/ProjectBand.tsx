@@ -86,10 +86,10 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
 
                 {project.tags.length ? (
                   <div>
-                    <p className="mono-label">Tech stack</p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <p className="mono-label">Stack</p>
+                    <div className="project-stack-list mt-3">
                       {project.tags.map((tag) => (
-                        <span key={`${project.name}-${tag}`} className="project-stack-pill">
+                        <span key={`${project.name}-${tag}`} className="project-stack-token">
                           {tag}
                         </span>
                       ))}

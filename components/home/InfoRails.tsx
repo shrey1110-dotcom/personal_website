@@ -34,13 +34,12 @@ type InfoRailsProps = {
 };
 
 export default function InfoRails({ className = "" }: InfoRailsProps) {
+  const editorialRail = [...ambientRails[0], ...ambientRails[1]];
+
   return (
     <div aria-hidden="true" className={className}>
-      <div className="space-y-3">
-        <RailTrack items={ambientRails[0]} />
-        <div className="hidden md:block">
-          <RailTrack items={ambientRails[1]} reverse />
-        </div>
+      <div className="info-rails">
+        <RailTrack items={editorialRail} />
       </div>
     </div>
   );

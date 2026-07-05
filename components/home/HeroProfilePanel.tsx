@@ -3,7 +3,7 @@
 import HeroHeadshot from "@/components/home/HeroHeadshot";
 
 const profileSignals = [
-  "Founder, RETAIN AI",
+  "Founder & solo engineer",
   "CS @ CSULB · 2027",
   "Long Beach, CA",
 ] as const;
@@ -20,7 +20,7 @@ export default function HeroProfilePanel() {
           <div className="space-y-3 text-center">
             <p className="hero-portrait-name">Shreyansh Sharma</p>
             <p className="hero-portrait-title">
-              Messaging products, on-chain workflows, and ML-backed tools.
+              I build the product surface and the systems behind it.
             </p>
           </div>
 

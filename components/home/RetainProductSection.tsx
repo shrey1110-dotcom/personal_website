@@ -34,10 +34,10 @@ export default function RetainProductSection() {
               <p className="section-body mt-6 max-w-[39rem]">{retainProduct.blurb}</p>
 
               <div className="mt-7">
-                <p className="mono-label">Tech stack</p>
-                <div className="mt-4 flex flex-wrap gap-2.5">
+                <p className="mono-label">Stack</p>
+                <div className="project-stack-list mt-4">
                   {retainProduct.tags.map((tag) => (
-                    <span key={`retain-tag-${tag}`} className="project-stack-pill">
+                    <span key={`retain-tag-${tag}`} className="project-stack-token">
                       {tag}
                     </span>
                   ))}
@@ -115,9 +115,9 @@ export default function RetainProductSection() {
             className="mt-6 retain-integrations-row"
           >
             <p className="mono-label">Integrations</p>
-            <div className="mt-4 flex flex-wrap gap-2.5">
+            <div className="project-stack-list mt-4">
               {retainProduct.integrations.map((integration) => (
-                <span key={`retain-integration-${integration}`} className="retain-integration-chip">
+                <span key={`retain-integration-${integration}`} className="project-stack-token">
                   {integration}
                 </span>
               ))}

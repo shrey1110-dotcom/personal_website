@@ -103,10 +103,10 @@ export const heroActions = [
 
 export const ambientRails = [
   [
-    "Real products in production",
+    "Founder-built product",
     "Full-stack engineering",
-    "ML-backed features",
-    "Built for real use",
+    "Applied ML",
+    "Live systems",
     "Long Beach, California",
   ],
   [
@@ -114,14 +114,14 @@ export const ambientRails = [
     "Aid distribution",
     "Credential verification",
     "AI marketplace",
-    "Clear product demos",
+    "Live product windows",
   ],
   [
     "APIs • data flow • integrations",
     "Computer vision",
     "Medical ML",
     "EVM automation",
-    "CSULB Computer Science",
+    "CSULB computer science",
   ],
 ] as const;
 
@@ -140,20 +140,20 @@ export const retainProduct: RetainProductEntry = {
   roleLine: "RETAIN AI · Founder & Solo Engineer · 2025–Present",
   subtitle: "AI communications infrastructure for customer-facing businesses.",
   blurb:
-    "Built and operate live AI communications infrastructure. It handles inbound customer messages for local service businesses with business-specific rules, memory, and AI assistance instead of generic chatbot replies.",
+    "I built and run the full product: onboarding, dashboard, tenant settings, SMS flow, memory, and AI response logic for local service businesses.",
   featureCards: [
     {
-      title: "HYBRID ORCHESTRATION",
+      title: "Hybrid orchestration",
       copy:
         "Deterministic rules + Gemini LLM + memory-driven context. Falls back gracefully at every layer.",
     },
     {
-      title: "MULTI-TENANT RUNTIME",
+      title: "Multi-tenant runtime",
       copy:
         "Business identity, tone, FAQs, hours, and workflows are all runtime-configurable. Zero redeploys per tenant.",
     },
     {
-      title: "VOICE — IN PROGRESS",
+      title: "Voice in progress",
       copy:
         "Phone-answering assistant extending the same orchestration pipeline to inbound calls.",
     },
@@ -211,19 +211,19 @@ export const projects: ProjectEntry[] = [
     embedHref: "https://scopekit-sandy.vercel.app",
     browserLabel: "Developer tool",
     browserMeta: "scopekit-sandy.vercel.app",
-    ctaLabel: "View ScopeKit",
+    ctaLabel: "Open demo",
     type: "Developer Tool",
     tagline: "The right files, not a graph to wander.",
     blurb:
       "Gives Claude, Codex, and Cursor task-ready context packs before they search.",
     features: [
-      "Packs the exact files, symbols, tests, risks, and commands needed for one job.",
-      "Writes repo-local Claude, Codex, Cursor, and MCP setup instructions.",
+      "Packs the files, symbols, tests, risks, and commands needed for one job.",
+      "Writes repo-local setup instructions for Claude, Codex, Cursor, and MCP.",
       "Indexes locally with no API key and no LLM routing.",
       "Cuts supplied context before agents spend tokens searching.",
     ],
     context:
-      "Built as a local CLI: index the repo, resolve task-relevant files, then emit a compact pack an agent can act on.",
+      "Built as a local CLI: index the repo, resolve the useful files, then write a compact pack an agent can act on.",
     metrics: [
       { value: "~1,280×", label: "Baseline-equivalent context compression" },
       { value: "18×", label: "Scoped task-context reduction vs Graphify best-effort" },
@@ -250,7 +250,7 @@ export const projects: ProjectEntry[] = [
     embedHref: "https://resilient-aid.vercel.app",
     browserLabel: "Aid workflow",
     browserMeta: "resilient-aid.vercel.app",
-    ctaLabel: "Open →",
+    ctaLabel: "Open demo",
     type: "Aid protocol",
     blurb:
       "Moves aid money from donors to beneficiaries and vendors with full on-chain tracking.",
@@ -261,7 +261,7 @@ export const projects: ProjectEntry[] = [
       "Polygon Amoy transactions make transfer history inspectable end to end.",
     ],
     context:
-      "Built as a role-based aid workflow with smart-contract settlement, wallet connection, vendor redemption, and on-chain traceability.",
+      "I built the role flow, wallet connection, vendor redemption path, and on-chain transaction trail.",
     metrics: [
       { value: "425 tx/s", label: "Network throughput" },
       { value: "0%", label: "Platform fees" },
@@ -286,10 +286,10 @@ export const projects: ProjectEntry[] = [
     embedHref: "https://artisian.vercel.app/trends",
     browserLabel: "Marketplace demo",
     browserMeta: "artisian.vercel.app/trends",
-    ctaLabel: "Open →",
+    ctaLabel: "Open demo",
     type: "AI marketplace",
     blurb:
-      "Helps shoppers discover handmade goods while AI identifies the likely cultural origin from product photos.",
+      "A marketplace prototype for discovering handmade goods and estimating cultural origin from product photos.",
     features: [
       "Swipe feed combines artisan stories, products, and discovery in one surface.",
       "Marketplace flow includes listings, trends, seller context, and account views.",
@@ -297,7 +297,7 @@ export const projects: ProjectEntry[] = [
       "AI output appears inside the shopping flow, not as a detached model demo.",
     ],
     context:
-      "Built as a consumer marketplace where product browsing, feed discovery, and computer-vision origin detection share one product flow.",
+      "The hard part was keeping browsing, feed discovery, and image analysis in one product flow instead of separate demos.",
     metrics: [
       { value: "120+", label: "Cultural detection categories" },
       { value: "5", label: "Product surfaces" },
@@ -331,10 +331,10 @@ export const projects: ProjectEntry[] = [
     embedHref: "https://veri-degree.vercel.app",
     browserLabel: "Verification flow",
     browserMeta: "veri-degree.vercel.app",
-    ctaLabel: "Open →",
+    ctaLabel: "Open demo",
     type: "Credential verification",
     blurb:
-      "Issues digital credentials that schools can publish once and employers can verify in seconds.",
+      "Lets schools issue digital credentials once and gives employers a fast verification path.",
     features: [
       "Institutions issue credentials once instead of re-sending PDFs.",
       "Students hold wallet-based academic records they can present later.",
@@ -342,7 +342,7 @@ export const projects: ProjectEntry[] = [
       "Selective disclosure reduces fraud without adding manual review.",
     ],
     context:
-      "Built around Algorand soulbound assets, issuer-controlled records, and selective disclosure for employer verification.",
+      "Built around Algorand assets, issuer-controlled records, and selective disclosure for employer checks.",
     metrics: [
       { value: "Mainnet", label: "Algorand deployment" },
       { value: "Soulbound", label: "Academic records" },
@@ -361,10 +361,10 @@ export const projects: ProjectEntry[] = [
   {
     name: "AI Motion Analysis",
     href: "https://github.com/shrey1110-dotcom",
-    ctaLabel: "Open →",
+    ctaLabel: "View GitHub",
     type: "Computer vision",
     blurb:
-      "Scores exercise form from pose data and turns it into coaching feedback someone can use right away.",
+      "Turns pose keypoints into exercise-form scores and readable coaching feedback.",
     features: [
       "Tracks 17 body keypoints across video frames.",
       "Scores depth, balance, tempo, and alignment.",
@@ -372,7 +372,7 @@ export const projects: ProjectEntry[] = [
       "Highlights the mistakes that matter instead of dumping raw keypoints.",
     ],
     context:
-      "The useful work is in the layer after inference: post-processing noisy output into a scoring system a person can actually use.",
+      "The useful work is after inference: cleaning noisy keypoints and turning them into a scoring system.",
     proofPoints: [
       "17-point MoveNet pose sequences",
       "PyTorch scoring pipeline",
@@ -384,10 +384,10 @@ export const projects: ProjectEntry[] = [
   {
     name: "Cervical Cell CNN",
     href: "https://github.com/shrey1110-dotcom/cervical-cancer-detection",
-    ctaLabel: "Open →",
+    ctaLabel: "View GitHub",
     type: "Medical ML",
     blurb:
-      "Classifies Pap smear images across five cell types in a medical imaging workflow that is easier to inspect and evaluate.",
+      "Classifies Pap smear images across five cell types with a repeatable training and evaluation flow.",
     features: [
       "Trained on 4,000 labeled images across five classes.",
       "Preprocessing stays consistent before training and evaluation.",
@@ -395,7 +395,7 @@ export const projects: ProjectEntry[] = [
       "Class confidence makes model mistakes easier to inspect.",
     ],
     context:
-      "Built around repeatable preprocessing, transfer learning, and evaluation against a medical dataset instead of a one-off notebook run.",
+      "Built around consistent preprocessing, transfer learning, and evaluation against a medical dataset.",
     proofPoints: [
       "4,000 Pap smear images",
       "Five-class medical image workflow",
@@ -408,10 +408,10 @@ export const projects: ProjectEntry[] = [
   {
     name: "Flashloan Bot",
     href: "https://gist.github.com/shrey1110-dotcom/ef53904ed184311d8a8dd5587ef11716",
-    ctaLabel: "Open →",
+    ctaLabel: "View gist",
     type: "Web3 systems",
     blurb:
-      "Scans DeFi markets for arbitrage routes and filters out trades that are too risky or too slow to execute.",
+      "Scans DeFi routes and filters out trades that are too risky or too slow to execute.",
     features: [
       "Checks 13,240+ token pairs for route opportunities.",
       "Separates scanning, validation, and execution into clear stages.",
