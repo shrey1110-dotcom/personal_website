@@ -1,19 +1,29 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import LiveDemoWindow from "@/components/home/LiveDemoWindow";
 import MetricCounter from "@/components/home/MetricCounter";
+import RetainVoiceDemo from "@/components/home/RetainVoiceDemo";
 import { retainProduct } from "@/lib/portfolio-content";
 
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function RetainProductSection() {
+  const [activeSurface, setActiveSurface] = useState<"chat" | "voice">("chat");
   const productRef = useRef<HTMLDivElement | null>(null);
   const retainInView = useInView(productRef, {
     amount: 0.24,
     once: true,
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("surface") === "voice") {
+      window.requestAnimationFrame(() => setActiveSurface("voice"));
+    }
+  }, []);
 
   return (
     <section id="retain" className="section-shell pt-8 md:pt-10">
@@ -32,6 +42,29 @@ export default function RetainProductSection() {
               <h2 className="retain-title mt-4">{retainProduct.name}</h2>
               <p className="retain-support mt-5">{retainProduct.subtitle}</p>
               <p className="section-body mt-6 max-w-[39rem]">{retainProduct.blurb}</p>
+
+              <div className="retain-surface-switch mt-7" aria-label="RETAIN AI product surfaces">
+                <button
+                  type="button"
+                  onClick={() => setActiveSurface("chat")}
+                  className={`retain-surface-button ${
+                    activeSurface === "chat" ? "retain-surface-button-active" : ""
+                  }`}
+                >
+                  <span>RETAINchat</span>
+                  <small>SMS and web lead recovery</small>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveSurface("voice")}
+                  className={`retain-surface-button ${
+                    activeSurface === "voice" ? "retain-surface-button-active" : ""
+                  }`}
+                >
+                  <span>RETAINvoice</span>
+                  <small>Inbound calls, callbacks, and handoff</small>
+                </button>
+              </div>
 
               <div className="mt-7">
                 <p className="mono-label">Stack</p>
@@ -60,18 +93,17 @@ export default function RetainProductSection() {
               viewport={{ once: true, amount: 0.18 }}
               transition={{ duration: 0.76, delay: 0.06, ease: revealEase }}
             >
-              <div className="space-y-4">
+              {activeSurface === "chat" ? (
                 <LiveDemoWindow
                   accentClassName="live-demo-retain"
-                  chromeLabel="Live platform"
+                  chromeLabel="RETAINchat"
                   src={retainProduct.href}
                   title="Retain AI live platform preview"
                   urlLabel={retainProduct.liveMeta}
                 />
-                <p className="retain-window-note">
-                  Product preview. Open the platform to inspect the full messaging flow.
-                </p>
-              </div>
+              ) : (
+                <RetainVoiceDemo />
+              )}
             </motion.div>
           </div>
 
