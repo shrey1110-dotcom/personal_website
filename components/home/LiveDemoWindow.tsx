@@ -22,9 +22,9 @@ export default function LiveDemoWindow({
       <div className="live-demo-frame">
         <div className="live-demo-header">
           <div className="flex items-center gap-2.5">
-            <span className="live-demo-dot bg-rose-300/85" />
-            <span className="live-demo-dot bg-amber-200/85" />
-            <span className="live-demo-dot bg-teal-300/85" />
+            <span className="live-demo-dot bg-zinc-500/85" />
+            <span className="live-demo-dot bg-zinc-400/85" />
+            <span className="live-demo-dot bg-zinc-300/85" />
             <span className="mono-label ml-2">{chromeLabel}</span>
           </div>
           <span className="live-demo-badge">
