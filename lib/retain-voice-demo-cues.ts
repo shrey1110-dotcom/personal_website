@@ -17,6 +17,63 @@ export const voiceDemoMetrics = [
   { label: "cost", value: "$0.04", unit: "", meta: "vs $5.50 human" },
 ] as const;
 
+export type VoiceTurn = {
+  id: string;
+  speaker: "agent" | "caller";
+  /** Playback time (s) when this turn starts being spoken. */
+  at: number;
+  /** Playback time (s) when this turn finishes. */
+  end: number;
+  text: string;
+  /** Perceived turn-gap latency (ms) before an agent turn — the native turn-detection speed. */
+  gapMs?: number;
+  /** Tool the agent ran to produce this turn. */
+  tool?: string;
+};
+
+/** Turns matched to Plivo us-voice-demo.mp3 (Horizon Insurance auto-claim, ~46s). */
+export const voiceDemoTurns: VoiceTurn[] = [
+  {
+    id: "agent-1",
+    speaker: "agent",
+    at: 0.5,
+    end: 12.2,
+    text: "Hi Emily, this is the AI agent from Horizon Insurance. I'm calling about the auto claim you submitted recently — I just need a quick clarification to keep processing it.",
+  },
+  {
+    id: "caller-1",
+    speaker: "caller",
+    at: 12.6,
+    end: 13.4,
+    text: "Sure, what do you need?",
+  },
+  {
+    id: "agent-2",
+    speaker: "agent",
+    at: 16.4,
+    end: 27.8,
+    gapMs: 15,
+    tool: "lookupClaim()",
+    text: "In your claim form the incident date is January 12th, but the repair is dated January 10th. Can you confirm the actual date of the accident?",
+  },
+  {
+    id: "caller-2",
+    speaker: "caller",
+    at: 28.3,
+    end: 39.6,
+    text: "Oh right — the accident did happen on January 10th. I submitted the form two days later and entered the wrong date. Sorry about that.",
+  },
+  {
+    id: "agent-3",
+    speaker: "agent",
+    at: 40.2,
+    end: 45.6,
+    gapMs: 15,
+    tool: "updateClaimRecord()",
+    text: "Thanks for confirming. I'll update the incident date to January 10th so the review can proceed.",
+  },
+];
+
 export function formatVoiceTime(seconds: number): string {
   const safe = Math.max(0, seconds);
   const minutes = Math.floor(safe / 60);
