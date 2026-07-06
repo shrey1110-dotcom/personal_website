@@ -20,7 +20,7 @@ export default function HeroHeadshot({ size = "hero" }: HeroHeadshotProps) {
   if (hasImageError) {
     return (
       <div
-        className={`flex shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(142,135,255,0.94),rgba(98,231,223,0.72))] font-semibold tracking-[-0.04em] text-white shadow-[0_28px_70px_rgba(79,70,229,0.28)] ${sizing}`}
+        className={`flex shrink-0 items-center justify-center rounded-full border border-white/12 bg-[linear-gradient(135deg,rgba(174,185,201,0.94),rgba(148,163,184,0.72))] font-semibold tracking-[-0.04em] text-white shadow-[0_28px_70px_rgba(0,0,0,0.28)] ${sizing}`}
       >
         SS
       </div>
@@ -29,7 +29,7 @@ export default function HeroHeadshot({ size = "hero" }: HeroHeadshotProps) {
 
   return (
     <div
-      className={`relative shrink-0 overflow-hidden rounded-full border border-white/14 bg-[linear-gradient(135deg,rgba(142,135,255,0.18),rgba(98,231,223,0.1))] shadow-[0_26px_72px_rgba(6,10,18,0.44)] ${sizing}`}
+      className={`relative shrink-0 overflow-hidden rounded-full border border-white/14 bg-[linear-gradient(135deg,rgba(174,185,201,0.18),rgba(148,163,184,0.1))] shadow-[0_26px_72px_rgba(6,10,18,0.44)] ${sizing}`}
     >
       <Image
         src={withBasePath("/me.jpg")}
