@@ -31,9 +31,9 @@ function VisualShell({
     >
       <div className="flex items-center justify-between border-b border-white/8 px-5 py-4">
         <div className="flex items-center gap-2.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-rose-300/85" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-200/85" />
-          <span className="h-2.5 w-2.5 rounded-full bg-teal-300/85" />
+          <span className="h-2.5 w-2.5 rounded-full bg-zinc-500/85" />
+          <span className="h-2.5 w-2.5 rounded-full bg-zinc-400/85" />
+          <span className="h-2.5 w-2.5 rounded-full bg-zinc-300/85" />
           <span className="mono-label ml-2">{chromeLabel}</span>
         </div>
         <span className="mono-label">{rightLabel}</span>
@@ -54,29 +54,29 @@ function MotionVisual() {
       <div className="grid min-h-[15rem] gap-4 px-5 py-5">
         <div className="grid gap-4 lg:grid-cols-[0.94fr_1.06fr]">
           <div className="relative overflow-hidden rounded-[1.35rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_24%,rgba(112,138,255,0.16),transparent_28%),radial-gradient(circle_at_74%_18%,rgba(114,216,210,0.14),transparent_24%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_24%,rgba(174,185,201,0.14),transparent_28%),radial-gradient(circle_at_74%_18%,rgba(120,132,148,0.12),transparent_24%)]" />
             <svg
               viewBox="0 0 220 240"
               className="relative z-10 mx-auto h-[11rem] w-full max-w-[10rem]"
               fill="none"
             >
-              <circle cx="110" cy="28" r="16" fill="#c7d2fe" fillOpacity="0.72" />
-              <path d="M110 44v58" stroke="#90a6ff" strokeLinecap="round" strokeWidth="5" />
-              <path d="M110 62 66 86" stroke="#7bd6d0" strokeLinecap="round" strokeWidth="4" />
-              <path d="M66 86 54 122" stroke="#d2daff" strokeLinecap="round" strokeWidth="3.5" />
-              <path d="M110 62 154 86" stroke="#7bd6d0" strokeLinecap="round" strokeWidth="4" />
-              <path d="M154 86 166 122" stroke="#d2daff" strokeLinecap="round" strokeWidth="3.5" />
-              <path d="M110 102 84 154" stroke="#90a6ff" strokeLinecap="round" strokeWidth="4" />
-              <path d="M84 154 72 198" stroke="#d2daff" strokeLinecap="round" strokeWidth="3.5" />
-              <path d="M110 102 136 154" stroke="#90a6ff" strokeLinecap="round" strokeWidth="4" />
-              <path d="M136 154 148 198" stroke="#d2daff" strokeLinecap="round" strokeWidth="3.5" />
+              <circle cx="110" cy="28" r="16" fill="#dfe5ee" fillOpacity="0.72" />
+              <path d="M110 44v58" stroke="#aeb9c9" strokeLinecap="round" strokeWidth="5" />
+              <path d="M110 62 66 86" stroke="#b8c2cf" strokeLinecap="round" strokeWidth="4" />
+              <path d="M66 86 54 122" stroke="#dfe5ee" strokeLinecap="round" strokeWidth="3.5" />
+              <path d="M110 62 154 86" stroke="#b8c2cf" strokeLinecap="round" strokeWidth="4" />
+              <path d="M154 86 166 122" stroke="#dfe5ee" strokeLinecap="round" strokeWidth="3.5" />
+              <path d="M110 102 84 154" stroke="#aeb9c9" strokeLinecap="round" strokeWidth="4" />
+              <path d="M84 154 72 198" stroke="#dfe5ee" strokeLinecap="round" strokeWidth="3.5" />
+              <path d="M110 102 136 154" stroke="#aeb9c9" strokeLinecap="round" strokeWidth="4" />
+              <path d="M136 154 148 198" stroke="#dfe5ee" strokeLinecap="round" strokeWidth="3.5" />
             </svg>
           </div>
 
           <div className="rounded-[1.35rem] border border-white/8 bg-black/18 p-5">
             <div className="flex items-center justify-between">
               <p className="mono-label">Coaching output</p>
-              <span className="text-xs uppercase tracking-[0.16em] text-emerald-300/90">
+              <span className="text-xs uppercase tracking-[0.16em] text-slate-300/90">
                 score
               </span>
             </div>
@@ -93,7 +93,7 @@ function MotionVisual() {
                   </div>
                   <div className="mt-2 h-2 rounded-full bg-white/8">
                     <div
-                      className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(144,166,255,0.94),rgba(114,216,210,0.88))]"
+                      className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(174,185,201,0.94),rgba(223,229,238,0.88))]"
                       style={{ width: `${value}%` }}
                     />
                   </div>
@@ -155,7 +155,7 @@ function CervicalVisual() {
                 </div>
                 <div className="mt-2 h-2 rounded-full bg-white/8">
                   <div
-                    className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(250,204,21,0.84),rgba(147,197,253,0.88))]"
+                    className="h-2 rounded-full bg-[linear-gradient(90deg,rgba(174,185,201,0.84),rgba(223,229,238,0.88))]"
                     style={{ width: value }}
                   />
                 </div>
@@ -178,11 +178,11 @@ function FlashloanVisual() {
     >
       <div className="grid min-h-[15rem] gap-4 px-5 py-5">
         <div className="relative h-[9rem] overflow-hidden rounded-[1.25rem] border border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
-          <div className="absolute left-[10%] top-[16%] token-node bg-amber-200 text-black">WETH</div>
-          <div className="absolute left-[42%] top-[38%] token-node bg-violet-200 text-black">USDC</div>
-          <div className="absolute right-[12%] top-[18%] token-node bg-cyan-200 text-black">ARB</div>
+          <div className="absolute left-[10%] top-[16%] token-node bg-zinc-200 text-black">WETH</div>
+          <div className="absolute left-[42%] top-[38%] token-node bg-zinc-300 text-black">USDC</div>
+          <div className="absolute right-[12%] top-[18%] token-node bg-zinc-200 text-black">ARB</div>
           <div className="absolute left-[24%] bottom-[14%] token-node bg-slate-200 text-black">WBTC</div>
-          <div className="absolute right-[18%] bottom-[12%] token-node bg-emerald-200 text-black">DAI</div>
+          <div className="absolute right-[18%] bottom-[12%] token-node bg-slate-300 text-black">DAI</div>
           <div className="route-line left-[18%] top-[28%] w-[24%] rotate-[18deg]" />
           <div className="route-line left-[50%] top-[32%] w-[18%] -rotate-[16deg]" />
           <div className="route-line left-[30%] top-[58%] w-[18%] -rotate-[22deg]" />
@@ -217,14 +217,14 @@ function ScopeKitVisual() {
       rightLabel="local CLI"
     >
       <div className="grid min-h-[32rem] grid-rows-[auto_1fr_auto] gap-4 px-5 py-5">
-        <div className="grid gap-3 rounded-[1.35rem] border border-emerald-300/15 bg-[#07120f] p-4 font-mono text-[0.76rem] leading-6 text-[#9be7c4] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+        <div className="grid gap-3 rounded-[1.35rem] border border-white/10 bg-[#0b0d0d] p-4 font-mono text-[0.76rem] leading-6 text-[#dfe5ee] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
           <p>
-            <span className="text-[#d4a017]">$</span> scopekit pack &quot;trace auth/session
+            <span className="text-slate-400">$</span> scopekit pack &quot;trace auth/session
             usage&quot;
           </p>
           <p className="text-slate-500">indexed ./src ./app ./tests</p>
           <p className="text-slate-500">resolved imports, symbols, risks, commands</p>
-          <p className="text-emerald-200">wrote .scopekit/context-pack.md</p>
+          <p className="text-slate-200">wrote .scopekit/context-pack.md</p>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
@@ -244,10 +244,10 @@ function ScopeKitVisual() {
           ))}
         </div>
 
-        <div className="rounded-[1.35rem] border border-[#d4a017]/20 bg-[#d4a017]/8 p-4">
+        <div className="rounded-[1.35rem] border border-white/10 bg-white/[0.035] p-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="text-sm font-medium text-[#f7dfa1]">Agent receives a bounded pack.</p>
-            <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#d4a017]">
+            <p className="text-sm font-medium text-slate-100">Agent receives a bounded pack.</p>
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-slate-400">
               Measured 1,280x context reduction
             </p>
           </div>
@@ -274,7 +274,7 @@ function ResilientVisual() {
             {["Admin", "Donor", "Beneficiary", "Vendor"].map((item) => (
               <span
                 key={item}
-                className="rounded-full border border-cyan-300/12 bg-cyan-300/8 px-3 py-1 text-xs text-cyan-100"
+                className="rounded-full border border-white/10 bg-white/[0.035] px-3 py-1 text-xs text-slate-200"
               >
                 {item}
               </span>
@@ -282,8 +282,8 @@ function ResilientVisual() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden rounded-[1.45rem] border border-white/8 bg-[radial-gradient(circle_at_45%_42%,rgba(45,212,191,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012))] p-5">
-          <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-cyan-200/42 to-transparent" />
+        <div className="relative overflow-hidden rounded-[1.45rem] border border-white/8 bg-[radial-gradient(circle_at_45%_42%,rgba(174,185,201,0.14),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.012))] p-5">
+          <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-slate-200/32 to-transparent" />
           <div className="relative grid h-full grid-cols-2 gap-4 lg:grid-cols-4">
             {[
               ["Donor wallet", "$2,500 locked", "connect"],
@@ -295,12 +295,12 @@ function ResilientVisual() {
                 key={title}
                 className="flex min-h-[11rem] flex-col justify-between rounded-[1.25rem] border border-white/8 bg-black/32 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
-                <span className="h-2.5 w-2.5 rounded-full bg-cyan-200 shadow-[0_0_18px_rgba(103,232,249,0.48)]" />
+                <span className="h-2.5 w-2.5 rounded-full bg-slate-200" />
                 <div>
                   <p className="text-sm font-medium text-white">{title}</p>
                   <p className="mt-2 text-xs leading-5 text-slate-400">{detail}</p>
                 </div>
-                <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-cyan-200">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-slate-300">
                   {status}
                 </p>
               </div>
@@ -333,9 +333,9 @@ function KalaVisual() {
       rightLabel="AI origin scan"
     >
       <div className="grid min-h-[32rem] gap-4 px-5 py-5 lg:grid-cols-[0.74fr_1fr]">
-        <div className="flex flex-col rounded-[1.55rem] border border-amber-200/15 bg-black/26 p-4">
-          <div className="rounded-[1.15rem] border border-white/8 bg-[linear-gradient(145deg,rgba(250,204,21,0.18),rgba(168,85,247,0.12)),rgba(255,255,255,0.035)] p-4">
-            <p className="text-xl font-semibold tracking-[-0.04em] text-amber-100">KalaAI</p>
+        <div className="flex flex-col rounded-[1.55rem] border border-white/10 bg-black/26 p-4">
+          <div className="rounded-[1.15rem] border border-white/8 bg-[linear-gradient(145deg,rgba(174,185,201,0.12),rgba(255,255,255,0.035)),rgba(255,255,255,0.035)] p-4">
+            <p className="text-xl font-semibold tracking-[-0.04em] text-slate-100">KalaAI</p>
             <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
               handmade marketplace
             </p>
@@ -346,7 +346,7 @@ function KalaVisual() {
                 key={item}
                 className={`flex items-center justify-between rounded-[1rem] border px-3 py-3 text-sm ${
                   index === 1
-                    ? "border-amber-200/24 bg-amber-200/10 text-amber-100"
+                    ? "border-white/18 bg-white/10 text-white"
                     : "border-white/8 bg-white/[0.035] text-slate-300"
                 }`}
               >
@@ -361,7 +361,7 @@ function KalaVisual() {
           <div className="rounded-[1.55rem] border border-white/8 bg-black/24 p-5">
             <p className="mono-label">Product image scan</p>
             <div className="mt-4 grid gap-4 sm:grid-cols-[0.86fr_1fr]">
-              <div className="rounded-[1.2rem] border border-white/8 bg-[radial-gradient(circle_at_44%_38%,rgba(250,204,21,0.34),transparent_28%),radial-gradient(circle_at_62%_66%,rgba(168,85,247,0.2),transparent_32%),rgba(255,255,255,0.035)] p-4">
+              <div className="rounded-[1.2rem] border border-white/8 bg-[radial-gradient(circle_at_44%_38%,rgba(174,185,201,0.2),transparent_28%),radial-gradient(circle_at_62%_66%,rgba(120,132,148,0.16),transparent_32%),rgba(255,255,255,0.035)] p-4">
                 <div className="h-32 rounded-[1rem] border border-white/10 bg-black/24" />
               </div>
               <div className="space-y-3">
@@ -409,16 +409,16 @@ function VeriDegreeVisual() {
             <p className="text-lg font-semibold tracking-[0.06em] text-white">VERIDEGREE</p>
             <p className="text-xs text-slate-400">School-issued records. Employer checks.</p>
           </div>
-          <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs uppercase tracking-[0.16em] text-emerald-200">
+          <span className="rounded-full border border-white/12 bg-white/[0.045] px-3 py-1 text-xs uppercase tracking-[0.16em] text-slate-200">
             verified
           </span>
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1fr_0.88fr]">
-          <div className="rounded-[1.45rem] border border-yellow-200/18 bg-[radial-gradient(circle_at_18%_18%,rgba(250,204,21,0.16),transparent_28%),rgba(255,255,255,0.035)] p-5">
+          <div className="rounded-[1.45rem] border border-white/10 bg-[radial-gradient(circle_at_18%_18%,rgba(174,185,201,0.12),transparent_28%),rgba(255,255,255,0.035)] p-5">
             <p className="mono-label">Credential packet</p>
-            <div className="mt-5 rounded-[1.2rem] border border-yellow-200/16 bg-black/32 p-5">
-              <p className="text-2xl font-semibold tracking-[-0.05em] text-yellow-100">
+            <div className="mt-5 rounded-[1.2rem] border border-white/10 bg-black/32 p-5">
+              <p className="text-2xl font-semibold tracking-[-0.05em] text-slate-100">
                 B.S. Computer Science
               </p>
               <div className="mt-5 grid gap-3">
