@@ -51,8 +51,6 @@ export type ProjectEntry = {
 };
 
 export type SkillGroupEntry = {
-  description: string;
-  icon: "languages" | "frontend" | "backend" | "ml" | "tools";
   items: string[];
   label: string;
 };
@@ -138,24 +136,24 @@ export const retainProduct: RetainProductEntry = {
   ctaLabel: "Open platform →",
   liveMeta: "retain-ai-eight.vercel.app",
   roleLine: "RETAIN AI · Founder & Solo Engineer · 2025–Present",
-  subtitle: "AI messaging for local service businesses.",
+  subtitle: "Messaging and callback assistant for local service businesses.",
   blurb:
-    "RETAIN AI helps local businesses reply to missed leads, answer common questions, and hand off messy conversations before they lose the customer. I built the onboarding, dashboard, tenant settings, SMS flow, memory layer, and Gemini/Twilio integration.",
+    "RETAIN AI helps local businesses answer missed texts and calls. RETAINchat handles SMS and web messages. RETAINvoice answers calls, places callbacks, checks business rules, responds out loud, logs the transcript, and hands off messy calls to the owner.",
   featureCards: [
     {
-      title: "Reply flow",
+      title: "RETAINchat",
       copy:
-        "Rules handle FAQs, hours, and escalation first. Gemini steps in when the message needs a more flexible answer.",
+        "SMS and web messages use business FAQs, hours, tone, memory, and escalation rules before Gemini writes a reply.",
     },
     {
-      title: "Tenant settings",
+      title: "RETAINvoice",
       copy:
-        "Each business can use its own tone, hours, FAQs, alerts, and routing rules without a redeploy.",
+        "Answers inbound calls and callbacks, listens to the caller, runs the same business rules as chat, speaks responses out loud, and flags owner handoff when booking or pricing needs a person.",
     },
     {
-      title: "Voice in progress",
+      title: "Owner handoff",
       copy:
-        "The phone assistant reuses the same business rules and memory model for inbound calls.",
+        "Messy conversations are logged with a summary and routed back to the business instead of pretending the AI can finish everything.",
     },
   ],
   stats: [
@@ -190,7 +188,7 @@ export const retainProduct: RetainProductEntry = {
       animation: { kind: "text" },
     },
   ],
-  integrations: ["Supabase", "Gemini", "Twilio", "Playwright", "Vercel"],
+  integrations: ["Supabase", "Gemini", "Twilio", "Vercel"],
   tags: [
     "Next.js",
     "TypeScript",
@@ -199,8 +197,6 @@ export const retainProduct: RetainProductEntry = {
     "Gemini",
     "Twilio",
     "Vercel",
-    "Playwright",
-    "Vitest",
   ],
 };
 
@@ -476,42 +472,32 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       "Built tenant settings for business-specific tone, FAQs, hours, and escalation rules",
       "Combined rule-based routing, Gemini, and conversation memory in the reply flow",
       "Stress tested to 500+ concurrent users with 4M+ message exchanges, 150–250ms p95, and <0.4% error rate",
-      "Currently extending the same flow to a phone-answering assistant",
+      "Added RETAINvoice call handling with live transcript, tool calls, call summary, and owner handoff",
     ],
-    tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel", "Multi-tenant SaaS"],
+    tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel"],
   },
 ] as const;
 
 export const skillGroups: readonly SkillGroupEntry[] = [
   {
-    label: "Languages",
-    description: "Languages I use for app logic, scripts, services, and data work.",
-    icon: "languages",
-    items: ["TypeScript", "Python", "SQL", "Go", "C/C++"],
+    label: "core/",
+    items: ["TypeScript", "Python", "SQL"],
   },
   {
-    label: "Frontend",
-    description: "Tools I use when the product needs a clean, fast interface.",
-    icon: "frontend",
-    items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
+    label: "product/",
+    items: ["React", "Next.js", "Tailwind"],
   },
   {
-    label: "Backend / Data",
-    description: "API work, data storage, auth, and the code behind the UI.",
-    icon: "backend",
-    items: ["Node.js", "FastAPI", "Express", "PostgreSQL", "Supabase", "MongoDB"],
+    label: "services/",
+    items: ["Node.js", "FastAPI", "PostgreSQL", "Supabase"],
   },
   {
-    label: "ML / Infra",
-    description: "Model code, deployment, and integrations when a normal CRUD app is not enough.",
-    icon: "ml",
-    items: ["TensorFlow", "scikit-learn", "Docker", "AWS", "Gemini", "Twilio"],
+    label: "ai-voice/",
+    items: ["Gemini", "Twilio"],
   },
   {
-    label: "Tools / Platforms",
-    description: "Deployment, collaboration, auth, payments, and edge work.",
-    icon: "tools",
-    items: ["Vercel", "GitHub", "Stripe", "Clerk", "REST APIs", "Cloudflare Workers"],
+    label: "ship/",
+    items: ["Docker", "Vercel", "GitHub"],
   },
 ];
 
