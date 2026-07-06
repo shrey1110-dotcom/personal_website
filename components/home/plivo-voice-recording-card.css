@@ -1,0 +1,535 @@
+/* Isolated Plivo VoiceRecordingCard clone — tokens match plivo.com dark theme */
+.pvr-scope {
+  --pvr-background: 225 18% 5%;
+  --pvr-foreground: 240 5% 96%;
+  --pvr-surface: 225 15% 8%;
+  --pvr-muted-foreground: 240 4% 64%;
+  --pvr-border: 225 12% 18%;
+  --pvr-primary: 235 99% 59%;
+
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .pvr-scope {
+    align-items: flex-end;
+  }
+}
+
+.pvr-card {
+  width: 100%;
+  max-width: 28.75rem;
+  overflow: hidden;
+  border: 1px solid hsl(var(--pvr-border));
+  border-radius: 0.5rem;
+  background: hsl(var(--pvr-surface));
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.02),
+    0 30px 60px -30px rgba(0, 0, 0, 0.28);
+}
+
+.pvr-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid hsl(var(--pvr-border));
+  background: hsl(var(--pvr-background) / 0.4);
+  padding: 0.625rem 1rem;
+}
+
+.pvr-call-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(var(--pvr-foreground) / 0.8);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+}
+
+.pvr-live-dot {
+  position: relative;
+  display: inline-flex;
+  height: 0.375rem;
+  width: 0.375rem;
+}
+
+.pvr-live-ping {
+  position: absolute;
+  inset: 0;
+  display: inline-flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: hsl(var(--pvr-primary));
+  opacity: 0.75;
+  animation: pvr-ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.pvr-live-core {
+  position: relative;
+  display: inline-flex;
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: hsl(var(--pvr-primary));
+}
+
+.pvr-mono {
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+}
+
+.pvr-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.pvr-scenario {
+  max-width: 6.875rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pvr-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-bottom: 1px solid hsl(var(--pvr-border));
+  background: hsl(var(--pvr-background) / 0.2);
+  padding: 0.5rem 1rem;
+}
+
+.pvr-pill {
+  border: 1px solid hsl(var(--pvr-border));
+  border-radius: 999px;
+  background: hsl(var(--pvr-surface));
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 0.125rem 0.5rem;
+  text-transform: uppercase;
+}
+
+.pvr-pill-spacer {
+  flex: 1;
+}
+
+.pvr-session {
+  color: hsl(var(--pvr-muted-foreground) / 0.6);
+  font-size: 10px;
+}
+
+.pvr-player {
+  position: relative;
+  padding: 1.5rem 1.25rem;
+}
+
+.pvr-player-grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, hsl(var(--pvr-muted-foreground) / 0.55) 1px, transparent 1px);
+  background-size: 16px 16px;
+  opacity: 0.35;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.pvr-player-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.pvr-play-button {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: hsl(var(--pvr-primary));
+  color: #fff;
+  cursor: pointer;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pvr-play-button:hover {
+  transform: scale(1.05);
+}
+
+.pvr-play-icon {
+  height: 1rem;
+  width: 1rem;
+  fill: currentColor;
+}
+
+.pvr-play-icon-play {
+  margin-left: 0.125rem;
+}
+
+.pvr-waveform {
+  display: flex;
+  height: 2.5rem;
+  flex: 1;
+  align-items: center;
+  gap: 2px;
+}
+
+.pvr-bar {
+  flex: 1;
+  min-width: 2px;
+  max-width: 3px;
+  border-radius: 999px;
+  background: hsl(var(--pvr-muted-foreground) / 0.3);
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pvr-bar-filled {
+  background: hsl(var(--pvr-primary));
+}
+
+.pvr-bar-head {
+  box-shadow: 0 0 8px hsl(var(--pvr-primary) / 0.7);
+}
+
+.pvr-elapsed {
+  flex-shrink: 0;
+}
+
+/* Live transcript */
+.pvr-transcript-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid hsl(var(--pvr-border));
+  background: hsl(var(--pvr-background) / 0.2);
+  padding: 0.5rem 1rem;
+}
+
+.pvr-transcript-title {
+  color: hsl(var(--pvr-muted-foreground) / 0.7);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 9.5px;
+}
+
+.pvr-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pvr-status-dot {
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: hsl(var(--pvr-muted-foreground) / 0.5);
+}
+
+.pvr-status-agent-speaking .pvr-status-dot {
+  background: hsl(var(--pvr-primary));
+  animation: pvr-blink 1s steps(2, start) infinite;
+}
+
+.pvr-status-listening .pvr-status-dot {
+  background: hsl(142 71% 55%);
+  animation: pvr-blink 1s steps(2, start) infinite;
+}
+
+.pvr-transcript {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 12.5rem;
+  overflow-y: auto;
+  padding: 0.875rem 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--pvr-border)) transparent;
+}
+
+.pvr-transcript::-webkit-scrollbar {
+  width: 5px;
+}
+
+.pvr-transcript::-webkit-scrollbar-thumb {
+  background: hsl(var(--pvr-border));
+  border-radius: 999px;
+}
+
+.pvr-transcript-empty {
+  color: hsl(var(--pvr-muted-foreground) / 0.65);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 1.25rem 0.25rem;
+  text-align: center;
+}
+
+.pvr-turn {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-width: 88%;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid hsl(var(--pvr-border));
+  animation: pvr-turn-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pvr-turn-agent {
+  align-self: flex-start;
+  background: hsl(var(--pvr-primary) / 0.1);
+  border-color: hsl(var(--pvr-primary) / 0.28);
+}
+
+.pvr-turn-caller {
+  align-self: flex-end;
+  background: hsl(var(--pvr-surface));
+}
+
+.pvr-turn-active {
+  box-shadow: 0 0 0 1px hsl(var(--pvr-primary) / 0.35);
+}
+
+.pvr-turn-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pvr-turn-who {
+  color: hsl(var(--pvr-muted-foreground) / 0.7);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pvr-turn-agent .pvr-turn-who {
+  color: hsl(var(--pvr-primary) / 0.85);
+}
+
+.pvr-turn-tool {
+  color: hsl(var(--pvr-muted-foreground) / 0.75);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  padding: 0.05rem 0.35rem;
+  border: 1px solid hsl(var(--pvr-border));
+  border-radius: 999px;
+  background: hsl(var(--pvr-background) / 0.4);
+}
+
+.pvr-turn-text {
+  color: hsl(var(--pvr-foreground) / 0.9);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.pvr-caret {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: hsl(var(--pvr-primary));
+  animation: pvr-blink 0.9s steps(2, start) infinite;
+}
+
+/* Turn-gap chip */
+.pvr-gap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.15rem 0;
+  animation: pvr-turn-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.pvr-gap-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, hsl(var(--pvr-primary) / 0.3), transparent);
+}
+
+.pvr-gap-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  color: hsl(var(--pvr-primary));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pvr-gap-chip strong {
+  color: hsl(var(--pvr-foreground));
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.pvr-gap-pulse {
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: hsl(var(--pvr-primary));
+  animation: pvr-blink 0.9s steps(2, start) infinite;
+}
+
+.pvr-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid hsl(var(--pvr-border));
+}
+
+.pvr-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.pvr-metric-divider {
+  border-right: 1px solid hsl(var(--pvr-border));
+}
+
+.pvr-metric-label {
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pvr-metric-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.pvr-metric-value {
+  color: hsl(var(--pvr-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 1rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+.pvr-metric-unit {
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+}
+
+.pvr-metric-meta {
+  color: hsl(var(--pvr-muted-foreground) / 0.7);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 10px;
+}
+
+.pvr-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-top: 1px solid hsl(var(--pvr-border));
+  background: hsl(var(--pvr-background) / 0.4);
+  padding: 0.5rem 1rem;
+}
+
+.pvr-footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: hsl(var(--pvr-muted-foreground));
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+}
+
+.pvr-footer-dot {
+  height: 0.375rem;
+  width: 0.375rem;
+  border-radius: 999px;
+  background: hsl(var(--pvr-primary) / 0.7);
+}
+
+.pvr-footer-agent {
+  color: hsl(var(--pvr-muted-foreground) / 0.7);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  font-size: 11px;
+}
+
+.pvr-scope > audio {
+  display: none;
+}
+
+.retain-voice-viewport {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 2.5rem) 1.25rem;
+  background: hsl(225 18% 5%);
+}
+
+.retain-voice-viewport .pvr-scope {
+  align-items: center;
+}
+
+@keyframes pvr-ping {
+  75%,
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes pvr-turn-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pvr-blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pvr-live-ping,
+  .pvr-caret,
+  .pvr-gap-pulse,
+  .pvr-status-dot,
+  .pvr-turn,
+  .pvr-gap {
+    animation: none;
+  }
+
+  .pvr-play-button:hover {
+    transform: none;
+  }
+}
