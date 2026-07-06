@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import ExperienceSection from "@/components/home/ExperienceSection";
 import HeroProfilePanel from "@/components/home/HeroProfilePanel";
-import InfoRails from "@/components/home/InfoRails";
 import ProjectBand from "@/components/home/ProjectBand";
 import ProjectCompactCard from "@/components/home/ProjectCompactCard";
 import RetainProductSection from "@/components/home/RetainProductSection";
@@ -81,7 +80,7 @@ export default function HomePage() {
               href={withBasePath("/resume.pdf")}
               target="_blank"
               rel="noreferrer"
-              className="header-resume rounded-full border border-[rgba(146,169,255,0.24)] bg-[rgba(146,169,255,0.08)] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-[rgba(112,224,215,0.42)] hover:bg-[rgba(112,224,215,0.12)]"
+              className="header-resume rounded-full border border-[rgba(174,185,201,0.24)] bg-[rgba(174,185,201,0.08)] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-[rgba(174,185,201,0.42)] hover:bg-[rgba(174,185,201,0.12)]"
               data-cursor="interactive"
             >
               Resume
@@ -148,7 +147,6 @@ export default function HomePage() {
                 <HeroProfilePanel />
               </div>
 
-              <InfoRails className="mt-12 md:mt-14" />
             </div>
           </div>
         </section>
@@ -158,9 +156,8 @@ export default function HomePage() {
         <section id="work" className="section-shell pt-6 md:pt-8">
           <div className="section-frame project-section-frame">
             <SectionHeading
-              label="Selected Work"
-              title="Work I want you to see first"
-              body="These are the builds I would talk through in an interview: messaging, repo context, aid payments, marketplaces, and credential checks."
+              label="/work"
+              title="Selected work"
             />
 
             <div className="mt-6">
@@ -174,9 +171,8 @@ export default function HomePage() {
         <section id="archive" className="section-shell pt-4">
           <div className="section-frame">
             <SectionHeading
-              label="More Work"
+              label="/archive"
               title="Other technical work"
-              body="Smaller builds that show how I handle model output, data prep, and automation."
             />
 
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
@@ -190,9 +186,8 @@ export default function HomePage() {
         <section id="stack" className="section-shell pt-6 md:pt-8">
           <div className="section-frame">
             <SectionHeading
-              label="Stack"
-              title="Core tools behind the work"
-              body="The tools I use most when I need to build the UI and the backend myself."
+              label="/stack"
+              title="Technical toolkit"
             />
 
             <div className="mt-8">
@@ -253,7 +248,7 @@ export default function HomePage() {
             Shreyansh Sharma · Long Beach, CA · CSULB · Open to internships
           </p>
           <p className="text-sm text-slate-500">
-            Built with Next.js, TypeScript, Tailwind, Framer Motion, and Lenis.
+            Built with Next.js, TypeScript, and Tailwind.
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 pt-1">
             {contactLinks.map((link) => {
