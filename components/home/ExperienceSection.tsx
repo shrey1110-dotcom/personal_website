@@ -27,9 +27,8 @@ export default function ExperienceSection() {
     <section id="experience" className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
         <SectionHeading
-          label="Experience"
+          label="/experience"
           title="Work experience"
-          body="Two roles I want recruiters to see first: contract voice AI work at Rezolve.ai and the product I founded, RETAIN AI."
         />
 
         <div className="experience-showcase-grid mt-10">
