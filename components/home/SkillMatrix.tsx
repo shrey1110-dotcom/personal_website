@@ -344,10 +344,9 @@ export default function SkillMatrix({ groups }: SkillMatrixProps) {
       <div className="skill-palette-panel">
         <div className="skill-palette-header">
           <div className="max-w-[42rem]">
-            <p className="section-label">Working palette</p>
+            <p className="section-label">Tools I use</p>
             <p className="mt-4 text-lg font-medium tracking-[-0.035em] text-white md:text-[1.45rem]">
-              One surface, split by function. Languages, frameworks, infra, and platforms that
-              repeatedly show up in shipped work.
+              The tools I reach for most often, grouped by where they show up in the build.
             </p>
           </div>
           <div className="skill-palette-summary">

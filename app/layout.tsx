@@ -11,9 +11,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Shreyansh Sharma — Software Engineer",
+  title: "Shreyansh Sharma | Software Engineer",
   description:
-    "Software engineer building full-stack products, integrations, and applied machine learning systems.",
+    "Software engineer at CSULB building web products, integrations, and applied machine learning tools.",
   metadataBase: new URL(pagesSiteUrl),
   openGraph: {
     title: "Shreyansh Sharma",

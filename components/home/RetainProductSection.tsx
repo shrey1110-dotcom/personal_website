@@ -27,7 +27,7 @@ export default function RetainProductSection() {
               transition={{ duration: 0.72, ease: revealEase }}
               className="max-w-[43rem]"
             >
-              <p className="section-label retain-label">Featured work</p>
+              <p className="section-label retain-label">Current product</p>
               <p className="retain-role-line mt-4">{retainProduct.roleLine}</p>
               <h2 className="retain-title mt-4">{retainProduct.name}</h2>
               <p className="retain-support mt-5">{retainProduct.subtitle}</p>

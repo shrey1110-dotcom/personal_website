@@ -45,7 +45,7 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
 
             {project.metrics?.length ? (
               <div>
-                <p className="mono-label">Highlights</p>
+                <p className="mono-label">Numbers</p>
                 <div className="project-metric-grid mt-3">
                   {project.metrics.map((metric, metricIndex) => (
                     <motion.div
