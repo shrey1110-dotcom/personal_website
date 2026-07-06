@@ -49,7 +49,7 @@ function MotionVisual() {
       accentClassName="project-visual-motion"
       chromeLabel="Form scoring demo"
       compact
-      rightLabel="Pose → feedback"
+      rightLabel="Pose to feedback"
     >
       <div className="grid min-h-[15rem] gap-4 px-5 py-5">
         <div className="grid gap-4 lg:grid-cols-[0.94fr_1.06fr]">
@@ -77,7 +77,7 @@ function MotionVisual() {
             <div className="flex items-center justify-between">
               <p className="mono-label">Coaching output</p>
               <span className="text-xs uppercase tracking-[0.16em] text-emerald-300/90">
-                live score
+                score
               </span>
             </div>
             <div className="mt-4 space-y-3">
@@ -193,7 +193,7 @@ function FlashloanVisual() {
             ["Pairs checked", "13,240+"],
             ["Spread filter", "pass"],
             ["Slippage guard", "on"],
-            ["Route", "DEX A → B → C"],
+            ["Route", "DEX A to B to C"],
           ].map(([label, value]) => (
             <div
               key={label}
@@ -220,7 +220,7 @@ function ScopeKitVisual() {
         <div className="grid gap-3 rounded-[1.35rem] border border-emerald-300/15 bg-[#07120f] p-4 font-mono text-[0.76rem] leading-6 text-[#9be7c4] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
           <p>
             <span className="text-[#d4a017]">$</span> scopekit pack &quot;trace auth/session
-            impact&quot;
+            usage&quot;
           </p>
           <p className="text-slate-500">indexed ./src ./app ./tests</p>
           <p className="text-slate-500">resolved imports, symbols, risks, commands</p>
@@ -248,7 +248,7 @@ function ScopeKitVisual() {
           <div className="flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm font-medium text-[#f7dfa1]">Agent receives a bounded pack.</p>
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-[#d4a017]">
-              ~1,280x smaller context target
+              Measured 1,280x context reduction
             </p>
           </div>
         </div>
@@ -261,14 +261,14 @@ function ResilientVisual() {
   return (
     <VisualShell
       accentClassName="project-visual-resilient"
-      chromeLabel="Aid workflow"
-      rightLabel="donor -> vendor"
+      chromeLabel="Aid flow"
+      rightLabel="donor to vendor"
     >
       <div className="grid min-h-[32rem] grid-rows-[auto_1fr_auto] gap-4 px-5 py-5">
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.35rem] border border-white/8 bg-black/20 px-4 py-3">
           <div>
             <p className="text-lg font-semibold tracking-[-0.04em] text-white">ResilientAid</p>
-            <p className="text-xs text-slate-400">Aid that actually reaches people.</p>
+            <p className="text-xs text-slate-400">Donor funds, vendor fulfillment, beneficiary credits.</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {["Admin", "Donor", "Beneficiary", "Vendor"].map((item) => (
@@ -337,7 +337,7 @@ function KalaVisual() {
           <div className="rounded-[1.15rem] border border-white/8 bg-[linear-gradient(145deg,rgba(250,204,21,0.18),rgba(168,85,247,0.12)),rgba(255,255,255,0.035)] p-4">
             <p className="text-xl font-semibold tracking-[-0.04em] text-amber-100">KalaAI</p>
             <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
-              artisan commerce
+              handmade marketplace
             </p>
           </div>
           <div className="mt-4 grid flex-1 gap-3">
@@ -366,7 +366,7 @@ function KalaVisual() {
               </div>
               <div className="space-y-3">
                 {[
-                  ["Likely origin", "Rajasthan textile craft"],
+                  ["Likely origin", "Rajasthan textile"],
                   ["Category match", "Handwoven decor"],
                   ["Confidence", "87%"],
                 ].map(([label, value]) => (
@@ -407,7 +407,7 @@ function VeriDegreeVisual() {
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-[1.35rem] border border-white/8 bg-black/24 px-4 py-3">
           <div>
             <p className="text-lg font-semibold tracking-[0.06em] text-white">VERIDEGREE</p>
-            <p className="text-xs text-slate-400">School-issued records, employer verification.</p>
+            <p className="text-xs text-slate-400">School-issued records. Employer checks.</p>
           </div>
           <span className="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs uppercase tracking-[0.16em] text-emerald-200">
             verified
@@ -452,7 +452,7 @@ function VeriDegreeVisual() {
         </div>
 
         <div className="rounded-[1.2rem] border border-white/8 bg-black/24 px-4 py-3 font-mono text-xs text-slate-300">
-          tx: ALGO-mainnet / issuer-signature / credential-status: active
+          tx: ALGO-mainnet / issuer signature / credential status: active
         </div>
       </div>
     </VisualShell>
@@ -489,7 +489,7 @@ export default function ProjectVisual({ compact = false, project }: ProjectVisua
       return <FlashloanVisual />;
     default:
       return (
-        <VisualShell accentClassName="project-visual-fallback" compact={compact} chromeLabel="Product surface" rightLabel="Preview">
+        <VisualShell accentClassName="project-visual-fallback" compact={compact} chromeLabel="Preview" rightLabel="Unavailable">
           <div className="flex min-h-[15rem] items-center justify-center px-5 py-5 text-sm text-slate-300">
             Preview unavailable
           </div>

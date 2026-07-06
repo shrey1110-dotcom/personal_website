@@ -29,7 +29,7 @@ export default function ExperienceSection() {
         <SectionHeading
           label="Experience"
           title="Work experience"
-          body="The two roles that best show my range: enterprise voice AI work at Rezolve.ai and founder-led product engineering on RETAIN AI."
+          body="Two roles I want recruiters to see first: contract voice AI work at Rezolve.ai and the product I founded, RETAIN AI."
         />
 
         <div className="experience-showcase-grid mt-10">
@@ -160,7 +160,7 @@ export default function ExperienceSection() {
                 exit={{ opacity: 0.38, y: -10 }}
                 transition={{ duration: 0.4, ease: revealEase }}
               >
-                <p className="experience-side-title">About the company</p>
+                <p className="experience-side-title">Company context</p>
 
                 <div className="experience-about-grid">
                   {activeEntry.meta.map((item) => (
@@ -172,7 +172,7 @@ export default function ExperienceSection() {
                 </div>
 
                 <div className="experience-about-copy-block">
-                  <p className="experience-about-label">Description</p>
+                  <p className="experience-about-label">What I worked on</p>
                   <p className="experience-about-copy">{activeEntry.description}</p>
                 </div>
 

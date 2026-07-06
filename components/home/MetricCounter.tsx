@@ -20,6 +20,25 @@ const compactFormatter = new Intl.NumberFormat("en-US", {
   notation: "compact",
 });
 
+function finalRangeValue(metric: RetainProductEntry["stats"][number]): RangeState {
+  if (metric.animation.kind === "range") {
+    return {
+      start: metric.animation.start,
+      end: metric.animation.end,
+    };
+  }
+
+  return { start: 0, end: 0 };
+}
+
+function finalNumericValue(metric: RetainProductEntry["stats"][number]) {
+  if (metric.animation.kind === "int" || metric.animation.kind === "decimal") {
+    return metric.animation.end;
+  }
+
+  return 0;
+}
+
 export default function MetricCounter({ active, metric }: MetricCounterProps) {
   const counterRef = useRef<HTMLSpanElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -28,11 +47,12 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
     once: true,
   });
   const shouldRun = active || counterInView;
-  const [numericValue, setNumericValue] = useState(0);
-  const [rangeValue, setRangeValue] = useState<RangeState>({ start: 0, end: 0 });
+  const [numericValue, setNumericValue] = useState(() => finalNumericValue(metric));
+  const [rangeValue, setRangeValue] = useState<RangeState>(() => finalRangeValue(metric));
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!shouldRun || metric.animation.kind === "text") {
+    if (!shouldRun || hasAnimated || metric.animation.kind === "text") {
       return;
     }
 
@@ -53,15 +73,19 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
 
     if (metric.animation.kind === "range") {
       const rangeAnimation = metric.animation;
+
       const controls = animate(0, 1, {
-        duration,
+        duration: duration * 0.82,
         ease: [0.22, 1, 0.36, 1],
         onUpdate: (latest) => {
+          const progress = 0.72 + latest * 0.28;
+
           setRangeValue({
-            start: rangeAnimation.start * latest,
-            end: rangeAnimation.end * latest,
+            start: rangeAnimation.start * progress,
+            end: rangeAnimation.end * progress,
           });
         },
+        onComplete: () => setHasAnimated(true),
       });
 
       return () => {
@@ -69,18 +93,21 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
       };
     }
 
-    const controls = animate(0, metric.animation.end, {
-      duration,
+    const startingValue = metric.animation.end * 0.72;
+
+    const controls = animate(startingValue, metric.animation.end, {
+      duration: duration * 0.82,
       ease: [0.22, 1, 0.36, 1],
       onUpdate: (latest) => {
         setNumericValue(latest);
       },
+      onComplete: () => setHasAnimated(true),
     });
 
     return () => {
       controls.stop();
     };
-  }, [shouldRun, metric, prefersReducedMotion]);
+  }, [shouldRun, hasAnimated, metric, prefersReducedMotion]);
 
   const renderValue = () => {
     if (shouldRun && prefersReducedMotion) {
@@ -104,7 +131,11 @@ export default function MetricCounter({ active, metric }: MetricCounterProps) {
   };
 
   return (
-    <span ref={counterRef} className="retain-stat-value inline-block">
+    <span
+      ref={counterRef}
+      className="retain-stat-value inline-block"
+      aria-label={`${metric.value} ${metric.label}`}
+    >
       {renderValue()}
     </span>
   );

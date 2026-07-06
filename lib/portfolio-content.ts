@@ -82,12 +82,12 @@ export const heroActions = [
   {
     href: "mailto:shreyansh.sharma01@student.csulb.edu",
     label: "Email",
-    value: "Direct outreach",
+    value: "Best way to reach me",
   },
   {
     href: "https://linkedin.com/in/sharmasshrey",
     label: "LinkedIn",
-    value: "Professional profile",
+    value: "Work and background",
   },
   {
     href: "/resume.pdf",
@@ -106,7 +106,7 @@ export const ambientRails = [
     "Founder-built product",
     "Full-stack engineering",
     "Applied ML",
-    "Live systems",
+    "Running products",
     "Long Beach, California",
   ],
   [
@@ -114,7 +114,7 @@ export const ambientRails = [
     "Aid distribution",
     "Credential verification",
     "AI marketplace",
-    "Live product windows",
+    "Actual product screens",
   ],
   [
     "APIs • data flow • integrations",
@@ -126,8 +126,8 @@ export const ambientRails = [
 ] as const;
 
 export const heroStats = [
-  { value: "7", label: "Projects shipped" },
-  { value: "5", label: "Live in production" },
+  { value: "7", label: "Projects built" },
+  { value: "5", label: "Production links" },
   { value: "4M+", label: "Messages stress-tested" },
   { value: "500+", label: "Concurrent users tested" },
 ] as const;
@@ -138,24 +138,24 @@ export const retainProduct: RetainProductEntry = {
   ctaLabel: "Open platform →",
   liveMeta: "retain-ai-eight.vercel.app",
   roleLine: "RETAIN AI · Founder & Solo Engineer · 2025–Present",
-  subtitle: "AI communications infrastructure for customer-facing businesses.",
+  subtitle: "AI messaging for local service businesses.",
   blurb:
-    "I built and run the full product: onboarding, dashboard, tenant settings, SMS flow, memory, and AI response logic for local service businesses.",
+    "RETAIN AI helps local businesses reply to missed leads, answer common questions, and hand off messy conversations before they lose the customer. I built the onboarding, dashboard, tenant settings, SMS flow, memory layer, and Gemini/Twilio integration.",
   featureCards: [
     {
-      title: "Hybrid orchestration",
+      title: "Reply flow",
       copy:
-        "Deterministic rules + Gemini LLM + memory-driven context. Falls back gracefully at every layer.",
+        "Rules handle FAQs, hours, and escalation first. Gemini steps in when the message needs a more flexible answer.",
     },
     {
-      title: "Multi-tenant runtime",
+      title: "Tenant settings",
       copy:
-        "Business identity, tone, FAQs, hours, and workflows are all runtime-configurable. Zero redeploys per tenant.",
+        "Each business can use its own tone, hours, FAQs, alerts, and routing rules without a redeploy.",
     },
     {
       title: "Voice in progress",
       copy:
-        "Phone-answering assistant extending the same orchestration pipeline to inbound calls.",
+        "The phone assistant reuses the same business rules and memory model for inbound calls.",
     },
   ],
   stats: [
@@ -215,18 +215,18 @@ export const projects: ProjectEntry[] = [
     type: "Developer Tool",
     tagline: "The right files, not a graph to wander.",
     blurb:
-      "Gives Claude, Codex, and Cursor task-ready context packs before they search.",
+      "ScopeKit gives coding agents a small repo pack before they start searching through everything.",
     features: [
-      "Packs the files, symbols, tests, risks, and commands needed for one job.",
-      "Writes repo-local setup instructions for Claude, Codex, Cursor, and MCP.",
-      "Indexes locally with no API key and no LLM routing.",
-      "Cuts supplied context before agents spend tokens searching.",
+      "Picks the files, symbols, tests, risks, and commands for one task.",
+      "Writes local setup notes for Claude, Codex, Cursor, and MCP.",
+      "Runs locally. No API key. No LLM routing.",
+      "Reduces the context agents see before they spend tokens.",
     ],
     context:
-      "Built as a local CLI: index the repo, resolve the useful files, then write a compact pack an agent can act on.",
+      "I built the CLI to index a repo, choose the useful files, and write a context pack an agent can use immediately.",
     metrics: [
-      { value: "~1,280×", label: "Baseline-equivalent context compression" },
-      { value: "18×", label: "Scoped task-context reduction vs Graphify best-effort" },
+      { value: "~1,280×", label: "Less context in the auth task" },
+      { value: "18×", label: "Smaller than Graphify best-effort" },
       { value: "No", label: "LLM routing" },
       { value: "npm", label: "Published package" },
     ],
@@ -248,20 +248,20 @@ export const projects: ProjectEntry[] = [
     name: "ResilientAid",
     href: "https://resilient-aid.vercel.app",
     embedHref: "https://resilient-aid.vercel.app",
-    browserLabel: "Aid workflow",
+    browserLabel: "Aid flow",
     browserMeta: "resilient-aid.vercel.app",
     ctaLabel: "Open demo",
     type: "Aid protocol",
     blurb:
-      "Moves aid money from donors to beneficiaries and vendors with full on-chain tracking.",
+      "ResilientAid lets donors fund aid, vendors fulfill it, and beneficiaries receive help without the money disappearing in the middle.",
     features: [
-      "Four role-specific surfaces: admin, donor, beneficiary, and vendor POS.",
-      "Donor flow shows fund movement instead of hiding it behind a dashboard total.",
-      "Vendor settlement is designed around fast redemption and low-friction checkout.",
-      "Polygon Amoy transactions make transfer history inspectable end to end.",
+      "Separate screens for admins, donors, beneficiaries, and vendors.",
+      "Donors can see where funds move instead of trusting a dashboard total.",
+      "Vendors can redeem credits quickly at checkout.",
+      "Polygon Amoy records each transfer in the aid flow.",
     ],
     context:
-      "I built the role flow, wallet connection, vendor redemption path, and on-chain transaction trail.",
+      "I built the role-based app, wallet connection, vendor redemption path, and transaction trail.",
     metrics: [
       { value: "425 tx/s", label: "Network throughput" },
       { value: "0%", label: "Platform fees" },
@@ -277,7 +277,7 @@ export const projects: ProjectEntry[] = [
       { label: "Beneficiary App", href: "https://resilient-aid.vercel.app/beneficiary" },
       { label: "Vendor POS", href: "https://resilient-aid.vercel.app/vendor" },
     ],
-    tags: ["Polygon", "Smart contracts", "Aid distribution", "Offline-capable", "Stablecoin settlement"],
+    tags: ["Polygon", "Smart contracts", "Aid payments", "Vendor POS", "Stablecoin settlement"],
     visual: "resilient",
   },
   {
@@ -289,15 +289,15 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open demo",
     type: "AI marketplace",
     blurb:
-      "A marketplace prototype for discovering handmade goods and estimating cultural origin from product photos.",
+      "KalaAI is a marketplace for handmade goods where shoppers can browse products and get an AI guess at the craft origin from a photo.",
     features: [
-      "Swipe feed combines artisan stories, products, and discovery in one surface.",
-      "Marketplace flow includes listings, trends, seller context, and account views.",
-      "Image analysis maps product photos to 120+ cultural craft categories.",
-      "AI output appears inside the shopping flow, not as a detached model demo.",
+      "Shorts-style feed for artisan stories and products.",
+      "Listings, trends, seller context, and account pages live in one app.",
+      "Photo analysis maps products to 120+ craft categories.",
+      "AI results appear inside shopping instead of a separate demo page.",
     ],
     context:
-      "The hard part was keeping browsing, feed discovery, and image analysis in one product flow instead of separate demos.",
+      "I built the feed, marketplace pages, trend view, account flow, and image-analysis path as one product.",
     metrics: [
       { value: "120+", label: "Cultural detection categories" },
       { value: "5", label: "Product surfaces" },
@@ -307,19 +307,19 @@ export const projects: ProjectEntry[] = [
     surfaces: ["Home", "Shorts Feed", "Marketplace", "Trends", "Account"],
     featureCards: [
       {
-        title: "AI CULTURAL DETECTION",
+        title: "Image origin check",
         copy:
-          "Identifies cultural origin and provenance from product imagery across 120+ craft categories.",
+          "Estimates cultural origin from product photos across 120+ craft categories.",
       },
       {
-        title: "SHORTS-STYLE DISCOVERY",
+        title: "Shorts feed",
         copy:
-          "Swipeable discovery feed for artisan stories and handcrafted goods — built for engagement.",
+          "Swipeable product stories make discovery feel closer to a shopping feed than a catalog.",
       },
       {
-        title: "LIVE MARKETPLACE",
+        title: "Marketplace flow",
         copy:
-          "Full buyer/seller infrastructure with listings, accounts, and trend tracking.",
+          "Listings, account views, seller context, and trend pages are wired into the same app.",
       },
     ],
     tags: ["AI", "Computer Vision", "Full-stack", "Marketplace", "Next.js", "Vercel"],
@@ -334,15 +334,15 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "Open demo",
     type: "Credential verification",
     blurb:
-      "Lets schools issue digital credentials once and gives employers a fast verification path.",
+      "VeriDegree lets a school issue a credential and lets an employer check that it is real without seeing more student data than necessary.",
     features: [
-      "Institutions issue credentials once instead of re-sending PDFs.",
-      "Students hold wallet-based academic records they can present later.",
-      "Employers verify credential status from a public verification flow.",
-      "Selective disclosure reduces fraud without adding manual review.",
+      "Schools issue records once instead of emailing PDFs again and again.",
+      "Students keep wallet-based academic records they can present later.",
+      "Employers check credential status from a public verification page.",
+      "Private fields stay hidden unless they are needed.",
     ],
     context:
-      "Built around Algorand assets, issuer-controlled records, and selective disclosure for employer checks.",
+      "I built the issuer, student, and employer paths around Algorand credential state.",
     metrics: [
       { value: "Mainnet", label: "Algorand deployment" },
       { value: "Soulbound", label: "Academic records" },
@@ -353,7 +353,7 @@ export const projects: ProjectEntry[] = [
       "Algorand credential issuance",
       "Issuer / student / employer flow",
       "Wallet-based credential state",
-      "Selective disclosure workflow",
+      "Selective disclosure",
     ],
     tags: ["Algorand", "Soulbound credentials", "Zero-knowledge privacy", "Academic verification"],
     visual: "veridegree",
@@ -364,15 +364,15 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "View GitHub",
     type: "Computer vision",
     blurb:
-      "Turns pose keypoints into exercise-form scores and readable coaching feedback.",
+      "AI Motion Analysis reads pose keypoints from workout video and turns them into form scores a person can understand.",
     features: [
       "Tracks 17 body keypoints across video frames.",
       "Scores depth, balance, tempo, and alignment.",
-      "Turns pose output into readable coaching notes.",
-      "Highlights the mistakes that matter instead of dumping raw keypoints.",
+      "Turns pose output into short coaching notes.",
+      "Flags the form issues instead of dumping raw keypoints.",
     ],
     context:
-      "The useful work is after inference: cleaning noisy keypoints and turning them into a scoring system.",
+      "I focused on the step after inference: cleaning noisy keypoints and turning them into useful feedback.",
     proofPoints: [
       "17-point MoveNet pose sequences",
       "PyTorch scoring pipeline",
@@ -387,15 +387,15 @@ export const projects: ProjectEntry[] = [
     ctaLabel: "View GitHub",
     type: "Medical ML",
     blurb:
-      "Classifies Pap smear images across five cell types with a repeatable training and evaluation flow.",
+      "Cervical Cell CNN classifies Pap smear images into five cell types and keeps the training path repeatable.",
     features: [
       "Trained on 4,000 labeled images across five classes.",
       "Preprocessing stays consistent before training and evaluation.",
-      "Transfer learning speeds up training and improves performance.",
+      "Transfer learning makes the model train faster on the image set.",
       "Class confidence makes model mistakes easier to inspect.",
     ],
     context:
-      "Built around consistent preprocessing, transfer learning, and evaluation against a medical dataset.",
+      "I built the preprocessing, transfer-learning setup, and evaluation flow around the medical dataset.",
     proofPoints: [
       "4,000 Pap smear images",
       "Five-class medical image workflow",
@@ -409,17 +409,17 @@ export const projects: ProjectEntry[] = [
     name: "Flashloan Bot",
     href: "https://gist.github.com/shrey1110-dotcom/ef53904ed184311d8a8dd5587ef11716",
     ctaLabel: "View gist",
-    type: "Web3 systems",
+    type: "Web3 automation",
     blurb:
       "Scans DeFi routes and filters out trades that are too risky or too slow to execute.",
     features: [
       "Checks 13,240+ token pairs for route opportunities.",
       "Separates scanning, validation, and execution into clear stages.",
       "Filters by spread, gas cost, and slippage before acting.",
-      "Built for automated decisions instead of manual market watching.",
+      "Designed for automated checks instead of manual market watching.",
     ],
     context:
-      "Discovery, validation, and execution are separated so the system can move fast without turning execution into guesswork.",
+      "I separated discovery, validation, and execution so bad routes can be rejected before the bot acts.",
     proofPoints: [
       "13,240+ token pairs evaluated",
       "Execution guards for timing and slippage",
@@ -449,11 +449,11 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       { label: "Listed", value: "NASDAQ (RZLV)" },
     ],
     description:
-      "Contributed to the early-stage development of Rezolve VoiceIQ — an enterprise AI voice assistant that handles inbound IT and HR support calls with human-like conversation, real-time knowledge retrieval, and intelligent escalation.",
+      "Worked on early Rezolve VoiceIQ work for inbound IT and HR support calls. The assistant listens, finds the right internal answer, creates tickets when needed, and escalates messy cases.",
     bullets: [
-      "Helped build conversational flow logic for the voice assistant's intent recognition and call handling pipeline",
-      "Worked on integrating the voice layer with enterprise ITSM systems for real-time ticket creation and escalation",
-      "Contributed during early startup phase before the product scaled to Fortune 500 deployments",
+      "Helped build call-flow logic for intent recognition and call handling",
+      "Worked on the ITSM integration path for ticket creation and escalation",
+      "Contributed before the product moved into larger enterprise deployments",
     ],
     tags: ["Voice AI", "NLP", "ITSM Integration", "Conversational AI", "LLM Orchestration"],
   },
@@ -471,12 +471,12 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       { label: "Stack", value: "Next.js · Supabase · Gemini · Twilio" },
     ],
     description:
-      "Founded and built RETAIN AI — live AI communications infrastructure for local service businesses. Sole engineer across product, infrastructure, and AI integration.",
+      "Founded and built RETAIN AI for local service businesses that miss leads by phone or SMS. I am the sole engineer across product, backend, AI flow, and deployment.",
     bullets: [
-      "Architected multi-tenant runtime with business-specific rules, tone, FAQs, and escalation logic per tenant",
-      "Built hybrid AI orchestration combining deterministic routing, Gemini LLM, and conversation memory",
-      "Stress tested to 500+ concurrent users — 4M+ message exchanges, 150–250ms p95, <0.4% error rate under load",
-      "Voice assistant extension currently in progress",
+      "Built tenant settings for business-specific tone, FAQs, hours, and escalation rules",
+      "Combined rule-based routing, Gemini, and conversation memory in the reply flow",
+      "Stress tested to 500+ concurrent users with 4M+ message exchanges, 150–250ms p95, and <0.4% error rate",
+      "Currently extending the same flow to a phone-answering assistant",
     ],
     tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel", "Multi-tenant SaaS"],
   },
@@ -485,31 +485,31 @@ export const experienceEntries: readonly ExperienceEntry[] = [
 export const skillGroups: readonly SkillGroupEntry[] = [
   {
     label: "Languages",
-    description: "Core languages for product logic, automation, services, and data handling.",
+    description: "Languages I use for app logic, scripts, services, and data work.",
     icon: "languages",
     items: ["TypeScript", "Python", "SQL", "Go", "C/C++"],
   },
   {
     label: "Frontend",
-    description: "UI tooling for product surfaces that need to feel fast, legible, and deliberate.",
+    description: "Tools I use when the product needs a clean, fast interface.",
     icon: "frontend",
     items: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "HTML/CSS"],
   },
   {
     label: "Backend / Data",
-    description: "Service behavior, data storage, auth, and the layers behind the interface.",
+    description: "API work, data storage, auth, and the code behind the UI.",
     icon: "backend",
     items: ["Node.js", "FastAPI", "Express", "PostgreSQL", "Supabase", "MongoDB"],
   },
   {
     label: "ML / Infra",
-    description: "Model workflows, deployment, and system glue when the product needs more than CRUD.",
+    description: "Model code, deployment, and integrations when a normal CRUD app is not enough.",
     icon: "ml",
     items: ["TensorFlow", "scikit-learn", "Docker", "AWS", "Gemini", "Twilio"],
   },
   {
     label: "Tools / Platforms",
-    description: "Deployment, collaboration, auth, payments, and practical platform work around shipping.",
+    description: "Deployment, collaboration, auth, payments, and edge work.",
     icon: "tools",
     items: ["Vercel", "GitHub", "Stripe", "Clerk", "REST APIs", "Cloudflare Workers"],
   },

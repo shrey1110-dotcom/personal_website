@@ -3,9 +3,9 @@
 import HeroHeadshot from "@/components/home/HeroHeadshot";
 
 const profileSignals = [
-  "Founder & solo engineer",
-  "CS @ CSULB · 2027",
-  "Long Beach, CA",
+  "Founder of RETAIN AI",
+  "CSULB CS · May 2027",
+  "Long Beach",
 ] as const;
 
 export default function HeroProfilePanel() {
@@ -20,7 +20,7 @@ export default function HeroProfilePanel() {
           <div className="space-y-3 text-center">
             <p className="hero-portrait-name">Shreyansh Sharma</p>
             <p className="hero-portrait-title">
-              I build the product surface and the systems behind it.
+              I usually work across the whole stack: UI, APIs, data model, integrations, and tests.
             </p>
           </div>
 
