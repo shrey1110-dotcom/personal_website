@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 type SectionHeadingProps = {
-  body: string;
+  body?: string;
   label: string;
   title: string;
 };
@@ -54,19 +54,21 @@ export default function SectionHeading({
       >
         {title}
       </motion.h2>
-      <motion.p
-        className="section-body mt-5"
-        variants={{
-          hidden: { opacity: 0.64, y: 18 },
-          show: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
-          },
-        }}
-      >
-        {body}
-      </motion.p>
+      {body ? (
+        <motion.p
+          className="section-body mt-5"
+          variants={{
+            hidden: { opacity: 0.64, y: 18 },
+            show: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.62, ease: [0.22, 1, 0.36, 1] },
+            },
+          }}
+        >
+          {body}
+        </motion.p>
+      ) : null}
     </motion.div>
   );
 }
