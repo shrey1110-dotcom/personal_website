@@ -1,0 +1,33 @@
+{
+  "source": "retain-ai / call-scope",
+  "channel": "inbound",
+  "business": "Cedar Dental Studio",
+  "audio": "/demo/latest_demo_voice.wav",
+  "note": "Gemini multi-speaker demo playback. Turn gaps are measured from the recorded audio at runtime.",
+  "turns": [
+    { "speaker": "agent", "text": "Cedar Dental Studio, this is Alice. How can I help?" },
+    { "speaker": "caller", "text": "Hi, I've been having some tooth pain and wanted to see if someone could take a look." },
+    { "speaker": "agent", "text": "Absolutely. Would you like to schedule a visit for that?" },
+    { "speaker": "caller", "text": "Yes, please." },
+    { "speaker": "agent", "text": "Perfect. Have you been seen here before?" },
+    { "speaker": "caller", "text": "No, this would be my first time." },
+    { "speaker": "agent", "text": "No problem. Can I get your first and last name?" },
+    { "speaker": "caller", "text": "Jordan Miller." },
+    { "speaker": "agent", "text": "Thanks, Jordan. And your date of birth?" },
+    { "speaker": "caller", "text": "March 14th, 1994." },
+    { "speaker": "agent", "text": "Got it. What's the best phone number for you?" },
+    { "speaker": "caller", "text": "562-555-0148." },
+    { "speaker": "agent", "text": "Perfect. Got it, one moment while I check.", "tools": [{ "name": "check_availability" }] },
+    { "speaker": "caller", "text": "Sure." },
+    { "speaker": "agent", "text": "I have Tuesday at 10:15 AM or Wednesday at 3:30 PM. Would either of those work?" },
+    { "speaker": "caller", "text": "Do you have anything later? I work until around 4." },
+    { "speaker": "agent", "text": "Let me check that for you.", "tools": [{ "name": "check_availability" }] },
+    { "speaker": "agent", "text": "I do have Thursday at 4:45 PM." },
+    { "speaker": "caller", "text": "That works." },
+    { "speaker": "agent", "text": "Great. Will you be using dental insurance?" },
+    { "speaker": "caller", "text": "Yes." },
+    { "speaker": "agent", "text": "Perfect. You're booked for Thursday at 4:45 PM at Cedar Dental Studio for a tooth pain visit. I also texted you the new-patient intake and insurance forms. Please fill those out before you come in.", "tools": [{ "name": "create_booking" }, { "name": "send_intake_forms" }] },
+    { "speaker": "caller", "text": "Okay, perfect. Thank you." },
+    { "speaker": "agent", "text": "Of course. We'll see you Thursday." }
+  ]
+}
