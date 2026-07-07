@@ -10,7 +10,7 @@ import { retainProduct } from "@/lib/portfolio-content";
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
 export default function RetainProductSection() {
-  const [activeSurface, setActiveSurface] = useState<"chat" | "voice">("chat");
+  const [activeSurface, setActiveSurface] = useState<"chat" | "voice">("voice");
   const productRef = useRef<HTMLDivElement | null>(null);
   const retainInView = useInView(productRef, {
     amount: 0.24,

@@ -188,15 +188,16 @@ export const retainProduct: RetainProductEntry = {
       animation: { kind: "text" },
     },
   ],
-  integrations: ["Supabase", "Gemini", "Twilio", "Vercel"],
+  integrations: ["Supabase", "Gemini", "Twilio", "Stripe", "Vercel"],
   tags: [
     "Next.js",
     "TypeScript",
+    "Tailwind CSS",
     "Supabase",
-    "PostgreSQL",
     "Gemini",
     "Twilio",
-    "Vercel",
+    "Stripe",
+    "AWS",
   ],
 };
 
@@ -474,7 +475,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       "Stress tested to 500+ concurrent users with 4M+ message exchanges, 150–250ms p95, and <0.4% error rate",
       "Added RETAINvoice call handling with live transcript, tool calls, call summary, and owner handoff",
     ],
-    tags: ["Next.js", "TypeScript", "Supabase", "Gemini", "Twilio", "Vercel"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Gemini", "Twilio", "Stripe", "AWS"],
   },
 ] as const;
 
