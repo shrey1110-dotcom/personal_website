@@ -6,6 +6,9 @@ export type CallTurnInput = {
   speaker: TurnSpeaker;
   text: string;
   tools?: { name: string }[];
+  /** Optional pre-baked speech start/end (ms). When present these are authoritative. */
+  startMs?: number;
+  endMs?: number;
 };
 
 export type CallTurn = CallTurnInput & {
@@ -22,8 +25,33 @@ export type CallScopeDoc = {
   business?: string;
   audio: string;
   note?: string;
+  durationMs?: number;
   turns: CallTurnInput[];
 };
+
+/** True when every turn carries pre-baked timestamps (offline forced-alignment). */
+export function hasBakedTimings(turns: CallTurnInput[]): boolean {
+  return turns.length > 0 && turns.every((t) => typeof t.startMs === "number" && typeof t.endMs === "number");
+}
+
+/** Build turns directly from authoritative baked timestamps in the transcript. */
+export function buildTurnsFromTimings(turns: CallTurnInput[]): CallTurn[] {
+  return turns.map((turn, index) => {
+    const startMs = turn.startMs ?? 0;
+    const endMs = turn.endMs ?? startMs;
+    const prevEnd = index > 0 ? turns[index - 1].endMs ?? 0 : 0;
+    const gapMs = index > 0 ? Math.max(0, startMs - prevEnd) : 0;
+    return { ...turn, index, startMs, endMs, gapMs: Math.round(gapMs) };
+  });
+}
+
+/** Return the turn whose speech window [startMs, endMs] contains the given time, or null. */
+export function speakingTurnAt(turns: CallTurn[], timeMs: number): CallTurn | null {
+  for (let i = 0; i < turns.length; i++) {
+    if (timeMs >= turns[i].startMs && timeMs <= turns[i].endMs) return turns[i];
+  }
+  return null;
+}
 
 /**
  * Downsample raw PCM into a normalized peak-per-bar array in [0, 1].
