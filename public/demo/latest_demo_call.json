@@ -8,74 +8,74 @@
     {
       "speaker": "agent",
       "text": "Cedar Dental Studio, this is Alice. How can I help?",
-      "startMs": 280,
-      "endMs": 4180
+      "startMs": 0,
+      "endMs": 3020
     },
     {
       "speaker": "caller",
       "text": "Hi, I've been having some tooth pain and wanted to see if someone could take a look.",
-      "startMs": 4940,
-      "endMs": 11040
+      "startMs": 3640,
+      "endMs": 7640
     },
     {
       "speaker": "agent",
       "text": "Absolutely. Would you like to schedule a visit for that?",
-      "startMs": 11740,
-      "endMs": 16540
+      "startMs": 8200,
+      "endMs": 11020
     },
     {
       "speaker": "caller",
       "text": "Yes, please.",
-      "startMs": 16760,
-      "endMs": 18560
+      "startMs": 11460,
+      "endMs": 12160
     },
     {
       "speaker": "agent",
       "text": "Perfect. Have you been seen here before?",
-      "startMs": 19040,
-      "endMs": 21540
+      "startMs": 12700,
+      "endMs": 14960
     },
     {
       "speaker": "caller",
       "text": "No, this would be my first time.",
-      "startMs": 22320,
-      "endMs": 24100
+      "startMs": 15740,
+      "endMs": 17300
     },
     {
       "speaker": "agent",
       "text": "No problem. Can I get your first and last name?",
-      "startMs": 24940,
-      "endMs": 26820
+      "startMs": 17920,
+      "endMs": 20320
     },
     {
       "speaker": "caller",
       "text": "Jordan Miller.",
-      "startMs": 27540,
-      "endMs": 27920
+      "startMs": 20960,
+      "endMs": 21560
     },
     {
       "speaker": "agent",
       "text": "Thanks, Jordan. And your date of birth?",
-      "startMs": 28400,
-      "endMs": 29760
+      "startMs": 22180,
+      "endMs": 24120
     },
     {
       "speaker": "caller",
       "text": "March 14th, 1994.",
-      "startMs": 30600,
-      "endMs": 31280
+      "startMs": 25040,
+      "endMs": 26760
     },
     {
       "speaker": "agent",
       "text": "Got it. What's the best phone number for you?",
-      "startMs": 31820,
-      "endMs": 35400
+      "startMs": 27420,
+      "endMs": 29800
     },
     {
       "speaker": "caller",
       "text": "562-555-0148.",
-      "startMs": 35960,
-      "endMs": 36260
+      "startMs": 30565,
+      "endMs": 34135
     },
     {
       "speaker": "agent",
@@ -85,26 +85,26 @@
           "name": "check_availability"
         }
       ],
-      "startMs": 36780,
-      "endMs": 40720
+      "startMs": 34900,
+      "endMs": 37780
     },
     {
       "speaker": "caller",
       "text": "Sure.",
-      "startMs": 40920,
-      "endMs": 41180
+      "startMs": 38480,
+      "endMs": 38780
     },
     {
       "speaker": "agent",
       "text": "I have Tuesday at 10:15 AM or Wednesday at 3:30 PM. Would either of those work?",
-      "startMs": 41380,
+      "startMs": 39400,
       "endMs": 45400
     },
     {
       "speaker": "caller",
       "text": "Do you have anything later? I work until around 4.",
-      "startMs": 46280,
-      "endMs": 50580
+      "startMs": 46100,
+      "endMs": 48960
     },
     {
       "speaker": "agent",
@@ -114,32 +114,32 @@
           "name": "check_availability"
         }
       ],
-      "startMs": 51400,
-      "endMs": 52760
+      "startMs": 49600,
+      "endMs": 50680
     },
     {
       "speaker": "agent",
       "text": "I do have Thursday at 4:45 PM.",
-      "startMs": 53020,
-      "endMs": 55160
+      "startMs": 51400,
+      "endMs": 52760
     },
     {
       "speaker": "caller",
       "text": "That works.",
-      "startMs": 56080,
-      "endMs": 56480
+      "startMs": 54680,
+      "endMs": 55160
     },
     {
       "speaker": "agent",
       "text": "Great. Will you be using dental insurance?",
-      "startMs": 56980,
-      "endMs": 58380
+      "startMs": 56040,
+      "endMs": 58220
     },
     {
       "speaker": "caller",
       "text": "Yes.",
-      "startMs": 60380,
-      "endMs": 60660
+      "startMs": 58900,
+      "endMs": 59420
     },
     {
       "speaker": "agent",
@@ -152,20 +152,20 @@
           "name": "send_intake_forms"
         }
       ],
-      "startMs": 61240,
-      "endMs": 70100
+      "startMs": 60000,
+      "endMs": 71940
     },
     {
       "speaker": "caller",
       "text": "Okay, perfect. Thank you.",
-      "startMs": 70580,
-      "endMs": 71840
+      "startMs": 72460,
+      "endMs": 73960
     },
     {
       "speaker": "agent",
       "text": "Of course. We'll see you Thursday.",
-      "startMs": 73160,
-      "endMs": 76120
+      "startMs": 74620,
+      "endMs": 75920
     }
   ],
   "durationMs": 76560
