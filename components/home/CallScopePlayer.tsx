@@ -9,7 +9,6 @@ import {
   buildTurnsFromTimings,
   computePeaks,
   detectSegments,
-  formatMs,
   hasBakedTimings,
   type CallScopeDoc,
   type CallTurn,
@@ -443,6 +442,37 @@ export function CallScopePlayer({
             </div>
           )}
 
+          {/* Prominent live function-call badge, surfaced on the waveform the moment
+              the agent invokes a tool (Plivo shows tool calls right on the call). */}
+          <AnimatePresence>
+            {activeTurn && activeTurn.tools && activeTurn.tools.length > 0 && (
+              <motion.div
+                key={`fn-${activeIndex}`}
+                initial={{ opacity: 0, y: -8, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.94 }}
+                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+                className="pointer-events-none absolute left-1/2 top-2 z-10 flex -translate-x-1/2 flex-col items-center gap-1"
+              >
+                <span className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#8aa0ff]/70">
+                  function call
+                </span>
+                <div className="flex items-center gap-1.5">
+                  {activeTurn.tools.map((tool) => (
+                    <span
+                      key={tool.name}
+                      className="inline-flex items-center gap-1 rounded-md border border-[#6b83ff]/50 bg-[#4f6bff]/20 px-2 py-1 font-mono text-[11px] font-medium text-[#dfe5ff] shadow-[0_0_20px_rgba(79,107,255,0.45)] backdrop-blur"
+                    >
+                      <span className="text-[#8aa0ff]">⚡</span>
+                      {tool.name}
+                      <span className="text-[#8aa0ff]/70">()</span>
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* Centered play/pause control (Plivo-style). Fully shown while paused, fades while playing. */}
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2">
             <button
@@ -522,7 +552,7 @@ export function CallScopePlayer({
             <span className="h-1.5 w-1.5 rounded-full bg-[#4f6bff]/70" />
             resolved · booked
           </span>
-          <TurnFooter turn={activeTurn} avgResp={avgResp} />
+          <span className="text-white/40">t_resp avg {avgResp}ms</span>
         </div>
       </div>
 
@@ -535,17 +565,6 @@ export function CallScopePlayer({
       />
     </div>
   );
-}
-
-function TurnFooter({ turn, avgResp }: { turn: UITurn | null; avgResp: number }) {
-  if (turn && turn.speaker === "agent" && turn.tools && turn.tools.length > 0) {
-    return (
-      <span className="text-[#6b83ff]">
-        tool: {turn.tools[0].name} <span className="text-white/40">▸ {formatMs(turn.displayGapMs)}</span>
-      </span>
-    );
-  }
-  return <span className="text-white/40">t_resp avg {avgResp}ms</span>;
 }
 
 function roundRect(

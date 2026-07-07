@@ -20,7 +20,7 @@ export default function RetainVoiceDemo() {
         </div>
 
         <div className="live-demo-url-bar">
-          <span className="truncate">inbound call · Cedar Dental Studio · native Gemini voice agent</span>
+          <span className="truncate">inbound call · Cedar Dental Studio</span>
         </div>
 
         <div className="live-demo-viewport retain-voice-viewport p-3 sm:p-4">
