@@ -5,29 +5,168 @@
   "audio": "/demo/latest_demo_voice.wav",
   "note": "Gemini multi-speaker demo playback. Turn gaps are measured from the recorded audio at runtime.",
   "turns": [
-    { "speaker": "agent", "text": "Cedar Dental Studio, this is Alice. How can I help?" },
-    { "speaker": "caller", "text": "Hi, I've been having some tooth pain and wanted to see if someone could take a look." },
-    { "speaker": "agent", "text": "Absolutely. Would you like to schedule a visit for that?" },
-    { "speaker": "caller", "text": "Yes, please." },
-    { "speaker": "agent", "text": "Perfect. Have you been seen here before?" },
-    { "speaker": "caller", "text": "No, this would be my first time." },
-    { "speaker": "agent", "text": "No problem. Can I get your first and last name?" },
-    { "speaker": "caller", "text": "Jordan Miller." },
-    { "speaker": "agent", "text": "Thanks, Jordan. And your date of birth?" },
-    { "speaker": "caller", "text": "March 14th, 1994." },
-    { "speaker": "agent", "text": "Got it. What's the best phone number for you?" },
-    { "speaker": "caller", "text": "562-555-0148." },
-    { "speaker": "agent", "text": "Perfect. Got it, one moment while I check.", "tools": [{ "name": "check_availability" }] },
-    { "speaker": "caller", "text": "Sure." },
-    { "speaker": "agent", "text": "I have Tuesday at 10:15 AM or Wednesday at 3:30 PM. Would either of those work?" },
-    { "speaker": "caller", "text": "Do you have anything later? I work until around 4." },
-    { "speaker": "agent", "text": "Let me check that for you.", "tools": [{ "name": "check_availability" }] },
-    { "speaker": "agent", "text": "I do have Thursday at 4:45 PM." },
-    { "speaker": "caller", "text": "That works." },
-    { "speaker": "agent", "text": "Great. Will you be using dental insurance?" },
-    { "speaker": "caller", "text": "Yes." },
-    { "speaker": "agent", "text": "Perfect. You're booked for Thursday at 4:45 PM at Cedar Dental Studio for a tooth pain visit. I also texted you the new-patient intake and insurance forms. Please fill those out before you come in.", "tools": [{ "name": "create_booking" }, { "name": "send_intake_forms" }] },
-    { "speaker": "caller", "text": "Okay, perfect. Thank you." },
-    { "speaker": "agent", "text": "Of course. We'll see you Thursday." }
-  ]
+    {
+      "speaker": "agent",
+      "text": "Cedar Dental Studio, this is Alice. How can I help?",
+      "startMs": 280,
+      "endMs": 4180
+    },
+    {
+      "speaker": "caller",
+      "text": "Hi, I've been having some tooth pain and wanted to see if someone could take a look.",
+      "startMs": 4940,
+      "endMs": 11040
+    },
+    {
+      "speaker": "agent",
+      "text": "Absolutely. Would you like to schedule a visit for that?",
+      "startMs": 11740,
+      "endMs": 16540
+    },
+    {
+      "speaker": "caller",
+      "text": "Yes, please.",
+      "startMs": 16760,
+      "endMs": 18560
+    },
+    {
+      "speaker": "agent",
+      "text": "Perfect. Have you been seen here before?",
+      "startMs": 19040,
+      "endMs": 21540
+    },
+    {
+      "speaker": "caller",
+      "text": "No, this would be my first time.",
+      "startMs": 22320,
+      "endMs": 24100
+    },
+    {
+      "speaker": "agent",
+      "text": "No problem. Can I get your first and last name?",
+      "startMs": 24940,
+      "endMs": 26820
+    },
+    {
+      "speaker": "caller",
+      "text": "Jordan Miller.",
+      "startMs": 27540,
+      "endMs": 27920
+    },
+    {
+      "speaker": "agent",
+      "text": "Thanks, Jordan. And your date of birth?",
+      "startMs": 28400,
+      "endMs": 29760
+    },
+    {
+      "speaker": "caller",
+      "text": "March 14th, 1994.",
+      "startMs": 30600,
+      "endMs": 31280
+    },
+    {
+      "speaker": "agent",
+      "text": "Got it. What's the best phone number for you?",
+      "startMs": 31820,
+      "endMs": 35400
+    },
+    {
+      "speaker": "caller",
+      "text": "562-555-0148.",
+      "startMs": 35960,
+      "endMs": 36260
+    },
+    {
+      "speaker": "agent",
+      "text": "Perfect. Got it, one moment while I check.",
+      "tools": [
+        {
+          "name": "check_availability"
+        }
+      ],
+      "startMs": 36780,
+      "endMs": 40720
+    },
+    {
+      "speaker": "caller",
+      "text": "Sure.",
+      "startMs": 40920,
+      "endMs": 41180
+    },
+    {
+      "speaker": "agent",
+      "text": "I have Tuesday at 10:15 AM or Wednesday at 3:30 PM. Would either of those work?",
+      "startMs": 41380,
+      "endMs": 45400
+    },
+    {
+      "speaker": "caller",
+      "text": "Do you have anything later? I work until around 4.",
+      "startMs": 46280,
+      "endMs": 50580
+    },
+    {
+      "speaker": "agent",
+      "text": "Let me check that for you.",
+      "tools": [
+        {
+          "name": "check_availability"
+        }
+      ],
+      "startMs": 51400,
+      "endMs": 52760
+    },
+    {
+      "speaker": "agent",
+      "text": "I do have Thursday at 4:45 PM.",
+      "startMs": 53020,
+      "endMs": 55160
+    },
+    {
+      "speaker": "caller",
+      "text": "That works.",
+      "startMs": 56080,
+      "endMs": 56480
+    },
+    {
+      "speaker": "agent",
+      "text": "Great. Will you be using dental insurance?",
+      "startMs": 56980,
+      "endMs": 58380
+    },
+    {
+      "speaker": "caller",
+      "text": "Yes.",
+      "startMs": 60380,
+      "endMs": 60660
+    },
+    {
+      "speaker": "agent",
+      "text": "Perfect. You're booked for Thursday at 4:45 PM at Cedar Dental Studio for a tooth pain visit. I also texted you the new-patient intake and insurance forms. Please fill those out before you come in.",
+      "tools": [
+        {
+          "name": "create_booking"
+        },
+        {
+          "name": "send_intake_forms"
+        }
+      ],
+      "startMs": 61240,
+      "endMs": 70100
+    },
+    {
+      "speaker": "caller",
+      "text": "Okay, perfect. Thank you.",
+      "startMs": 70580,
+      "endMs": 71840
+    },
+    {
+      "speaker": "agent",
+      "text": "Of course. We'll see you Thursday.",
+      "startMs": 73160,
+      "endMs": 76120
+    }
+  ],
+  "durationMs": 76560
 }
