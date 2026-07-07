@@ -32,9 +32,9 @@ const COLORS = {
   grid: "rgba(255,255,255,0.06)",
   laneLabel: "rgba(255,255,255,0.28)",
   callerPlayed: "#4f6bff",
-  callerIdle: "rgba(79,107,255,0.22)",
-  agentPlayed: "#e4e8f6",
-  agentIdle: "rgba(228,232,246,0.16)",
+  callerIdle: "rgba(79,107,255,0.42)",
+  agentPlayed: "#e6eaf7",
+  agentIdle: "rgba(230,234,247,0.40)",
   playhead: "#4f6bff",
   accent: "#6b83ff",
   packet: "79,107,255",
@@ -382,10 +382,12 @@ export function CallScopePlayer({
 
   const durationMs = analysis?.durationMs ?? 0;
   const avgResp = analysis?.avgRespMs ?? 320;
-  const packetCount = durationMs > 0 ? Math.round(durationMs / 20) : 0;
+  // Live RTP packet counter that ticks up in real time (20ms frames) and resets on loop.
+  const totalPackets = durationMs > 0 ? Math.round(durationMs / 20) : 0;
+  const livePackets = Math.min(totalPackets, Math.round(currentMs / 20));
   const metrics: { label: string; value: string; unit: string; meta: string }[] = [
     { label: "latency", value: String(avgResp), unit: "ms", meta: "t_resp avg" },
-    { label: "packets", value: fmtK(packetCount), unit: "rtp", meta: "20ms frames" },
+    { label: "packets", value: livePackets.toLocaleString(), unit: "rtp", meta: `${fmtK(totalPackets)} · 20ms` },
     { label: "resolution", value: "first", unit: "call", meta: "booked" },
   ];
   const pills = ["dental · scheduling", "🇺🇸 en-US", "[live]"];
