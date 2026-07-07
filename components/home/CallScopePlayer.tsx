@@ -6,9 +6,11 @@ import {
   activeTurnIndex,
   alignSegmentsToTurns,
   buildTurns,
+  buildTurnsFromTimings,
   computePeaks,
   detectSegments,
   formatMs,
+  hasBakedTimings,
   type CallScopeDoc,
   type CallTurn,
 } from "@/lib/call-scope-analysis";
@@ -19,7 +21,7 @@ type LoadState = "loading" | "ready" | "error";
 type UITurn = CallTurn & { displayGapMs: number };
 
 const WINDOW_MS = 9000;
-const PAD = { left: 16, right: 16, top: 16, bottom: 22 };
+const PAD = { left: 16, right: 16, top: 20, bottom: 22 };
 const BAR_TARGET = 3600;
 /** Any measured gap is shown as this ceiling at most, so t_resp always reads < 500ms. */
 const GAP_CEILING_MS = 480;
@@ -27,14 +29,15 @@ const GAP_CEILING_MS = 480;
 const MAX_GAP_MARKERS = 3;
 
 const COLORS = {
-  grid: "rgba(255,255,255,0.05)",
-  axis: "rgba(255,255,255,0.28)",
+  grid: "rgba(255,255,255,0.06)",
+  laneLabel: "rgba(255,255,255,0.28)",
   callerPlayed: "#4f6bff",
-  callerIdle: "rgba(79,107,255,0.26)",
-  agentPlayed: "#cbd2e3",
-  agentIdle: "rgba(203,210,227,0.18)",
+  callerIdle: "rgba(79,107,255,0.22)",
+  agentPlayed: "#e4e8f6",
+  agentIdle: "rgba(228,232,246,0.16)",
   playhead: "#4f6bff",
   accent: "#6b83ff",
+  packet: "79,107,255",
 };
 
 type Analysis = {
@@ -66,6 +69,10 @@ function fmtClock(ms: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+function fmtK(n: number): string {
+  return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+}
+
 export function CallScopePlayer({
   docUrl = "/demo/latest_demo_call.json",
   embedded = false,
@@ -83,7 +90,7 @@ export function CallScopePlayer({
   const currentMsRef = useRef(0);
   const analysisRef = useRef<Analysis | null>(null);
 
-  const waveformHeight = embedded ? "h-[150px]" : "h-[300px]";
+  const waveformHeight = embedded ? "h-[168px]" : "h-[300px]";
 
   useEffect(() => {
     let cancelled = false;
@@ -113,9 +120,15 @@ export function CallScopePlayer({
         const durationMs = audioBuffer.duration * 1000;
         const barCount = Math.min(BAR_TARGET, Math.max(600, Math.floor(audioBuffer.duration * 55)));
         const peaks = computePeaks(channel, barCount);
-        const rawSegments = detectSegments(channel, audioBuffer.sampleRate);
-        const aligned = alignSegmentsToTurns(rawSegments, parsed.turns.length, durationMs);
-        const baseTurns = buildTurns(parsed.turns, aligned);
+
+        // Prefer authoritative offline-baked timings (perfect subtitle sync).
+        // Fall back to on-device VAD alignment only if timings are missing.
+        const baseTurns = hasBakedTimings(parsed.turns)
+          ? buildTurnsFromTimings(parsed.turns)
+          : buildTurns(
+              parsed.turns,
+              alignSegmentsToTurns(detectSegments(channel, audioBuffer.sampleRate), parsed.turns.length, durationMs)
+            );
         const turns: UITurn[] = baseTurns.map((t) => ({ ...t, displayGapMs: clampGap(t.gapMs) }));
 
         // Curate the few gap markers: prefer agent tool turns, then the first agent
@@ -151,6 +164,20 @@ export function CallScopePlayer({
     };
   }, [docUrl]);
 
+  // Keep the call "always playing": attempt autoplay once analysis is ready and
+  // loop forever. Browsers may block unmuted autoplay until a user gesture, in
+  // which case the centered play button starts it.
+  useEffect(() => {
+    if (state !== "ready") return;
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.loop = true;
+    const attempt = audio.play();
+    if (attempt) {
+      attempt.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
+    }
+  }, [state]);
+
   const activeIndex = useMemo(() => {
     if (!analysis) return -1;
     return activeTurnIndex(analysis.turns, currentMs);
@@ -179,63 +206,100 @@ export function CallScopePlayer({
     const plotY = PAD.top;
     const plotW = cssWidth - PAD.left - PAD.right;
     const plotH = cssHeight - PAD.top - PAD.bottom;
-    const midY = plotY + plotH / 2;
 
     const { durationMs, peaks, turns } = data;
     const nowMs = currentMsRef.current;
+    const t = performance.now() / 1000;
 
     const maxStart = Math.max(0, durationMs - WINDOW_MS);
     const desiredStart = nowMs - WINDOW_MS * 0.42;
     const viewStart = durationMs <= WINDOW_MS ? 0 : Math.min(maxStart, Math.max(0, desiredStart));
     const viewSpan = durationMs <= WINDOW_MS ? durationMs : WINDOW_MS;
-
     const msToX = (ms: number) => plotX + ((ms - viewStart) / viewSpan) * plotW;
+
+    // Two speaker lanes: agent on top, caller on the bottom.
+    const agentBase = plotY + plotH * 0.3;
+    const callerBase = plotY + plotH * 0.74;
+    const laneMax = plotH * 0.24;
 
     ctx.strokeStyle = COLORS.grid;
     ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(plotX, midY);
-    ctx.lineTo(plotX + plotW, midY);
-    ctx.stroke();
+    for (const base of [agentBase, callerBase]) {
+      ctx.beginPath();
+      ctx.moveTo(plotX, base);
+      ctx.lineTo(plotX + plotW, base);
+      ctx.stroke();
+    }
+
+    // Lane labels
+    ctx.font = "9px ui-monospace, SFMono-Regular, Menlo, monospace";
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = COLORS.laneLabel;
+    ctx.fillText("agent", plotX + 2, agentBase - laneMax - 5);
+    ctx.fillText("caller", plotX + 2, callerBase + laneMax + 6);
 
     const msPerBar = durationMs / peaks.length;
     const barPixelWidth = Math.max(1.2, (msPerBar / viewSpan) * plotW);
-    const barW = Math.max(1, barPixelWidth * 0.66);
-    const maxBar = plotH * 0.46;
+    const barW = Math.max(1, barPixelWidth * 0.62);
 
-    let turnCursor = 0;
+    let cursor = 0;
     for (let b = 0; b < peaks.length; b++) {
       const barMs = (b + 0.5) * msPerBar;
+      while (cursor < turns.length - 1 && barMs >= turns[cursor + 1].startMs) cursor++;
       if (barMs < viewStart - msPerBar) continue;
       if (barMs > viewStart + viewSpan + msPerBar) break;
 
-      while (turnCursor < turns.length - 1 && barMs >= turns[turnCursor + 1].startMs) turnCursor++;
-      const speaker = turns[turnCursor]?.speaker ?? "agent";
-      const played = barMs <= nowMs;
-      let color: string;
-      if (speaker === "caller") color = played ? COLORS.callerPlayed : COLORS.callerIdle;
-      else color = played ? COLORS.agentPlayed : COLORS.agentIdle;
+      const turn = turns[cursor];
+      // Only paint a bar in a lane while that speaker is actually talking; gaps stay clear.
+      if (!turn || barMs < turn.startMs || barMs > turn.endMs) continue;
 
-      const h = Math.max(1.5, peaks[b] * maxBar);
+      const isAgent = turn.speaker === "agent";
+      const base = isAgent ? agentBase : callerBase;
+      const played = barMs <= nowMs;
+      const color = isAgent
+        ? played
+          ? COLORS.agentPlayed
+          : COLORS.agentIdle
+        : played
+          ? COLORS.callerPlayed
+          : COLORS.callerIdle;
+
+      const h = Math.max(1.5, peaks[b] * laneMax);
       const x = msToX(barMs) - barW / 2;
       ctx.fillStyle = color;
-      const radius = Math.min(barW / 2, 1.5);
-      roundRect(ctx, x, midY - h, barW, h * 2, radius);
+      roundRect(ctx, x, base - h, barW, h * 2, Math.min(barW / 2, 1.5));
       ctx.fill();
     }
 
-    // Only surface the curated, clamped (<500ms) turn-gap markers.
+    // Streaming "packets": a continuous data stream along the top edge, brightest
+    // near the playhead, that keeps moving even while paused (always-live feel).
+    const streamY = plotY - 8;
+    const spacing = 22;
+    const speed = 30;
+    const offset = (t * speed) % spacing;
+    const px = msToX(nowMs);
+    for (let x = plotX + offset; x <= plotX + plotW; x += spacing) {
+      const dist = Math.abs(x - px);
+      const glow = Math.max(0, 1 - dist / 90);
+      const alpha = 0.16 + 0.6 * glow;
+      const size = 3 + 2 * glow;
+      ctx.fillStyle = `rgba(${COLORS.packet},${alpha})`;
+      ctx.fillRect(x - size / 2, streamY - size / 2, size, size);
+    }
+
+    // Only surface the curated, clamped (<500ms) turn-gap markers, drawn in the
+    // gutter between the two lanes so the latency reads as turn-taking speed.
     const active = activeTurnIndex(turns, nowMs);
     if (active > 0 && data.gapSet.has(active)) {
       const cur = turns[active];
       const prev = turns[active - 1];
       const gapStart = prev.endMs;
       const gapEnd = cur.startMs;
-      const gapVisible = gapEnd > viewStart && gapStart < viewStart + viewSpan;
-      if (gapVisible) {
+      if (gapEnd > viewStart && gapStart < viewStart + viewSpan) {
         const x1 = msToX(gapStart);
         const x2 = msToX(gapEnd);
-        const y = plotY + plotH * 0.24;
+        const y = (agentBase + callerBase) / 2;
         ctx.strokeStyle = COLORS.accent;
         ctx.fillStyle = COLORS.accent;
         ctx.lineWidth = 1.4;
@@ -249,20 +313,20 @@ export function CallScopePlayer({
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
         ctx.fillStyle = COLORS.accent;
-        ctx.fillText(`t_resp = ${cur.displayGapMs}ms`, (x1 + x2) / 2, y - 6);
+        ctx.fillText(`t_resp = ${cur.displayGapMs}ms`, (x1 + x2) / 2, y - 5);
       }
     }
 
-    const px = msToX(nowMs);
+    // Playhead
     if (px >= plotX - 2 && px <= plotX + plotW + 2) {
       ctx.strokeStyle = COLORS.playhead;
       ctx.lineWidth = 1.5;
       ctx.beginPath();
-      ctx.moveTo(px, plotY - 2);
+      ctx.moveTo(px, plotY - 4);
       ctx.lineTo(px, plotY + plotH);
       ctx.stroke();
       ctx.fillStyle = COLORS.playhead;
-      ctx.fillRect(px - 3, plotY - 5, 6, 6);
+      ctx.fillRect(px - 3, plotY - 7, 6, 6);
     }
   }, []);
 
@@ -318,10 +382,11 @@ export function CallScopePlayer({
 
   const durationMs = analysis?.durationMs ?? 0;
   const avgResp = analysis?.avgRespMs ?? 320;
+  const packetCount = durationMs > 0 ? Math.round(durationMs / 20) : 0;
   const metrics: { label: string; value: string; unit: string; meta: string }[] = [
     { label: "latency", value: String(avgResp), unit: "ms", meta: "t_resp avg" },
+    { label: "packets", value: fmtK(packetCount), unit: "rtp", meta: "20ms frames" },
     { label: "resolution", value: "first", unit: "call", meta: "booked" },
-    { label: "cost", value: "$0.05", unit: "", meta: "vs $5.50 human" },
   ];
   const pills = ["dental · scheduling", "🇺🇸 en-US", "[live]"];
 
@@ -376,22 +441,32 @@ export function CallScopePlayer({
             </div>
           )}
 
-          <button
-            type="button"
-            onClick={togglePlay}
-            disabled={state !== "ready"}
-            aria-label={isPlaying ? "Pause" : "Play"}
-            className="absolute bottom-3 right-3 grid h-10 w-10 place-items-center rounded-full bg-[#4f6bff] text-white shadow-[0_0_28px_rgba(79,107,255,0.5)] transition hover:bg-[#3f5bff] disabled:opacity-40"
-          >
-            {isPlaying ? (
-              <span className="flex gap-1">
-                <span className="block h-3.5 w-1 rounded-sm bg-white" />
-                <span className="block h-3.5 w-1 rounded-sm bg-white" />
+          {/* Centered play/pause control (Plivo-style). Fully shown while paused, fades while playing. */}
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2">
+            <button
+              type="button"
+              onClick={togglePlay}
+              disabled={state !== "ready"}
+              aria-label={isPlaying ? "Pause" : "Play"}
+              className={`pointer-events-auto grid h-14 w-14 place-items-center rounded-full bg-[#4f6bff] text-white shadow-[0_0_36px_rgba(79,107,255,0.55)] transition-all duration-300 hover:scale-105 hover:bg-[#3f5bff] disabled:opacity-40 ${
+                isPlaying ? "opacity-30 hover:opacity-100" : "opacity-100"
+              }`}
+            >
+              {isPlaying ? (
+                <span className="flex gap-1.5">
+                  <span className="block h-4 w-1.5 rounded-sm bg-white" />
+                  <span className="block h-4 w-1.5 rounded-sm bg-white" />
+                </span>
+              ) : (
+                <span className="ml-1 block h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
+              )}
+            </button>
+            {!isPlaying && state === "ready" && (
+              <span className="pointer-events-none rounded bg-black/50 px-2 py-0.5 font-mono text-[10px] tracking-wide text-white/70">
+                listen to a real call
               </span>
-            ) : (
-              <span className="ml-0.5 block h-0 w-0 border-y-[7px] border-y-transparent border-l-[11px] border-l-white" />
             )}
-          </button>
+          </div>
         </div>
 
         {/* Active transcript line */}
@@ -416,7 +491,7 @@ export function CallScopePlayer({
                   <span className="text-white/90">{activeTurn.text}</span>
                 </p>
               ) : (
-                <p className="font-mono text-xs text-white/40">press play to start the call</p>
+                <p className="font-mono text-xs text-white/40">connecting call…</p>
               )}
             </motion.div>
           </AnimatePresence>
@@ -452,7 +527,7 @@ export function CallScopePlayer({
       <audio
         ref={audioRef}
         src={doc?.audio}
-        onEnded={() => setIsPlaying(false)}
+        loop
         preload="auto"
         className="hidden"
       />
