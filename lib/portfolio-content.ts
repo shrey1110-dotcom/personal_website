@@ -238,7 +238,7 @@ export const projects: ProjectEntry[] = [
       { label: "GitHub", href: "https://github.com/shrey1110-dotcom/CLAUDE_API_SAVER" },
       { label: "npm", href: "https://www.npmjs.com/package/scopekit" },
     ],
-    tags: ["CLI", "Claude", "Codex", "Cursor", "MCP", "npm", "Context Packs"],
+    tags: ["TypeScript", "Node.js", "CLI", "MCP Server", "Zod", "MCP SDK", "Vercel"],
     visual: "scopekit",
   },
   {
