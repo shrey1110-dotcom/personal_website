@@ -20,7 +20,7 @@ export default function HeroProfilePanel() {
           <div className="space-y-3 text-center">
             <p className="hero-portrait-name">Shreyansh Sharma</p>
             <p className="hero-portrait-title">
-              I usually work across the whole stack: UI, APIs, data model, integrations, and tests.
+              Applied ML at Rezolve.ai. Building RETAIN AI on the side.
             </p>
           </div>
 
