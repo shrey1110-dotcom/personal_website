@@ -50,7 +50,6 @@ body::before {
     radial-gradient(circle at 14% 12%, rgba(174, 185, 201, 0.052), transparent 18%),
     radial-gradient(circle at 80% 16%, rgba(106, 120, 138, 0.06), transparent 20%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.012), transparent 42%, transparent 68%, rgba(255, 255, 255, 0.01));
-  animation: background-breathe 24s ease-in-out infinite alternate;
   opacity: 0.72;
 }
 
@@ -114,82 +113,12 @@ section[id] {
   content: "";
 }
 
-.page-aurora,
-.page-light-beam,
-.page-glow-layer,
-.page-grid-layer,
-.page-vignette-layer {
+/* One static wash. No drifting blobs, no beams, no breathing gradients — a
+   page that sits still reads as somebody's site rather than a template demo. */
+.page-base-layer {
   position: absolute;
   inset: 0;
-}
-
-.page-aurora {
-  filter: blur(140px);
-  mix-blend-mode: normal;
-  opacity: 0.28;
-}
-
-.page-aurora-a {
-  inset: -12% auto auto -12%;
-  height: 46rem;
-  width: 46rem;
-  background: radial-gradient(circle, rgba(174, 185, 201, 0.12), rgba(174, 185, 201, 0.035) 38%, transparent 72%);
-  animation: aurora-float-a 22s ease-in-out infinite alternate;
-}
-
-.page-aurora-b {
-  inset: 18% -14% auto auto;
-  height: 40rem;
-  width: 40rem;
-  background: radial-gradient(circle, rgba(92, 106, 124, 0.15), rgba(92, 106, 124, 0.035) 40%, transparent 74%);
-  animation: aurora-float-b 24s ease-in-out infinite alternate;
-}
-
-.page-aurora-c {
-  inset: 58% auto auto 28%;
-  height: 32rem;
-  width: 32rem;
-  background: radial-gradient(circle, rgba(174, 185, 201, 0.065), rgba(174, 185, 201, 0.018) 42%, transparent 74%);
-  animation: aurora-float-c 26s ease-in-out infinite alternate;
-}
-
-.page-light-beam {
-  opacity: 0.08;
-  filter: blur(40px);
-}
-
-.page-light-beam-a {
-  background: linear-gradient(115deg, transparent 34%, rgba(174, 185, 201, 0.12) 46%, transparent 64%);
-  animation: beam-drift-a 18s ease-in-out infinite alternate;
-}
-
-.page-light-beam-b {
-  background: linear-gradient(75deg, transparent 28%, rgba(120, 130, 145, 0.14) 44%, transparent 62%);
-  animation: beam-drift-b 21s ease-in-out infinite alternate;
-}
-
-.page-glow-layer {
-  background:
-    radial-gradient(circle at 10% 12%, rgba(174, 185, 201, 0.045), transparent 24%),
-    radial-gradient(circle at 88% 14%, rgba(120, 130, 145, 0.045), transparent 22%),
-    linear-gradient(180deg, rgba(7, 8, 9, 0.18), rgba(3, 4, 5, 0.88));
-  animation: background-breathe 24s ease-in-out infinite alternate;
-}
-
-.page-grid-layer {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-position: center center;
-  background-size: 140px 140px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.56), transparent 82%);
-  opacity: 0.055;
-}
-
-.page-vignette-layer {
-  background:
-    radial-gradient(circle at 50% 8%, transparent 0%, transparent 32%, rgba(2, 4, 10, 0.24) 74%, rgba(2, 4, 10, 0.7) 100%),
-    radial-gradient(circle at 50% 50%, transparent 54%, rgba(2, 4, 10, 0.34) 100%);
+  background: linear-gradient(180deg, #080b12 0%, #05070d 62%, #04060b 100%);
 }
 
 @layer components {
@@ -289,13 +218,11 @@ section[id] {
     display: block;
   }
 
+  /* Solid white. A five-stop gradient across a surname is the single most
+     recognizable generated-portfolio flourish, and it reads less confident
+     than plain type at this weight. */
   .hero-title-gradient {
-    background-image: linear-gradient(120deg, #ffffff 0%, #d7dfff 24%, #aeb9c9 52%, #dfe5ee 78%, #ffffff 100%);
-    background-size: 240% 240%;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: hero-title-wave 10s ease-in-out infinite alternate;
+    color: inherit;
   }
 
   .hero-support {
@@ -396,7 +323,6 @@ section[id] {
 
   .hero-scroll-arrow {
     display: inline-flex;
-    animation: scroll-nudge 1.8s ease-in-out infinite;
   }
 
   .primary-button,
@@ -1120,7 +1046,6 @@ section[id] {
     content: "";
     opacity: 0.7;
     pointer-events: none;
-    animation: rgb-border-drift 8s linear infinite;
   }
 
   .project-visual::after {
@@ -1133,7 +1058,6 @@ section[id] {
     content: "";
     opacity: 0.42;
     pointer-events: none;
-    animation: frame-sheen 7.5s ease-in-out infinite;
   }
 
   .project-visual-compact {
@@ -1175,7 +1099,6 @@ section[id] {
     content: "";
     opacity: 0.58;
     pointer-events: none;
-    animation: rgb-border-drift 9s linear infinite;
   }
 
   .compact-project-card::after {
@@ -1188,7 +1111,6 @@ section[id] {
     content: "";
     opacity: 0.36;
     pointer-events: none;
-    animation: frame-sheen 8.5s ease-in-out infinite;
   }
 
   .compact-project-title {
@@ -1244,7 +1166,6 @@ section[id] {
     background-size: 220% 220%;
     box-shadow: var(--shadow);
     padding: 1px;
-    animation: rgb-border-drift 7.5s linear infinite;
   }
 
   .live-demo-frame {
@@ -1268,7 +1189,6 @@ section[id] {
     opacity: 0.44;
     pointer-events: none;
     z-index: 2;
-    animation: frame-sheen 8.5s ease-in-out infinite;
   }
 
   .live-demo-feature {
@@ -1343,7 +1263,6 @@ section[id] {
     content: "";
     pointer-events: none;
     opacity: 0.7;
-    animation: rgb-border-drift 8s linear infinite;
   }
 
   .project-spec-grid {
@@ -1381,7 +1300,6 @@ section[id] {
     content: "";
     pointer-events: none;
     opacity: 0.78;
-    animation: rgb-border-drift 8s linear infinite;
   }
 
   .project-detail-panel-specs {
@@ -1499,7 +1417,6 @@ section[id] {
     content: "";
     pointer-events: none;
     opacity: 0.68;
-    animation: rgb-border-drift 9s linear infinite;
   }
 
   .experience-showcase-toolbar,
@@ -1560,13 +1477,13 @@ section[id] {
       0 0 0 1px rgba(174, 185, 201, 0.12);
   }
 
+  /* Both company marks are dark artwork on transparency, so they need a light
+     plate to be legible on this background. Wide wordmarks also need a wider
+     box than a square or they letterbox down to unreadable. */
   .experience-selector-logo {
-    @apply relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-[18px] px-3;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background:
-      radial-gradient(circle at 24% 24%, rgba(174, 185, 201, 0.22), transparent 34%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-      rgba(255, 255, 255, 0.02);
+    @apply relative h-10 w-[5rem] flex-shrink-0 overflow-hidden rounded-[10px] px-1.5;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: #f4f6fa;
   }
 
   .experience-selector-copy {
@@ -1598,15 +1515,10 @@ section[id] {
   }
 
   .experience-spotlight-logo {
-    @apply relative h-[8.25rem] w-full overflow-hidden rounded-[28px] px-6;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background:
-      radial-gradient(circle at 24% 24%, rgba(174, 185, 201, 0.26), transparent 34%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-      rgba(255, 255, 255, 0.02);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 16px 38px rgba(4, 8, 18, 0.24);
+    @apply relative h-[5.5rem] w-full overflow-hidden rounded-[18px] px-7 py-4;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: #f4f6fa;
+    box-shadow: 0 16px 38px rgba(4, 8, 18, 0.24);
   }
 
   .experience-logo-image {
@@ -1975,7 +1887,6 @@ section[id] {
     content: "";
     pointer-events: none;
     opacity: 0.6;
-    animation: rgb-border-drift 10s linear infinite;
   }
 
   .skill-palette-header {
@@ -2278,24 +2189,11 @@ section[id] {
   }
 
   .hero-title-gradient {
-    position: relative;
     display: block;
     background-image: none;
-    color: var(--accent);
+    color: inherit;
     -webkit-text-fill-color: currentColor;
-    animation: none;
     text-shadow: none;
-  }
-
-  .hero-title-gradient::after {
-    position: absolute;
-    left: 0.03em;
-    bottom: -0.04em;
-    height: 0.055em;
-    width: 1.5em;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    content: "";
-    opacity: 0.68;
   }
 
   .hero-support,
@@ -2333,7 +2231,6 @@ section[id] {
   .experience-showcase-main,
   .experience-showcase-side,
   .experience-selector-button,
-  .experience-spotlight-logo,
   .experience-about-stat,
   .skill-palette-panel,
   .skill-group-segment,
@@ -3214,121 +3111,7 @@ section[id] {
   }
 }
 
-@keyframes aurora-float-a {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  100% {
-    transform: translate3d(4rem, 3rem, 0) scale(1.14);
-  }
-}
-
-@keyframes aurora-float-b {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  100% {
-    transform: translate3d(-3rem, 2rem, 0) scale(1.18);
-  }
-}
-
-@keyframes aurora-float-c {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-
-  100% {
-    transform: translate3d(2rem, -2rem, 0) scale(1.1);
-  }
-}
-
-@keyframes beam-drift-a {
-  0% {
-    transform: translate3d(-3%, -4%, 0) scale(1);
-  }
-
-  100% {
-    transform: translate3d(3%, 4%, 0) scale(1.08);
-  }
-}
-
-@keyframes beam-drift-b {
-  0% {
-    transform: translate3d(4%, -2%, 0) scale(1);
-  }
-
-  100% {
-    transform: translate3d(-4%, 3%, 0) scale(1.06);
-  }
-}
-
-@keyframes background-breathe {
-  0% {
-    opacity: 0.92;
-    transform: scale(1);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale(1.03);
-  }
-}
-
-@keyframes hero-title-wave {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  100% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes rgb-border-drift {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes frame-sheen {
-  0%,
-  100% {
-    transform: translateX(-12%) translateY(0) scale(0.96);
-    opacity: 0.18;
-  }
-
-  50% {
-    transform: translateX(18%) translateY(-6px) scale(1.04);
-    opacity: 0.46;
-  }
-}
-
-@keyframes scroll-nudge {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(4px);
-  }
-}
-
 @media (max-width: 1023px) {
-  .page-grid-layer {
-    background-size: 96px 96px;
-    opacity: 0.08;
-  }
 
   .skill-palette-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

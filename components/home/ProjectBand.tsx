@@ -22,8 +22,8 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
       <div className="project-band-grid">
         <motion.div
           className={`project-band-visual-cell ${reversed ? "lg:order-2" : ""}`}
-          initial={{ opacity: 0.62, x: reversed ? 28 : -28, y: 18 }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          initial={{ opacity: 0.62, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.74, ease: revealEase }}
         >
@@ -32,8 +32,8 @@ export default function ProjectBand({ index, project }: ProjectBandProps) {
 
         <motion.div
           className={`project-band-copy-cell ${reversed ? "lg:order-1" : ""}`}
-          initial={{ opacity: 0.66, x: reversed ? -28 : 28, y: 18 }}
-          whileInView={{ opacity: 1, x: 0, y: 0 }}
+          initial={{ opacity: 0.66, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.72, ease: revealEase, delay: 0.06 }}
         >

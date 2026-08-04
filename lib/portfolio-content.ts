@@ -79,7 +79,7 @@ export const navItems = [
 
 export const heroActions = [
   {
-    href: "mailto:shreyansh.sharma01@student.csulb.edu",
+    href: "mailto:inquiries@shreyanshsharma.dev",
     label: "Email",
     value: "Best way to reach me",
   },
@@ -460,14 +460,14 @@ export const experienceEntries: readonly ExperienceEntry[] = [
   {
     id: "retain-ai",
     company: "RETAIN AI",
-    role: "Founder & Solo Engineer",
-    date: "May 2026 – Present",
+    role: "Founder and AI Engineer",
+    date: "March 2026 – Present",
     href: "https://retain-ai-eight.vercel.app",
     logoSrc: "/retain-ai-wordmark.svg",
     logoAlt: "RETAIN AI logo",
     meta: [
       { label: "Employees", value: "1–10" },
-      { label: "Launch", value: "May 1, 2026" },
+      { label: "Founded", value: "March 2026" },
       { label: "Status", value: "Live · Self-funded" },
       { label: "Stack", value: "Next.js · Supabase · Gemini · Twilio" },
     ],
@@ -484,7 +484,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
   {
     id: "rezolve-voice-2025",
     company: "Rezolve.ai",
-    role: "AI Voice Systems Contributor",
+    role: "AI Voice Engineering Contributor",
     date: "May – Aug 2025",
     href: "https://rezolve.ai",
     logoSrc: "/rezolve-ai-logo.png",
@@ -492,6 +492,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     meta: [
       { label: "Employees", value: "300–350" },
       { label: "Team", value: "5 engineers · VoiceIQ" },
+      { label: "Role", value: "Lead intern · 4-intern group" },
       { label: "Backed by", value: "SIG Venture Capital · Exfinity Ventures" },
       { label: "Recognition", value: "Forrester 2026 Landscape Report" },
       { label: "Listed", value: "NASDAQ (RZLV)" },
@@ -499,9 +500,10 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     description:
       "Early VoiceIQ work for inbound IT and HR support calls. The assistant listens, finds the right internal answer, creates tickets when needed, and escalates the cases it should not attempt.",
     bullets: [
-      "Cut VoiceIQ failure cases 30–35% by hardening API/ITSM payload mapping, automation-to-agent handoffs, and malformed-input handling",
-      "Turned malformed JSON, missing ticket fields, escalation branches, and handoff states into async regression scenarios",
-      "Contributed to 45% faster release cycles on a 5-engineer team",
+      "Cut VoiceIQ failure cases 30–35% by hardening backend decision paths across routing behavior, API/ITSM integrations, automation-to-agent handoffs, and escalation coverage",
+      "Turned malformed JSON payloads, missing ticket fields, escalation branches, and handoff states into reusable async test scenarios, accelerating enterprise voice release cycles 45%",
+      "Led a 4-intern engineering group as lead intern, running weekly design reviews and splitting voice regression ownership across 4 workstreams so escalation, handoff, and malformed-input coverage advanced in parallel",
+      "Documented recurring voice failure modes and delivered written design feedback to a 5-engineer team, standardizing how escalation and handoff regressions were triaged and reproduced",
     ],
     tags: ["Voice AI", "NLP", "ITSM Integration", "Conversational AI", "LLM Orchestration"],
   },
@@ -532,9 +534,9 @@ export const skillGroups: readonly SkillGroupEntry[] = [
 
 export const contactLinks = [
   {
-    href: "mailto:shreyansh.sharma01@student.csulb.edu",
+    href: "mailto:inquiries@shreyanshsharma.dev",
     label: "Email",
-    value: "shreyansh.sharma01@student.csulb.edu",
+    value: "inquiries@shreyanshsharma.dev",
   },
   {
     href: "https://linkedin.com/in/sharmasshrey",

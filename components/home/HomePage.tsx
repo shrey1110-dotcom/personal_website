@@ -27,14 +27,7 @@ export default function HomePage() {
   return (
     <div className="home-page-shell relative min-h-screen bg-[#070b14] text-[#eef2ff]">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div className="page-aurora page-aurora-a" />
-        <div className="page-aurora page-aurora-b" />
-        <div className="page-aurora page-aurora-c" />
-        <div className="page-light-beam page-light-beam-a" />
-        <div className="page-light-beam page-light-beam-b" />
-        <div className="page-glow-layer" />
-        <div className="page-grid-layer" />
-        <div className="page-vignette-layer" />
+        <div className="page-base-layer" />
       </div>
 
       <header className="header-shell sticky top-0 z-40 border-b border-white/8 bg-[rgba(5,8,16,0.62)] backdrop-blur-xl">
@@ -65,12 +58,12 @@ export default function HomePage() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <span className="header-status-pill hidden md:inline-flex">
+            <span className="header-status-pill hidden lg:inline-flex">
               <span className="header-status-dot" />
               Open to internships
             </span>
             <a
-              href="mailto:shreyansh.sharma01@student.csulb.edu"
+              href="mailto:inquiries@shreyanshsharma.dev"
               className="header-hire-cta"
               data-cursor="interactive"
             >
@@ -128,16 +121,13 @@ export default function HomePage() {
                             <span className="hero-action-label">{action.label}</span>
                             <span className="hero-action-support">{action.value}</span>
                           </div>
-                          <span aria-hidden="true" className="hero-action-arrow">
-                            ↗
-                          </span>
                         </a>
                       );
                     })}
                   </div>
 
                   <a href="#retain" className="hero-scroll-cue mt-10" data-cursor="interactive">
-                    <span>Scroll to explore</span>
+                    <span>See what I&apos;ve built</span>
                     <span aria-hidden="true" className="hero-scroll-arrow">
                       ↓
                     </span>
@@ -156,7 +146,7 @@ export default function HomePage() {
         <section id="work" className="section-shell pt-6 md:pt-8">
           <div className="section-frame project-section-frame">
             <SectionHeading
-              label="/work"
+              label="Projects"
               title="Selected work"
             />
 
@@ -171,7 +161,7 @@ export default function HomePage() {
         <section id="archive" className="section-shell pt-4">
           <div className="section-frame">
             <SectionHeading
-              label="/archive"
+              label="Smaller builds"
               title="Other technical work"
             />
 
@@ -186,7 +176,7 @@ export default function HomePage() {
         <section id="stack" className="section-shell pt-6 md:pt-8">
           <div className="section-frame">
             <SectionHeading
-              label="/stack"
+              label="Stack"
               title="Technical toolkit"
             />
 
@@ -210,7 +200,7 @@ export default function HomePage() {
               <div className="max-w-[38rem]">
                 <SectionHeading
                   label="Contact"
-                  title="Let’s talk"
+                  title="Get in touch"
                   body="If the work here lines up with what your team is building, send a note. Email is best. LinkedIn, GitHub, and my resume are right here."
                 />
               </div>
@@ -229,10 +219,6 @@ export default function HomePage() {
                     >
                       <span className="mono-label">{link.label}</span>
                       <span className="contact-link-value">{link.value}</span>
-                      <span className="mt-5 inline-flex items-center gap-2 text-sm text-slate-300">
-                        Open
-                        <span aria-hidden="true">↗</span>
-                      </span>
                     </a>
                   );
                 })}

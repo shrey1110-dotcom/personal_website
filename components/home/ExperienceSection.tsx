@@ -27,7 +27,7 @@ export default function ExperienceSection() {
     <section id="experience" className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
         <SectionHeading
-          label="/experience"
+          label="Where I’ve worked"
           title="Work experience"
         />
 
