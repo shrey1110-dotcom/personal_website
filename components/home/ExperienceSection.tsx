@@ -66,11 +66,11 @@ export default function ExperienceSection() {
             <div className="experience-selector-row">
               {experienceEntries.map((entry, index) => (
                 <button
-                  key={entry.company}
+                  key={entry.id}
                   type="button"
-                  onMouseEnter={() => setActiveIndex(index)}
                   onFocus={() => setActiveIndex(index)}
                   onClick={() => setActiveIndex(index)}
+                  aria-pressed={activeIndex === index}
                   className={`experience-selector-button ${
                     activeIndex === index ? "experience-selector-button-active" : ""
                   }`}
@@ -95,7 +95,7 @@ export default function ExperienceSection() {
 
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeEntry.company}
+                key={activeEntry.id}
                 initial={{ opacity: 0.68, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0.42, y: -12 }}
@@ -125,7 +125,7 @@ export default function ExperienceSection() {
                 <div className="experience-spotlight-body">
                   <div className="experience-bullet-list">
                     {activeEntry.bullets.map((bullet) => (
-                      <div key={`${activeEntry.company}-${bullet}`} className="experience-bullet-row">
+                      <div key={`${activeEntry.id}-${bullet}`} className="experience-bullet-row">
                         <span className="experience-bullet-dot" />
                         <p className="experience-bullet-copy">{bullet}</p>
                       </div>
@@ -134,7 +134,7 @@ export default function ExperienceSection() {
 
                   <div className="experience-tech-row project-stack-list">
                     {activeEntry.tags.map((tag) => (
-                      <span key={`${activeEntry.company}-${tag}`} className="project-stack-token">
+                      <span key={`${activeEntry.id}-${tag}`} className="project-stack-token">
                         {tag}
                       </span>
                     ))}
@@ -153,7 +153,7 @@ export default function ExperienceSection() {
           >
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${activeEntry.company}-about`}
+                key={`${activeEntry.id}-about`}
                 initial={{ opacity: 0.64, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0.38, y: -10 }}
@@ -163,7 +163,7 @@ export default function ExperienceSection() {
 
                 <div className="experience-about-grid">
                   {activeEntry.meta.map((item) => (
-                    <div key={`${activeEntry.company}-${item.label}`} className="experience-about-stat">
+                    <div key={`${activeEntry.id}-${item.label}`} className="experience-about-stat">
                       <p className="experience-about-label">{item.label}</p>
                       <p className="experience-about-value">{item.value}</p>
                     </div>

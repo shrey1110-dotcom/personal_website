@@ -59,6 +59,7 @@ export type ExperienceEntry = {
   bullets: string[];
   company: string;
   date: string;
+  id: string;
   description: string;
   featured?: boolean;
   href?: string;
@@ -432,29 +433,32 @@ export const archiveProjects = projects.slice(4);
 
 export const experienceEntries: readonly ExperienceEntry[] = [
   {
+    id: "rezolve-ml-intern",
     company: "Rezolve.ai",
-    role: "AI Voice Engineer · Contract",
-    date: "2025",
+    role: "AI/ML Engineering Intern",
+    date: "May 2026 – Present",
     href: "https://rezolve.ai",
     logoSrc: "/rezolve-ai-logo.png",
     logoAlt: "Rezolve.ai logo",
     meta: [
       { label: "Employees", value: "300–350" },
-      { label: "Valuation", value: "Undisclosed · VC-backed" },
+      { label: "Team", value: "Applied ML · Voice support" },
       { label: "Backed by", value: "SIG Venture Capital · Exfinity Ventures" },
       { label: "Recognition", value: "Forrester 2026 Landscape Report" },
       { label: "Listed", value: "NASDAQ (RZLV)" },
     ],
     description:
-      "Worked on early Rezolve VoiceIQ work for inbound IT and HR support calls. The assistant listens, finds the right internal answer, creates tickets when needed, and escalates messy cases.",
+      "Building the applied-ML layer behind Rezolve's voice support product: a locally hosted intent classifier that answers the common cases cheaply, with an LLM only picking up what the classifier cannot resolve.",
     bullets: [
-      "Helped build call-flow logic for intent recognition and call handling",
-      "Worked on the ITSM integration path for ticket creation and escalation",
-      "Contributed before the product moved into larger enterprise deployments",
+      "Fine-tuned and self-hosted an intent classifier with LLM fallback, cutting average inference latency 68% and estimated inference cost 74% against an LLM-only baseline",
+      "Built a 360-conversation synthetic IT/HR eval set across 12 intent categories, labeled for intent, escalation state, fallback decision, ticket fields, and tenant routing",
+      "Raised grounded-answer accuracy 26% on a 150-question eval set and cut false escalations 31% using local embeddings and vector search",
+      "Wired classifier, RAG, and LLM fallback into the voice pipeline, reaching 80% automated ticket creation and halving malformed-input failures from 30% to 15%",
     ],
-    tags: ["Voice AI", "NLP", "ITSM Integration", "Conversational AI", "LLM Orchestration"],
+    tags: ["PyTorch", "RAG", "Embeddings", "Vector Search", "Model Eval", "Local Inference"],
   },
   {
+    id: "retain-ai",
     company: "RETAIN AI",
     role: "Founder & Solo Engineer",
     date: "May 2026 – Present",
@@ -468,14 +472,38 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       { label: "Stack", value: "Next.js · Supabase · Gemini · Twilio" },
     ],
     description:
-      "Founded and built RETAIN AI for local service businesses that miss leads by phone or SMS. I am the sole engineer across product, backend, AI flow, and deployment.",
+      "Founded and built RETAIN AI for local service businesses that lose leads to missed calls and unanswered texts. I am the only engineer across product, backend, AI flow, and deployment.",
     bullets: [
-      "Built tenant settings for business-specific tone, FAQs, hours, and escalation rules",
-      "Combined rule-based routing, Gemini, and conversation memory in the reply flow",
-      "Stress tested to 500+ concurrent users with 4M+ message exchanges, 150–250ms p95, and <0.4% error rate",
+      "Built a multi-tenant missed-call and inbound-SMS system on Twilio webhooks, Supabase auth, and PostgreSQL tenant config",
+      "Sustained 4M+ simulated message exchanges at 150–250ms p95 with a 0.4% error rate under 500 concurrent users",
+      "Shipped 7 runtime tenant fields — FAQ grounding, tone, escalation thresholds, lead status, booking link, STOP opt-outs, owner alerts — so routing changes ship without a redeploy",
       "Added RETAINvoice call handling with live transcript, tool calls, call summary, and owner handoff",
     ],
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Gemini", "Twilio", "Stripe", "AWS"],
+  },
+  {
+    id: "rezolve-voice-2025",
+    company: "Rezolve.ai",
+    role: "AI Voice Systems Contributor",
+    date: "May – Aug 2025",
+    href: "https://rezolve.ai",
+    logoSrc: "/rezolve-ai-logo.png",
+    logoAlt: "Rezolve.ai logo",
+    meta: [
+      { label: "Employees", value: "300–350" },
+      { label: "Team", value: "5 engineers · VoiceIQ" },
+      { label: "Backed by", value: "SIG Venture Capital · Exfinity Ventures" },
+      { label: "Recognition", value: "Forrester 2026 Landscape Report" },
+      { label: "Listed", value: "NASDAQ (RZLV)" },
+    ],
+    description:
+      "Early VoiceIQ work for inbound IT and HR support calls. The assistant listens, finds the right internal answer, creates tickets when needed, and escalates the cases it should not attempt.",
+    bullets: [
+      "Cut VoiceIQ failure cases 30–35% by hardening API/ITSM payload mapping, automation-to-agent handoffs, and malformed-input handling",
+      "Turned malformed JSON, missing ticket fields, escalation branches, and handoff states into async regression scenarios",
+      "Contributed to 45% faster release cycles on a 5-engineer team",
+    ],
+    tags: ["Voice AI", "NLP", "ITSM Integration", "Conversational AI", "LLM Orchestration"],
   },
 ] as const;
 
