@@ -5,11 +5,15 @@
 <svg width="420" height="128" viewBox="0 0 420 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RETAIN AI">
   <circle cx="30" cy="64" r="10" fill="#4f46e5"/>
   <circle cx="30" cy="64" r="19" fill="#4f46e5" fill-opacity="0.18"/>
+  <!-- textLength pins the rendered width regardless of which font the viewer
+       resolves. An <img>-loaded SVG cannot see the page's webfont, so without
+       this a wide fallback would push "AI" past the viewBox and clip it. -->
   <text x="58" y="64"
+        textLength="330"
+        lengthAdjust="spacingAndGlyphs"
         dominant-baseline="central"
         font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
         font-size="50"
         font-weight="700"
-        letter-spacing="2"
-        fill="#0b1120">RETAIN<tspan dx="16" fill="#4f46e5">AI</tspan></text>
+        fill="#0b1120">RETAIN <tspan fill="#4f46e5">AI</tspan></text>
 </svg>
