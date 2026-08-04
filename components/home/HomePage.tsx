@@ -20,6 +20,16 @@ import { withBasePath } from "@/lib/site";
 
 const revealEase = [0.22, 1, 0.36, 1] as const;
 
+// Hero elements rise in sequence rather than all at once. Small distance,
+// short duration — it should read as the page settling, not as an entrance.
+// Starts partially visible, matching the rest of the page: these initial
+// values are inlined into the static HTML, so opacity 0 would leave the hero
+// blank until framer-motion hydrates.
+const heroRise = {
+  hidden: { opacity: 0.6, y: 14 },
+  shown: { opacity: 1, y: 0, transition: { duration: 0.55, ease: revealEase } },
+} as const;
+
 export default function HomePage() {
   const getLinkBehavior = (href: string) =>
     href.startsWith("mailto:") ? {} : { rel: "noreferrer", target: "_blank" as const };
@@ -39,7 +49,7 @@ export default function HomePage() {
                 Shreyansh Sharma
               </span>
               <span className="block text-xs text-slate-400">
-                Full-stack engineering · applied ML · CSULB
+                Applied ML · CSULB
               </span>
             </span>
           </a>
@@ -87,25 +97,26 @@ export default function HomePage() {
           <div className="section-frame">
             <div className="hero-stage-panel">
               <div className="hero-grid">
-                <div className="max-w-[720px]">
-                  <p className="section-label">Software engineer in Long Beach</p>
+                <motion.div
+                  className="max-w-[720px]"
+                  initial="hidden"
+                  animate="shown"
+                  variants={{ shown: { transition: { staggerChildren: 0.09 } } }}
+                >
+                  <motion.p variants={heroRise} className="section-label">
+                    Applied ML engineer · Long Beach
+                  </motion.p>
 
-                  <h1 className="hero-title hero-title-expanded mt-5">
+                  <motion.h1 variants={heroRise} className="hero-title hero-title-expanded mt-5">
                     <span className="hero-title-line">Shreyansh</span>
                     <span className="hero-title-line hero-title-gradient">Sharma</span>
-                  </h1>
+                  </motion.h1>
 
-                  <p className="hero-support mt-6">
-                    I build products with UI, backend, data, and ML pieces that have to work together.
-                  </p>
+                  <motion.p variants={heroRise} className="hero-support mt-6">
+                    I build AI systems that resolve most requests before an LLM ever sees them.
+                  </motion.p>
 
-                  <p className="hero-body mt-5">
-                    Most of my work starts with a simple user problem, then turns into routing logic,
-                    database shape, API edges, and testing details. I care about the parts people see
-                    and the parts they should never have to think about.
-                  </p>
-
-                  <div className="hero-action-grid mt-9">
+                  <motion.div variants={heroRise} className="hero-action-grid mt-9">
                     {heroActions.map((action) => {
                       const href = action.href.startsWith("/") ? withBasePath(action.href) : action.href;
 
@@ -124,15 +135,20 @@ export default function HomePage() {
                         </a>
                       );
                     })}
-                  </div>
+                  </motion.div>
 
-                  <a href="#retain" className="hero-scroll-cue mt-10" data-cursor="interactive">
+                  <motion.a
+                    variants={heroRise}
+                    href="#retain"
+                    className="hero-scroll-cue mt-10"
+                    data-cursor="interactive"
+                  >
                     <span>See what I&apos;ve built</span>
                     <span aria-hidden="true" className="hero-scroll-arrow">
                       ↓
                     </span>
-                  </a>
-                </div>
+                  </motion.a>
+                </motion.div>
 
                 <HeroProfilePanel />
               </div>
