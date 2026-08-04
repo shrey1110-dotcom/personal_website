@@ -49,7 +49,7 @@ export default function HomePage() {
                 Shreyansh Sharma
               </span>
               <span className="block text-xs text-slate-400">
-                Applied ML · CSULB
+                Full-stack engineering · applied ML · CSULB
               </span>
             </span>
           </a>
@@ -104,7 +104,7 @@ export default function HomePage() {
                   variants={{ shown: { transition: { staggerChildren: 0.09 } } }}
                 >
                   <motion.p variants={heroRise} className="section-label">
-                    Applied ML engineer · Long Beach
+                    Software engineer · Long Beach
                   </motion.p>
 
                   <motion.h1 variants={heroRise} className="hero-title hero-title-expanded mt-5">
@@ -113,7 +113,7 @@ export default function HomePage() {
                   </motion.h1>
 
                   <motion.p variants={heroRise} className="hero-support mt-6">
-                    I build AI systems that resolve most requests before an LLM ever sees them.
+                    I build full-stack products, and the ML that makes them cheaper to run.
                   </motion.p>
 
                   <motion.div variants={heroRise} className="hero-action-grid mt-9">
