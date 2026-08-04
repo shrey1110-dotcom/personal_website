@@ -48,7 +48,9 @@ export default function HomePage() {
               <span className="block text-sm font-semibold tracking-[-0.03em] text-white">
                 Shreyansh Sharma
               </span>
-              <span className="block text-xs text-slate-400">
+              {/* Shown only where the header has room: the nav appears at md
+                  and the status pill at xl, so this steps out between them. */}
+              <span className="hidden whitespace-nowrap text-xs text-slate-400 sm:block md:hidden xl:block">
                 Full-stack engineering · applied ML · CSULB
               </span>
             </span>
@@ -59,7 +61,7 @@ export default function HomePage() {
               <a
                 key={item.label}
                 href={item.href}
-                className="nav-link text-sm text-slate-300 transition-colors duration-200 hover:text-white"
+                className="nav-link whitespace-nowrap text-sm text-slate-300 transition-colors duration-200 hover:text-white"
                 data-cursor="interactive"
               >
                 {item.label}
@@ -68,9 +70,9 @@ export default function HomePage() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <span className="header-status-pill hidden lg:inline-flex">
+            <span className="header-status-pill hidden whitespace-nowrap xl:inline-flex">
               <span className="header-status-dot" />
-              Open to internships
+              Open to new-grad roles
             </span>
             <a
               href="mailto:inquiries@shreyanshsharma.dev"
@@ -247,7 +249,7 @@ export default function HomePage() {
       <footer className="relative z-10 border-t border-white/8 px-4 py-8 md:px-8">
         <div className="mx-auto max-w-[1320px] space-y-2">
           <p className="text-sm text-slate-300">
-            Shreyansh Sharma · Long Beach, CA · CSULB · Open to internships
+            Shreyansh Sharma · Long Beach, CA · CSULB · Open to new-grad roles, May 2027
           </p>
           <p className="text-sm text-slate-500">
             Built with Next.js, TypeScript, and Tailwind.

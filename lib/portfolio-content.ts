@@ -71,8 +71,8 @@ export type ExperienceEntry = {
 };
 
 export const navItems = [
-  { href: "#retain", label: "Work" },
-  { href: "#experience", label: "Work Experience" },
+  { href: "#retain", label: "Projects" },
+  { href: "#experience", label: "Experience" },
   { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
 ] as const;
@@ -136,7 +136,7 @@ export const retainProduct: RetainProductEntry = {
   href: "https://retain-ai-eight.vercel.app",
   ctaLabel: "Open platform →",
   liveMeta: "retain-ai-eight.vercel.app",
-  roleLine: "RETAIN AI · Founder & Solo Engineer · 2025–Present",
+  roleLine: "RETAIN AI · Founder and AI Engineer · March 2026–Present",
   subtitle: "Messaging and callback assistant for local service businesses.",
   blurb:
     "RETAIN AI helps local businesses answer missed texts and calls. RETAINchat handles SMS and web messages. RETAINvoice answers calls, places callbacks, checks business rules, responds out loud, logs the transcript, and hands off messy calls to the owner.",
