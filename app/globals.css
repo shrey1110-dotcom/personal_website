@@ -1534,7 +1534,7 @@ section[id] {
   }
 
   .experience-selector-row {
-    @apply mt-6 grid gap-3 sm:grid-cols-2;
+    @apply mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3;
   }
 
   .experience-selector-button {
