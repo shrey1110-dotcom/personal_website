@@ -435,7 +435,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
   {
     id: "rezolve-ml-intern",
     company: "Rezolve.ai",
-    role: "AI/ML Engineering Intern",
+    role: "AI/ML Engineering Intern (Returning)",
     date: "May 2026 – Present",
     href: "https://rezolve.ai",
     logoSrc: "/rezolve-ai-logo.png",
@@ -446,9 +446,10 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       { label: "Backed by", value: "SIG Venture Capital · Exfinity Ventures" },
       { label: "Recognition", value: "Forrester 2026 Landscape Report" },
       { label: "Listed", value: "NASDAQ (RZLV)" },
+      { label: "Tenure", value: "Second term · invited back" },
     ],
     description:
-      "Building the applied-ML layer behind Rezolve's voice support product: a locally hosted intent classifier that answers the common cases cheaply, with an LLM only picking up what the classifier cannot resolve.",
+      "Back at Rezolve for a second term, now building the applied-ML layer behind their voice support product: a locally hosted intent classifier that answers the common cases cheaply, with an LLM only picking up what the classifier cannot resolve.",
     bullets: [
       "Fine-tuned and self-hosted an intent classifier with LLM fallback, cutting average inference latency 68% and estimated inference cost 74% against an LLM-only baseline",
       "Built a 360-conversation synthetic IT/HR eval set across 12 intent categories, labeled for intent, escalation state, fallback decision, ticket fields, and tenant routing",
@@ -475,7 +476,7 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       "Founded and built RETAIN AI for local service businesses that lose leads to missed calls and unanswered texts. I am the only engineer across product, backend, AI flow, and deployment.",
     bullets: [
       "Built a multi-tenant missed-call and inbound-SMS system on Twilio webhooks, Supabase auth, and PostgreSQL tenant config",
-      "Sustained 4M+ simulated message exchanges at 150–250ms p95 with a 0.4% error rate under 500 concurrent users",
+      "Load-tested the platform to 4M+ message exchanges and 500 concurrent users, holding 150–250ms p95 with a 0.4% error rate",
       "Shipped 7 runtime tenant fields — FAQ grounding, tone, escalation thresholds, lead status, booking link, STOP opt-outs, owner alerts — so routing changes ship without a redeploy",
       "Added RETAINvoice call handling with live transcript, tool calls, call summary, and owner handoff",
     ],
