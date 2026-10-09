@@ -3,7 +3,7 @@
 import HeroHeadshot from "@/components/home/HeroHeadshot";
 
 const profileSignals = [
-  "Founder of RETAIN AI",
+  "Founder of Frontline AI",
   "CSULB CS · May 2027",
   "Long Beach",
 ] as const;
@@ -20,7 +20,7 @@ export default function HeroProfilePanel() {
           <div className="space-y-3 text-center">
             <p className="hero-portrait-name">Shreyansh Sharma</p>
             <p className="hero-portrait-title">
-              Applied ML at Rezolve.ai. Building RETAIN AI on the side.
+              Applied ML at Rezolve.ai. Building Frontline AI on the side.
             </p>
           </div>
 
