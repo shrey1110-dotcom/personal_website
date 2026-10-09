@@ -3264,3 +3264,36 @@ section[id] {
     display: none;
   }
 }
+
+@keyframes csHeartbeat {
+  0%,
+  28%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(79, 107, 255, 0.35);
+  }
+  8% {
+    transform: scale(1.04);
+    box-shadow: 0 0 14px rgba(79, 107, 255, 0.45);
+  }
+  16% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(79, 107, 255, 0.35);
+  }
+  22% {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(79, 107, 255, 0.4);
+  }
+}
+
+.cs-heartbeat-fast,
+.cs-heartbeat-slow {
+  animation: csHeartbeat 1.35s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-heartbeat-fast,
+  .cs-heartbeat-slow {
+    animation: none;
+  }
+}
