@@ -16,15 +16,10 @@ import {
 
 type LoadState = "loading" | "ready" | "error";
 
-/** Turn augmented with a display gap that is always clamped under 500ms. */
-type UITurn = CallTurn & { displayGapMs: number };
-
-const WINDOW_MS = 9000;
+const WINDOW_MS = 4000;
 const PAD = { left: 16, right: 16, top: 20, bottom: 22 };
 const BAR_TARGET = 3600;
-/** Any measured gap is shown as this ceiling at most, so t_resp always reads < 500ms. */
-const GAP_CEILING_MS = 480;
-/** Only ever surface this many turn-gap measurements across the whole call. */
+/** Surface at most this many turn-gap markers so the waveform stays readable. */
 const MAX_GAP_MARKERS = 3;
 
 const COLORS = {
@@ -36,30 +31,21 @@ const COLORS = {
   agentIdle: "rgba(230,234,247,0.40)",
   playhead: "#4f6bff",
   accent: "#6b83ff",
-  packet: "79,107,255",
 };
 
 type Analysis = {
   peaks: number[];
   durationMs: number;
-  turns: UITurn[];
+  turns: CallTurn[];
   /** Indices of the (few) turns whose gap we surface. */
   gapSet: Set<number>;
-  /** Average measured agent response latency (clamped < 500ms). */
-  avgRespMs: number;
 };
 
 type CallScopePlayerProps = {
   docUrl?: string;
-  /** When true, fills the parent container (used inside RetainVoiceDemo shell). */
+  /** When true, fills the parent container (used inside the voice demo shell). */
   embedded?: boolean;
 };
-
-/** Clamp any measured gap so the surfaced value is always a believable sub-500ms latency. */
-function clampGap(ms: number): number {
-  if (ms <= GAP_CEILING_MS) return Math.max(60, Math.round(ms));
-  return 300 + (Math.round(ms) % 170);
-}
 
 function fmtClock(ms: number): string {
   const safe = Math.max(0, Math.floor(ms / 1000));
@@ -68,8 +54,9 @@ function fmtClock(ms: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
-function fmtK(n: number): string {
-  return n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n);
+function fmtGap(ms: number): string {
+  if (ms < 1000) return `${Math.round(ms)}ms`;
+  return `${(ms / 1000).toFixed(1)}s`;
 }
 
 export function CallScopePlayer({
@@ -82,6 +69,8 @@ export function CallScopePlayer({
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentMs, setCurrentMs] = useState(0);
+  /** True once the visitor has asked for sound. Before that, the call plays muted. */
+  const [hasUnmuted, setHasUnmuted] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -120,18 +109,14 @@ export function CallScopePlayer({
         const barCount = Math.min(BAR_TARGET, Math.max(600, Math.floor(audioBuffer.duration * 55)));
         const peaks = computePeaks(channel, barCount);
 
-        // Prefer authoritative offline-baked timings (perfect subtitle sync).
-        // Fall back to on-device VAD alignment only if timings are missing.
-        const baseTurns = hasBakedTimings(parsed.turns)
+        const turns = hasBakedTimings(parsed.turns)
           ? buildTurnsFromTimings(parsed.turns)
           : buildTurns(
               parsed.turns,
               alignSegmentsToTurns(detectSegments(channel, audioBuffer.sampleRate), parsed.turns.length, durationMs)
             );
-        const turns: UITurn[] = baseTurns.map((t) => ({ ...t, displayGapMs: clampGap(t.gapMs) }));
 
-        // Curate the few gap markers: prefer agent tool turns, then the first agent
-        // response. Keep at most MAX_GAP_MARKERS so the waveform stays uncluttered.
+        // Prefer agent tool turns, then the first agent response. Cap markers.
         const agentTurns = turns.filter((t) => t.speaker === "agent" && t.index > 0);
         const chosen: number[] = [];
         for (const t of agentTurns) {
@@ -141,12 +126,7 @@ export function CallScopePlayer({
         if (firstAgent && !chosen.includes(firstAgent.index)) chosen.unshift(firstAgent.index);
         const gapSet = new Set(chosen.slice(0, MAX_GAP_MARKERS));
 
-        const shown = [...gapSet].map((i) => turns[i].displayGapMs);
-        const avgRespMs = shown.length
-          ? Math.round(shown.reduce((a, b) => a + b, 0) / shown.length)
-          : 320;
-
-        const result: Analysis = { peaks, durationMs, turns, gapSet, avgRespMs };
+        const result: Analysis = { peaks, durationMs, turns, gapSet };
         analysisRef.current = result;
         setAnalysis(result);
         setState("ready");
@@ -163,14 +143,13 @@ export function CallScopePlayer({
     };
   }, [docUrl]);
 
-  // Keep the call "always playing": attempt autoplay once analysis is ready and
-  // loop forever. Browsers may block unmuted autoplay until a user gesture, in
-  // which case the centered play button starts it.
+  // Autoplay muted once ready so the waveform progresses; click unmutes.
   useEffect(() => {
     if (state !== "ready") return;
     const audio = audioRef.current;
     if (!audio) return;
     audio.loop = true;
+    audio.muted = true;
     const attempt = audio.play();
     if (attempt) {
       attempt.then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
@@ -208,7 +187,6 @@ export function CallScopePlayer({
 
     const { durationMs, peaks, turns } = data;
     const nowMs = currentMsRef.current;
-    const t = performance.now() / 1000;
 
     const maxStart = Math.max(0, durationMs - WINDOW_MS);
     const desiredStart = nowMs - WINDOW_MS * 0.42;
@@ -216,7 +194,6 @@ export function CallScopePlayer({
     const viewSpan = durationMs <= WINDOW_MS ? durationMs : WINDOW_MS;
     const msToX = (ms: number) => plotX + ((ms - viewStart) / viewSpan) * plotW;
 
-    // Two speaker lanes: agent on top, caller on the bottom.
     const agentBase = plotY + plotH * 0.3;
     const callerBase = plotY + plotH * 0.74;
     const laneMax = plotH * 0.24;
@@ -230,7 +207,6 @@ export function CallScopePlayer({
       ctx.stroke();
     }
 
-    // Lane labels
     ctx.font = "9px ui-monospace, SFMono-Regular, Menlo, monospace";
     ctx.textAlign = "left";
     ctx.textBaseline = "middle";
@@ -250,7 +226,6 @@ export function CallScopePlayer({
       if (barMs > viewStart + viewSpan + msPerBar) break;
 
       const turn = turns[cursor];
-      // Only paint a bar in a lane while that speaker is actually talking; gaps stay clear.
       if (!turn || barMs < turn.startMs || barMs > turn.endMs) continue;
 
       const isAgent = turn.speaker === "agent";
@@ -271,24 +246,7 @@ export function CallScopePlayer({
       ctx.fill();
     }
 
-    // Streaming "packets": a continuous data stream along the top edge, brightest
-    // near the playhead, that keeps moving even while paused (always-live feel).
-    const streamY = plotY - 8;
-    const spacing = 22;
-    const speed = 30;
-    const offset = (t * speed) % spacing;
-    const px = msToX(nowMs);
-    for (let x = plotX + offset; x <= plotX + plotW; x += spacing) {
-      const dist = Math.abs(x - px);
-      const glow = Math.max(0, 1 - dist / 90);
-      const alpha = 0.16 + 0.6 * glow;
-      const size = 3 + 2 * glow;
-      ctx.fillStyle = `rgba(${COLORS.packet},${alpha})`;
-      ctx.fillRect(x - size / 2, streamY - size / 2, size, size);
-    }
-
-    // Only surface the curated, clamped (<500ms) turn-gap markers, drawn in the
-    // gutter between the two lanes so the latency reads as turn-taking speed.
+    // Honest turn-gap markers from measured silence between speakers.
     const active = activeTurnIndex(turns, nowMs);
     if (active > 0 && data.gapSet.has(active)) {
       const cur = turns[active];
@@ -312,11 +270,11 @@ export function CallScopePlayer({
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
         ctx.fillStyle = COLORS.accent;
-        ctx.fillText(`t_resp = ${cur.displayGapMs}ms`, (x1 + x2) / 2, y - 5);
+        ctx.fillText(`gap ${fmtGap(cur.gapMs)}`, (x1 + x2) / 2, y - 5);
       }
     }
 
-    // Playhead
+    const px = msToX(nowMs);
     if (px >= plotX - 2 && px <= plotX + plotW + 2) {
       ctx.strokeStyle = COLORS.playhead;
       ctx.lineWidth = 1.5;
@@ -354,6 +312,13 @@ export function CallScopePlayer({
   const togglePlay = useCallback(() => {
     const audio = audioRef.current;
     if (!audio) return;
+    if (audio.muted) {
+      audio.muted = false;
+      setHasUnmuted(true);
+      if (audio.paused) void audio.play();
+      setIsPlaying(true);
+      return;
+    }
     if (audio.paused) {
       void audio.play();
       setIsPlaying(true);
@@ -380,50 +345,31 @@ export function CallScopePlayer({
   }, []);
 
   const durationMs = analysis?.durationMs ?? 0;
-  const avgResp = analysis?.avgRespMs ?? 320;
-  // Live RTP packet counter that ticks up in real time (20ms frames) and resets on loop.
-  const totalPackets = durationMs > 0 ? Math.round(durationMs / 20) : 0;
-  const livePackets = Math.min(totalPackets, Math.round(currentMs / 20));
-  const metrics: { label: string; value: string; unit: string; meta: string }[] = [
-    { label: "latency", value: String(avgResp), unit: "ms", meta: "t_resp avg" },
-    { label: "packets", value: livePackets.toLocaleString(), unit: "rtp", meta: `${fmtK(totalPackets)} · 20ms` },
-    { label: "resolution", value: "first", unit: "call", meta: "booked" },
-  ];
-  const pills = ["dental · scheduling", "🇺🇸 en-US", "[live]"];
+  const turnCount = analysis?.turns.length ?? 0;
+  const toolTurns =
+    analysis?.turns.filter((t) => t.tools && t.tools.length > 0).length ?? 0;
 
   return (
     <div className={embedded ? "w-full" : "w-full max-w-3xl"}>
-      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0b0f] shadow-2xl">
-        {/* Header: live ping + label + clock + intent */}
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-[#0a0b0f]">
         <div className="flex items-center justify-between gap-2 border-b border-white/10 px-3 py-2 font-mono text-[11px]">
           <div className="flex min-w-0 items-center gap-2">
-            <span className="relative flex h-2 w-2 flex-shrink-0">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#4f6bff] opacity-70" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#4f6bff]" />
-            </span>
-            <span className="truncate text-white/80">inbound support call</span>
+            <span className="truncate text-white/80">frontline/call-scope</span>
+            <span className="text-white/35">[recorded call]</span>
           </div>
           <span className="flex-shrink-0 tabular-nums text-white/50">
             {fmtClock(currentMs)} / {fmtClock(durationMs)}
           </span>
-          <span className="hidden flex-shrink-0 truncate text-white/40 sm:inline">appointment_booking</span>
         </div>
 
-        {/* Scenario pills */}
-        <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-1.5 font-mono">
-          {pills.map((pill) => (
-            <span
-              key={pill}
-              className="rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] text-white/55"
-            >
-              {pill}
-            </span>
-          ))}
-          <span className="flex-1" />
-          <span className="text-[9px] text-white/35">ag_cedar01</span>
+        <div className="flex items-center gap-2 border-b border-white/10 px-3 py-1.5 font-mono text-[10px] text-white/45">
+          <span>dental · scheduling</span>
+          <span className="text-white/25">·</span>
+          <span>en-US</span>
+          <span className="text-white/25">·</span>
+          <span>appointment booking</span>
         </div>
 
-        {/* Waveform */}
         <div className="relative">
           <canvas
             ref={canvasRef}
@@ -433,7 +379,7 @@ export function CallScopePlayer({
 
           {state === "loading" && (
             <div className="absolute inset-0 flex items-center justify-center font-mono text-xs text-white/40">
-              analyzing waveform…
+              loading waveform…
             </div>
           )}
           {state === "error" && (
@@ -442,8 +388,6 @@ export function CallScopePlayer({
             </div>
           )}
 
-          {/* Prominent live function-call badge, surfaced on the waveform the moment
-              the agent invokes a tool (Plivo shows tool calls right on the call). */}
           <AnimatePresence>
             {activeTurn && activeTurn.tools && activeTurn.tools.length > 0 && (
               <motion.div
@@ -454,18 +398,16 @@ export function CallScopePlayer({
                 transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                 className="pointer-events-none absolute left-1/2 top-2 z-10 flex -translate-x-1/2 flex-col items-center gap-1"
               >
-                <span className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#8aa0ff]/70">
-                  function call
+                <span className="text-[8px] font-medium uppercase tracking-[0.18em] text-[#4f6bff]/70">
+                  tool
                 </span>
                 <div className="flex items-center gap-1.5">
                   {activeTurn.tools.map((tool) => (
                     <span
                       key={tool.name}
-                      className="inline-flex items-center gap-1 rounded-md border border-[#6b83ff]/50 bg-[#4f6bff]/20 px-2 py-1 font-mono text-[11px] font-medium text-[#dfe5ff] shadow-[0_0_20px_rgba(79,107,255,0.45)] backdrop-blur"
+                      className="inline-flex items-center gap-1 rounded-md border border-[#4f6bff]/40 bg-[#4f6bff]/15 px-2 py-1 font-mono text-[11px] font-medium text-[#dfe5ff]"
                     >
-                      <span className="text-[#8aa0ff]">⚡</span>
                       {tool.name}
-                      <span className="text-[#8aa0ff]/70">()</span>
                     </span>
                   ))}
                 </div>
@@ -473,18 +415,19 @@ export function CallScopePlayer({
             )}
           </AnimatePresence>
 
-          {/* Centered play/pause control (Plivo-style). Fully shown while paused, fades while playing. */}
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2">
             <button
               type="button"
               onClick={togglePlay}
               disabled={state !== "ready"}
-              aria-label={isPlaying ? "Pause" : "Play"}
-              className={`pointer-events-auto grid h-14 w-14 place-items-center rounded-full bg-[#4f6bff] text-white shadow-[0_0_36px_rgba(79,107,255,0.55)] transition-all duration-300 hover:scale-105 hover:bg-[#3f5bff] disabled:opacity-40 ${
-                isPlaying ? "opacity-30 hover:opacity-100" : "opacity-100"
+              aria-label={hasUnmuted ? (isPlaying ? "Pause" : "Play") : "Play with sound"}
+              className={`pointer-events-auto grid h-11 w-11 place-items-center rounded-full bg-[#4f6bff] text-white transition-opacity duration-300 hover:bg-[#3f5bff] disabled:opacity-40 ${
+                hasUnmuted
+                  ? `cs-heartbeat-slow ${isPlaying ? "opacity-35 hover:opacity-100" : "opacity-100"}`
+                  : "cs-heartbeat-slow opacity-100"
               }`}
             >
-              {isPlaying ? (
+              {hasUnmuted && isPlaying ? (
                 <span className="flex gap-1.5">
                   <span className="block h-4 w-1.5 rounded-sm bg-white" />
                   <span className="block h-4 w-1.5 rounded-sm bg-white" />
@@ -493,15 +436,14 @@ export function CallScopePlayer({
                 <span className="ml-1 block h-0 w-0 border-y-[9px] border-y-transparent border-l-[14px] border-l-white" />
               )}
             </button>
-            {!isPlaying && state === "ready" && (
+            {!hasUnmuted && state === "ready" && (
               <span className="pointer-events-none rounded bg-black/50 px-2 py-0.5 font-mono text-[10px] tracking-wide text-white/70">
-                listen to a real call
+                tap to hear the real call
               </span>
             )}
           </div>
         </div>
 
-        {/* Active transcript line */}
         <div className="min-h-[52px] border-t border-white/10 px-3 py-2">
           <AnimatePresence mode="wait">
             <motion.div
@@ -515,7 +457,7 @@ export function CallScopePlayer({
                 <p className="text-[13px] leading-snug">
                   <span
                     className={`mr-1.5 font-mono text-[11px] ${
-                      activeTurn.speaker === "agent" ? "text-[#6b83ff]" : "text-white/45"
+                      activeTurn.speaker === "agent" ? "text-[#4f6bff]" : "text-white/45"
                     }`}
                   >
                     {activeTurn.speaker} ›
@@ -523,46 +465,31 @@ export function CallScopePlayer({
                   <span className="text-white/90">{activeTurn.text}</span>
                 </p>
               ) : (
-                <p className="font-mono text-xs text-white/40">connecting call…</p>
+                <p className="font-mono text-xs text-white/40">waiting for audio…</p>
               )}
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Metrics strip (Plivo-style) */}
         <div className="grid grid-cols-3 border-t border-white/10 font-mono">
-          {metrics.map((m, i) => (
-            <div
-              key={m.label}
-              className={`flex flex-col gap-0.5 px-3 py-2 ${i < metrics.length - 1 ? "border-r border-white/10" : ""}`}
-            >
-              <span className="text-[9px] uppercase tracking-[0.1em] text-white/45">{m.label}</span>
-              <span className="flex items-baseline gap-1">
-                <span className="text-sm font-semibold tabular-nums tracking-tight text-white/90">{m.value}</span>
-                {m.unit ? <span className="text-[10px] text-white/50">{m.unit}</span> : null}
-              </span>
-              <span className="text-[9px] text-white/40">{m.meta}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between border-t border-white/10 px-3 py-1.5 font-mono text-[11px] text-white/50">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#4f6bff]/70" />
-            resolved · booked
-          </span>
-          <span className="text-white/40">t_resp avg {avgResp}ms</span>
+          <div className="flex flex-col gap-0.5 border-r border-white/10 px-3 py-2">
+            <span className="text-[9px] uppercase tracking-[0.1em] text-white/45">duration</span>
+            <span className="text-sm font-semibold tabular-nums tracking-tight text-white/90">
+              {fmtClock(durationMs)}
+            </span>
+          </div>
+          <div className="flex flex-col gap-0.5 border-r border-white/10 px-3 py-2">
+            <span className="text-[9px] uppercase tracking-[0.1em] text-white/45">turns</span>
+            <span className="text-sm font-semibold tabular-nums tracking-tight text-white/90">{turnCount}</span>
+          </div>
+          <div className="flex flex-col gap-0.5 px-3 py-2">
+            <span className="text-[9px] uppercase tracking-[0.1em] text-white/45">tools used</span>
+            <span className="text-sm font-semibold tabular-nums tracking-tight text-white/90">{toolTurns}</span>
+          </div>
         </div>
       </div>
 
-      <audio
-        ref={audioRef}
-        src={doc?.audio}
-        loop
-        preload="auto"
-        className="hidden"
-      />
+      <audio ref={audioRef} src={doc?.audio} loop preload="auto" className="hidden" />
     </div>
   );
 }
