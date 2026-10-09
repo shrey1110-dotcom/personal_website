@@ -1,10 +1,8 @@
-<!-- Wordmark for RETAIN AI. Dark art on transparency so it sits on the light
-     logo plate used across the experience section, matching how the Rezolve.ai
-     mark is supplied. Replaces an earlier asset whose letter paths spelled
-     "REELEDIS". -->
-<svg width="420" height="128" viewBox="0 0 420 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="RETAIN AI">
-  <circle cx="30" cy="64" r="10" fill="#4f46e5"/>
-  <circle cx="30" cy="64" r="19" fill="#4f46e5" fill-opacity="0.18"/>
+<!-- Wordmark for Frontline AI. Dark art on transparency so it sits on the light
+     logo plate used across the experience section. -->
+<svg width="420" height="128" viewBox="0 0 420 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Frontline AI">
+  <circle cx="30" cy="64" r="10" fill="#4f6bff"/>
+  <circle cx="30" cy="64" r="19" fill="#4f6bff" fill-opacity="0.18"/>
   <!-- textLength pins the rendered width regardless of which font the viewer
        resolves. An <img>-loaded SVG cannot see the page's webfont, so without
        this a wide fallback would push "AI" past the viewBox and clip it. -->
@@ -13,7 +11,7 @@
         lengthAdjust="spacingAndGlyphs"
         dominant-baseline="central"
         font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
-        font-size="50"
+        font-size="44"
         font-weight="700"
-        fill="#0b1120">RETAIN <tspan fill="#4f46e5">AI</tspan></text>
+        fill="#0b1120">Frontline <tspan fill="#4f6bff">AI</tspan></text>
 </svg>

@@ -141,7 +141,7 @@ export default function HomePage() {
 
                   <motion.a
                     variants={heroRise}
-                    href="#retain"
+                    href="#frontline"
                     className="hero-scroll-cue mt-10"
                     data-cursor="interactive"
                   >

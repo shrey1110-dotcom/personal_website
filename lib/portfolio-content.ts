@@ -71,7 +71,7 @@ export type ExperienceEntry = {
 };
 
 export const navItems = [
-  { href: "#retain", label: "Projects" },
+  { href: "#frontline", label: "Projects" },
   { href: "#experience", label: "Experience" },
   { href: "#stack", label: "Stack" },
   { href: "#contact", label: "Contact" },
@@ -132,22 +132,22 @@ export const heroStats = [
 ] as const;
 
 export const retainProduct: RetainProductEntry = {
-  name: "RETAIN AI",
-  href: "https://retain-ai-eight.vercel.app",
+  name: "Frontline AI",
+  href: "https://getfrontline.vercel.app",
   ctaLabel: "Open platform →",
-  liveMeta: "retain-ai-eight.vercel.app",
-  roleLine: "RETAIN AI · Founder and AI Engineer · March 2026–Present",
+  liveMeta: "getfrontline.vercel.app",
+  roleLine: "Frontline AI · Founder and AI Engineer · March 2026–Present",
   subtitle: "Messaging and callback assistant for local service businesses.",
   blurb:
-    "RETAIN AI helps local businesses answer missed texts and calls. RETAINchat handles SMS and web messages. RETAINvoice answers calls, places callbacks, checks business rules, responds out loud, logs the transcript, and hands off messy calls to the owner.",
+    "Frontline AI helps local businesses answer missed texts and calls. Frontline Chat handles SMS and web messages. Frontline Voice answers calls, places callbacks, checks business rules, responds out loud, logs the transcript, and hands off messy calls to the owner.",
   featureCards: [
     {
-      title: "RETAINchat",
+      title: "Frontline Chat",
       copy:
         "SMS and web messages use business FAQs, hours, tone, memory, and escalation rules before Gemini writes a reply.",
     },
     {
-      title: "RETAINvoice",
+      title: "Frontline Voice",
       copy:
         "Answers inbound calls and callbacks, listens to the caller, runs the same business rules as chat, speaks responses out loud, and flags owner handoff when booking or pricing needs a person.",
     },
@@ -459,13 +459,13 @@ export const experienceEntries: readonly ExperienceEntry[] = [
     tags: ["PyTorch", "RAG", "Embeddings", "Vector Search", "Model Eval", "Local Inference"],
   },
   {
-    id: "retain-ai",
-    company: "RETAIN AI",
+    id: "frontline-ai",
+    company: "Frontline AI",
     role: "Founder and AI Engineer",
     date: "March 2026 – Present",
-    href: "https://retain-ai-eight.vercel.app",
+    href: "https://getfrontline.vercel.app",
     logoSrc: "/retain-ai-wordmark.svg",
-    logoAlt: "RETAIN AI logo",
+    logoAlt: "Frontline AI logo",
     meta: [
       { label: "Employees", value: "1–10" },
       { label: "Founded", value: "March 2026" },
@@ -473,12 +473,12 @@ export const experienceEntries: readonly ExperienceEntry[] = [
       { label: "Stack", value: "Next.js · Supabase · Gemini · Twilio" },
     ],
     description:
-      "Founded and built RETAIN AI for local service businesses that lose leads to missed calls and unanswered texts. I am the only engineer across product, backend, AI flow, and deployment.",
+      "Founded and built Frontline AI for local service businesses that lose leads to missed calls and unanswered texts. I am the only engineer across product, backend, AI flow, and deployment.",
     bullets: [
       "Built a multi-tenant missed-call and inbound-SMS system on Twilio webhooks, Supabase auth, and PostgreSQL tenant config",
       "Load-tested the platform to 4M+ message exchanges and 500 concurrent users, holding 150–250ms p95 with a 0.4% error rate",
       "Shipped 7 runtime tenant fields — FAQ grounding, tone, escalation thresholds, lead status, booking link, STOP opt-outs, owner alerts — so routing changes ship without a redeploy",
-      "Added RETAINvoice call handling with live transcript, tool calls, call summary, and owner handoff",
+      "Added Frontline Voice call handling with live transcript, tool calls, call summary, and owner handoff",
     ],
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Supabase", "Gemini", "Twilio", "Stripe", "AWS"],
   },

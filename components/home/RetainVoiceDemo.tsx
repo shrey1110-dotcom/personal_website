@@ -11,7 +11,7 @@ export default function RetainVoiceDemo() {
             <span className="live-demo-dot bg-zinc-500/85" />
             <span className="live-demo-dot bg-zinc-400/85" />
             <span className="live-demo-dot bg-zinc-300/85" />
-            <span className="mono-label ml-2">RETAINvoice</span>
+            <span className="mono-label ml-2">Frontline Voice</span>
           </div>
           <span className="live-demo-badge">
             <span className="live-demo-badge-dot" />

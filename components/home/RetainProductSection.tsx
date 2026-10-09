@@ -26,7 +26,7 @@ export default function RetainProductSection() {
   }, []);
 
   return (
-    <section id="retain" className="section-shell pt-8 md:pt-10">
+    <section id="frontline" className="section-shell pt-8 md:pt-10">
       <div className="section-frame">
         <div className="retain-shell">
           <div ref={productRef} className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -43,7 +43,7 @@ export default function RetainProductSection() {
               <p className="retain-support mt-5">{retainProduct.subtitle}</p>
               <p className="section-body mt-6 max-w-[39rem]">{retainProduct.blurb}</p>
 
-              <div className="retain-surface-switch mt-7" aria-label="RETAIN AI product surfaces">
+              <div className="retain-surface-switch mt-7" aria-label="Frontline AI product surfaces">
                 <button
                   type="button"
                   onClick={() => setActiveSurface("chat")}
@@ -51,7 +51,7 @@ export default function RetainProductSection() {
                     activeSurface === "chat" ? "retain-surface-button-active" : ""
                   }`}
                 >
-                  <span>RETAINchat</span>
+                  <span>Frontline Chat</span>
                   <small>SMS and web lead recovery</small>
                 </button>
                 <button
@@ -61,7 +61,7 @@ export default function RetainProductSection() {
                     activeSurface === "voice" ? "retain-surface-button-active" : ""
                   }`}
                 >
-                  <span>RETAINvoice</span>
+                  <span>Frontline Voice</span>
                   <small>Inbound calls, callbacks, and handoff</small>
                 </button>
               </div>
@@ -96,9 +96,9 @@ export default function RetainProductSection() {
               {activeSurface === "chat" ? (
                 <LiveDemoWindow
                   accentClassName="live-demo-retain"
-                  chromeLabel="RETAINchat"
+                  chromeLabel="Frontline Chat"
                   src={retainProduct.href}
-                  title="Retain AI live platform preview"
+                  title="Frontline AI live platform preview"
                   urlLabel={retainProduct.liveMeta}
                 />
               ) : (
